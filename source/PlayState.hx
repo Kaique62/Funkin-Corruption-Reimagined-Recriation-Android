@@ -3621,7 +3621,7 @@ class PlayState extends MusicBeatState
 				case 1:
 				FlxG.camera.flash(FlxColor.WHITE, 1);
 				FlxG.camera.zoom = 1.5;
-				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 1.5);
+				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 1);
 				city.visible = false;
 				streetBehind.visible = false;
 				street.visible = false;
@@ -3629,9 +3629,9 @@ class PlayState extends MusicBeatState
 				lights.visible = true;
 				case 119:
 				dad.animation.play('gf-reload');
-				case 128:
-				dad.animation.play('gf-shoot');	
+				case 127:
 				FlxG.camera.zoom = 2;
+				dad.animation.play('gf-shoot');	
 				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 1);
 				city.visible = true;
 				streetBehind.visible = true;
