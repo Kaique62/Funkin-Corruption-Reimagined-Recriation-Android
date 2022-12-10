@@ -228,14 +228,14 @@ class MainMenuState extends MusicBeatState
 			{
 				switch(curSelected){
 					case 0:
-						FlxTween.tween(freeplay, {x: -930}, 1, {ease: FlxEase.expoInOut});	
-						FlxTween.tween(options, {x: -930}, 1, {ease: FlxEase.expoInOut});	
+						FlxTween.tween(freeplay, {x: -1530}, 1, {ease: FlxEase.expoInOut});	
+						FlxTween.tween(options, {x: -1530}, 1, {ease: FlxEase.expoInOut});	
 					case 1:	
-						FlxTween.tween(story, {x: -960}, 1, {ease: FlxEase.expoInOut});	
-						FlxTween.tween(options, {x: -930}, 1, {ease: FlxEase.expoInOut});	
+						FlxTween.tween(story, {x: -1560}, 1, {ease: FlxEase.expoInOut});	
+						FlxTween.tween(options, {x: -1530}, 1, {ease: FlxEase.expoInOut});	
 					case 2:
-						FlxTween.tween(story, {x: -960}, 1, {ease: FlxEase.expoInOut});	
-						FlxTween.tween(freeplay, {x: -930}, 1, {ease: FlxEase.expoInOut});		
+						FlxTween.tween(story, {x: -1560}, 1, {ease: FlxEase.expoInOut});	
+						FlxTween.tween(freeplay, {x: -1530}, 1, {ease: FlxEase.expoInOut});		
 				}
 				if (optionShit[curSelected] == 'donate')
 				{

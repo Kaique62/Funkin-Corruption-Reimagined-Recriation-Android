@@ -307,7 +307,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singUP', 'pico Up note0', 24, false);
 				animation.addByPrefix('singDOWN', 'Pico Down Note0', 24, false);
 				animation.addByPrefix('reload', 'Pico Reloading Gun', 24, false);
-				animation.addByPrefix('shoot', 'Pico Shoot', 24, false);
+				animation.addByPrefix('shoot', 'Pico Shoot0', 24, false);
 				animation.addByPrefix('gf-shoot', 'Pico Shoot Gf', 24, false);
 				animation.addByPrefix('gf-reload', 'Look Gf Pico Reloading Gun', 24, false);
 				if (isPlayer)
@@ -332,7 +332,7 @@ class Character extends FlxSprite
 				addOffset('idle');
 				addOffset('reload', 20, 0);
 				addOffset('gf-reload', 36, 0);
-				addOffset('shoot', 15,28);
+				addOffset('shoot', 15,-28);
 				addOffset('gf-shoot', 15,28);
 				addOffset("singUP", 11, 17);
 				addOffset("singRIGHT", -39, -11);

@@ -1,5 +1,5 @@
 Tutorial:gf:1
-Emanicipation:pico:1
+Emancipation:pico:1
 Gunned-Down:pico2:1
 Extrication:pico2:1
 Satin-Savagery:spooky:2

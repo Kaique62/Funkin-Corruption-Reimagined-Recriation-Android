@@ -93,6 +93,7 @@ class PlayState extends MusicBeatState
 
 	var songLength:Float = 0;
 	var kadeEngineWatermark:FlxText;
+	var gfPreLoad:FlxSprite;
 	
 	#if windows
 	// Discord RPC variables
@@ -869,7 +870,7 @@ class PlayState extends MusicBeatState
 		dad = new Character(100, 100, SONG.player2);
 
 		if(curSong == 'Gunned-Down'){
-			var gfPreLoad:FlxSprite = new FlxSprite(-40, streetBehind.y).loadGraphic(Paths.image('characters/gopico/gf-1-2alt','shared'));
+			gfPreLoad = new FlxSprite(-40, streetBehind.y).loadGraphic(Paths.image('characters/gopico/gf-1-2alt','shared'));
 			gfPreLoad.visible = false;
 			add(gfPreLoad);
 		}
