@@ -226,6 +226,17 @@ class MainMenuState extends MusicBeatState
 
 			if (controls.ACCEPT)
 			{
+				switch(curSelected){
+					case 0:
+						FlxTween.tween(freeplay, {x: -930}, 1, {ease: FlxEase.expoInOut});	
+						FlxTween.tween(options, {x: -930}, 1, {ease: FlxEase.expoInOut});	
+					case 1:	
+						FlxTween.tween(story, {x: -960}, 1, {ease: FlxEase.expoInOut});	
+						FlxTween.tween(options, {x: -930}, 1, {ease: FlxEase.expoInOut});	
+					case 2:
+						FlxTween.tween(story, {x: -960}, 1, {ease: FlxEase.expoInOut});	
+						FlxTween.tween(freeplay, {x: -930}, 1, {ease: FlxEase.expoInOut});		
+				}
 				if (optionShit[curSelected] == 'donate')
 				{
 					fancyOpenURL("https://www.kickstarter.com/projects/funkin/friday-night-funkin-the-full-ass-game");
@@ -251,18 +262,13 @@ class MainMenuState extends MusicBeatState
 									{
 										case 0:
 											trace("Story Menu Selected");
-											FlxTween.tween(freeplay, {x: -930}, 1, {ease: FlxEase.expoInOut});	
-											FlxTween.tween(options, {x: -930}, 1, {ease: FlxEase.expoInOut});	
 											goToState();
 										case 1:
 							
 											trace("Freeplay Menu Selected");
-											FlxTween.tween(story, {x: -960}, 1, {ease: FlxEase.expoInOut});	
-											FlxTween.tween(options, {x: -930}, 1, {ease: FlxEase.expoInOut});	
+
 											goToState();
 										case 2:
-											FlxTween.tween(story, {x: -960}, 1, {ease: FlxEase.expoInOut});	
-											FlxTween.tween(freeplay, {x: -930}, 1, {ease: FlxEase.expoInOut});	
 											goToState();
 									}
 

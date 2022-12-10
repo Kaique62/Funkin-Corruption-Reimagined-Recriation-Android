@@ -124,7 +124,7 @@ class PlayState extends MusicBeatState
 	public static var cpuStrums:FlxTypedGroup<FlxSprite> = null;
 
 	private var camZooming:Bool = false;
-	private var curSong:String = "";
+	public static var curSong:String = "";
 
 	private var gfSpeed:Int = 1;
 	public var health:Float = 1; //making public because sethealth doesnt work without it
@@ -868,6 +868,13 @@ class PlayState extends MusicBeatState
 
 		dad = new Character(100, 100, SONG.player2);
 
+		if(curSong == 'Gunned-Down'){
+			var gfPreLoad:FlxSprite = new FlxSprite(-40, streetBehind.y).loadGraphic(Paths.image('characters/gopico/gf-1-2alt','shared'));
+			gfPreLoad.visible = false;
+			add(gfPreLoad);
+			remove(gfPreLoad);
+		}
+
 		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
 
 		switch (SONG.player2)
@@ -1107,6 +1114,22 @@ class PlayState extends MusicBeatState
 		iconP2.y = healthBar.y - (iconP2.height / 2);
 		add(iconP2);
 
+		stageOverlay = new FlxSprite(0).loadGraphic(Paths.image('philly2/stageoverlay', 'week3'));
+
+		switch (curSong){
+			case 'Gunned-Down':
+				stageOverlay.visible = true;
+			default:
+				stageOverlay.visible = false;
+		}
+
+		add(stageOverlay);
+
+		var stagecams = new FlxCamera();
+		FlxG.cameras.add(stagecams);
+		stagecams.bgColor.alpha = 0;
+		stageOverlay.cameras = [stagecams];
+
 		strumLineNotes.cameras = [camHUD];
 		notes.cameras = [camHUD];
 		grpNoteSplashes.cameras = [camHUD];
@@ -1125,21 +1148,7 @@ class PlayState extends MusicBeatState
 		if (loadRep)
 			replayTxt.cameras = [camHUD];
 
-		stageOverlay = new FlxSprite(0).loadGraphic(Paths.image('philly2/stageoverlay', 'week3'));
 
-		switch (curSong){
-			case 'gunned-down':
-				stageOverlay.visible = true;
-			default:
-				stageOverlay.visible = true;
-		}
-
-		add(stageOverlay);
-
-		var stagecams = new FlxCamera();
-		FlxG.cameras.add(stagecams);
-		stagecams.bgColor.alpha = 0;
-		stageOverlay.cameras = [stagecams];
 
 		#if mobileC
 			mcontrols = new Mobilecontrols();
@@ -1989,6 +1998,17 @@ class PlayState extends MusicBeatState
 						trainFrameTiming = 0;
 					}
 				}
+			case 'philly2':
+				if (trainMoving)
+				{
+					trainFrameTiming += elapsed;
+
+					if (trainFrameTiming >= 1 / 24)
+					{
+						updateTrainPos();
+						trainFrameTiming = 0;
+					}
+				}				
 				// phillyCityLights.members[curLight].alpha -= (Conductor.crochet / 1000) * FlxG.elapsed;
 		}
 
@@ -3651,6 +3671,17 @@ class PlayState extends MusicBeatState
 				street.visible = true;
 				bg.visible = true;
 				lights.visible = false;
+				case 310:
+				dad.animation.play('reload');	
+				case 951:
+				dad.animation.play('reload');
+				case 1280:
+				camHUD.visible = false;
+				FlxG.camera.flash(FlxColor.WHITE, 1);	
+				dad.animation.play('idle');
+				remove(gf);
+				gf = new Character(400, 130, 'gf-pico2alt');
+				add(gf);		
 			}
 		}
 	}
@@ -3783,6 +3814,25 @@ class PlayState extends MusicBeatState
 				}
 
 				}
+			case "philly2":
+				if(FlxG.save.data.distractions){
+					if (!trainMoving)
+						trainCooldown += 1;
+	
+					if (curBeat % 4 == 0)
+					{
+						phillyCityLights.forEach(function(light:FlxSprite)
+						{
+							light.visible = false;
+						});
+	
+						curLight = FlxG.random.int(0, phillyCityLights.length - 1);
+	
+						phillyCityLights.members[curLight].visible = true;
+						// phillyCityLights.members[curLight].alpha = 1;
+				}
+
+				}				
 
 				if (curBeat % 8 == 4 && FlxG.random.bool(30) && !trainMoving && trainCooldown > 8)
 				{
