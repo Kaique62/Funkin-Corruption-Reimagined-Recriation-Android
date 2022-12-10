@@ -345,9 +345,10 @@ class Character extends FlxSprite
 
 				playAnim('idle');
 
-				flipX = true;				
+				flipX = true;	
+								
 
-       case 'pico-3-1':
+       case 'pico3-1':
 		    frames = Paths.getSparrowAtlas('characters/gopico/picod3');
 
 				animation.addByPrefix('idle', 'Pico Idle Dance', 24, false);
@@ -355,20 +356,12 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'Pico Down Note0', 24, false);
 				animation.addByPrefix('singUP', 'pico Up note0', 24, false);
 				animation.addByPrefix('singRIGHT', 'Pico NOTE LEFT0', 24, false);
-				animation.addByPrefix('shoot', 'Pico Shoot0', 24, false);
-				animation.addByPrefix('RELOAD', 'Pico Reload Gun0', 24, false);
-				animation.addByPrefix('gf-shoot', 'Pico Shoot Gf', 25, false);
-				animation.addByPrefix('gf-reload', 'Look Gf Pico Reloading Gun', 24, false);
 
 				addOffset('idle', 0);
 				addOffset('singLEFT', 30, -5);
 				addOffset('singDOWN', 246, -75);
 				addOffset('singUP', 11, 27);
 				addOffset('singRIGHT', -35, -9);
-				addOffset('shoot', 14, 28);
-				addOffset('RELOAD', 20, 0);
-				addOffset('gf-shoot', 15, 28);
-				addOffset('gf-reload', 36, 0);
 
 				playAnim('idle');
 				flipX = true;
@@ -850,7 +843,17 @@ class Character extends FlxSprite
 							playAnim('danceRight');
 						else
 							playAnim('danceLeft');
-					}
+					}//gf-1-3-2' 
+				case 'gf-1-3-2':
+					if (!animation.curAnim.name.startsWith('hair'))
+					{
+						danced = !danced;
+
+						if (danced)
+							playAnim('danceRight');
+						else
+							playAnim('danceLeft');
+					}					
 				case 'gf-christmas':
 					if (!animation.curAnim.name.startsWith('hair'))
 					{

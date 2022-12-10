@@ -52,7 +52,8 @@ class LoadingState extends MusicBeatState
 		gfDance.antialiasing = true;
 		add(gfDance);
 		add(logo);
-		
+	
+
 		initSongsManifest().onComplete
 		(
 			function (lib)
@@ -92,6 +93,17 @@ class LoadingState extends MusicBeatState
 	
 	function checkLibrary(library:String)
 	{
+		if(PlayState.storyWeek == 3){
+			Assets.loadLibrary('shared/images/characters/gopico');
+			Assets.loadImage('shared/images/characters/gopico/');
+			trace('pico');
+
+			for (i in FileSystem.readDirectory(FileSystem.absolutePath("assets/songs/shared/images/characters/gopico")))
+				{
+					music.push(i);
+				}
+		}
+
 		trace(Assets.hasLibrary(library));
 		if (Assets.getLibrary(library) == null)
 		{

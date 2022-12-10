@@ -1,7 +1,7 @@
 Tutorial:gf:1
-Emancipation:pico:1
-Gunned-Down:pico2:1
-Extrication:pico2:1
+Emancipation:pico:3
+Gunned-Down:pico2:3
+Extrication:pico3-1:3
 Satin-Savagery:spooky:2
 Dispatch:spooky:2
 Glammed:monster:2

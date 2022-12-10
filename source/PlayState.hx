@@ -522,10 +522,6 @@ class PlayState extends MusicBeatState
 					var streetBehind:FlxSprite = new FlxSprite(-40, 50).loadGraphic(Paths.image('philly3/behindTrain','week3'));
 					add(streetBehind);
 
-					phillyTrain = new FlxSprite(2000, 360).loadGraphic(Paths.image('philly3/train','week3'));
-					if(FlxG.save.data.distractions){
-						add(phillyTrain);
-					}
 
 					trainSound = new FlxSound().loadEmbedded(Paths.sound('train_passes','week3'));
 					FlxG.sound.list.add(trainSound);
@@ -861,6 +857,8 @@ class PlayState extends MusicBeatState
 				gfVersion = 'gf-pixel';
 			case 'gf-pico':
 				gfVersion = 'gf-pico';
+			case 'gf-1-3-2':
+				gfVersion = 'gf-1-3-2';
 			default:
 				gfVersion = 'gf';
 		}
@@ -902,7 +900,13 @@ class PlayState extends MusicBeatState
 				dad.y += 300;
 			case 'pico2':
 				camPos.x += 600;
-				dad.y += 300;					
+				dad.y += 300;	
+			case 'pico3-1':
+				camPos.x += 600;
+				dad.y += 300;
+			case 'pico3-2':
+				camPos.x += 600;
+				dad.y += 300;														
 			case 'parents-christmas':
 				dad.x -= 500;
 			case 'senpai':
@@ -1118,7 +1122,7 @@ class PlayState extends MusicBeatState
 		stageOverlay = new FlxSprite(0).loadGraphic(Paths.image('philly2/stageoverlay', 'week3'));
 
 		switch (curSong){
-			case 'Gunned-Down':
+			case 'Gunned-Down' | 'Extrication':
 				stageOverlay.visible = true;
 			default:
 				stageOverlay.visible = false;
@@ -3690,10 +3694,32 @@ class PlayState extends MusicBeatState
 				add(gf);		
 			}
 		}
+		if(curSong == 'Extrication'){
+			switch (curStep){
+				case 450:
+				FlxG.camera.flash(FlxColor.WHITE, 1);	
+				changeDAD('pico-3-2', 300, 100);
+				case 512:
+				FlxG.camera.flash(FlxColor.WHITE, 1);	
+				changeDAD('pico-3-3', 300, 400);	
+				case 586:
+				FlxG.camera.flash(FlxColor.WHITE, 1);	
+				changeDAD('pico-3-4', 300, 400);
+				case 623:
+				FlxG.camera.flash(FlxColor.WHITE, 1);	
+				changeDAD('pico-3-5', 300, 400);																											
+			}
+		}		
 	}
 
 	var lightningStrikeBeat:Int = 0;
 	var lightningOffset:Int = 8;
+
+	function changeDAD(char, x, y){
+		remove(dad);
+		dad = new Character(x, y, char);
+		add(dad);
+	}
 
 	override function beatHit()
 	{
