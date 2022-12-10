@@ -872,7 +872,6 @@ class PlayState extends MusicBeatState
 			var gfPreLoad:FlxSprite = new FlxSprite(-40, streetBehind.y).loadGraphic(Paths.image('characters/gopico/gf-1-2alt','shared'));
 			gfPreLoad.visible = false;
 			add(gfPreLoad);
-			remove(gfPreLoad);
 		}
 
 		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
@@ -3652,6 +3651,7 @@ class PlayState extends MusicBeatState
 		if(curSong == 'Gunned-Down'){
 			switch(curStep){
 				case 1:
+				remove(gfPreLoad);
 				FlxG.camera.flash(FlxColor.WHITE, 1);
 				FlxG.camera.zoom = 1.5;
 				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 1);
