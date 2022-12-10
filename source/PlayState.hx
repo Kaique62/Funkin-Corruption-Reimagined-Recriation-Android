@@ -204,6 +204,7 @@ class PlayState extends MusicBeatState
 	var streetBehind:FlxSprite;
 	var street:FlxSprite;
 	var bg:FlxSprite;
+	var purBg:FlxSprite;
 
 	public static var timeCurrently:Float = 0;
 	public static var timeCurrentlyR:Float = 0;
@@ -3549,7 +3550,6 @@ class PlayState extends MusicBeatState
 					startedMoving = true;
 					gf.playAnim('hairBlow');
 				}
-		
 				if (startedMoving)
 				{
 					phillyTrain.x -= 400;
@@ -3653,6 +3653,10 @@ class PlayState extends MusicBeatState
 			switch(curStep){
 				case 1:
 				remove(gfPreLoad);
+				purBg = new FlxSprite(0, 0).makeGraphic(FlxG.width, 400, 0xFFFF00FF);
+				purBg.setGraphicSize(Std.int(purBg.width * 6));
+				purBg.alpha = 0.15;
+				add(purBg);
 				FlxG.camera.flash(FlxColor.WHITE, 1);
 				FlxG.camera.zoom = 1.5;
 				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 1);
@@ -3665,6 +3669,7 @@ class PlayState extends MusicBeatState
 				dad.animation.play('gf-reload');
 				case 127:
 				FlxG.camera.zoom = 2;
+				remove(purBg);
 				dad.animation.play('gf-shoot');	
 				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 1);
 				city.visible = true;
@@ -3693,6 +3698,10 @@ class PlayState extends MusicBeatState
 	override function beatHit()
 	{
 		super.beatHit();
+
+		if(gf.animation == null){
+			gf.playAnim('danceLeft');
+		}
 
 		if (generatedMusic)
 		{
