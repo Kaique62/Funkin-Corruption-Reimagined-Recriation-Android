@@ -530,6 +530,25 @@ class PlayState extends MusicBeatState
 
 					var street:FlxSprite = new FlxSprite(-40, streetBehind.y).loadGraphic(Paths.image('philly3/street','week3'));
 					add(street);
+
+								var preload1 = new Character (0,0, 'pico-3-2');
+			preload1.visible = false;
+			add(preload1);
+
+			var preload2 = new Character (0,0, 'pico-3-3');
+			preload2.visible = false;
+			add(preload2);
+
+			var preload3 = new Character (0,0, 'pico-3-4');
+			preload3.visible = false;
+			add(preload3);
+
+			var preload4 = new Character (0,0, 'pico-3-5');
+			preload4.visible = false;
+			add(preload4);
+
+			trace('preload');
+
 			}						
 			case 'limo':
 			{
@@ -863,16 +882,13 @@ class PlayState extends MusicBeatState
 				gfVersion = 'gf';
 		}
 
+
+
 		gf = new Character(400, 130, gfVersion);
 		gf.scrollFactor.set(0.95, 0.95);
 
 		dad = new Character(100, 100, SONG.player2);
 
-		if(curSong == 'Gunned-Down'){
-			gfPreLoad = new FlxSprite(-40, streetBehind.y).loadGraphic(Paths.image('characters/gopico/gf-1-2alt','shared'));
-			gfPreLoad.visible = false;
-			add(gfPreLoad);
-		}
 
 		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
 
@@ -3262,11 +3278,11 @@ class PlayState extends MusicBeatState
 					}
 				});
 				
-				if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && (!holdArray.contains(true) || FlxG.save.data.botplay))
+			/*	if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && (!holdArray.contains(true) /*|| FlxG.save.data.botplay ))
 				{
 					if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
 						boyfriend.playAnim('idle');
-				}
+				} */
 		 
 				playerStrums.forEach(function(spr:FlxSprite)
 				{
@@ -3674,6 +3690,7 @@ class PlayState extends MusicBeatState
 				case 127:
 				FlxG.camera.zoom = 2;
 				remove(purBg);
+				purBg.visible = false;
 				dad.animation.play('gf-shoot');	
 				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 1);
 				city.visible = true;
@@ -3696,16 +3713,21 @@ class PlayState extends MusicBeatState
 		}
 		if(curSong == 'Extrication'){
 			switch (curStep){
+				case 60:
+				FlxTween.tween(FlxG.camera, {zoom: 1.15}, 0.3);
+				case 127:	
+				FlxTween.tween(FlxG.camera, {zoom: 1.3}, 1);	
+				FlxTween.tween(FlxG.camera, {x: FlxG.camera.x + 300}, 1);	
 				case 450:
 				FlxG.camera.flash(FlxColor.WHITE, 1);	
-				changeDAD('pico-3-2', 300, 100);
+				changeDAD('pico-3-2', 300, 400);
 				case 512:
 				FlxG.camera.flash(FlxColor.WHITE, 1);	
 				changeDAD('pico-3-3', 300, 400);	
 				case 586:
 				FlxG.camera.flash(FlxColor.WHITE, 1);	
 				changeDAD('pico-3-4', 300, 400);
-				case 623:
+				case 622:
 				FlxG.camera.flash(FlxColor.WHITE, 1);	
 				changeDAD('pico-3-5', 300, 400);																											
 			}

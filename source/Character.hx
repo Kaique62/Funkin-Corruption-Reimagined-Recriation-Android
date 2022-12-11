@@ -332,7 +332,7 @@ class Character extends FlxSprite
 				addOffset('idle');
 				addOffset('reload', 20, 0);
 				addOffset('gf-reload', 36, 0);
-				addOffset('shoot', 15,-28);
+				addOffset('shoot', 15, 100);
 				addOffset('gf-shoot', 15,28);
 				addOffset("singUP", 11, 17);
 				addOffset("singRIGHT", -39, -11);
@@ -463,7 +463,7 @@ class Character extends FlxSprite
 				addOffset('singDOWN', 249, -29);
 				addOffset('singUP', 7, 52);
 				addOffset('singRIGHT', -35, -11);
-				addOffset('shoot', 17, 23);
+				addOffset('shoot', 17, -40);
 				addOffset('RELOAD', 20, 0);
 				addOffset('gf-shoot', 15, 28);
 				addOffset('gf-reload', 36, 0);

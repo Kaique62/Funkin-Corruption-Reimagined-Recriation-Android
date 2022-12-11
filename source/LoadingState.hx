@@ -7,11 +7,13 @@ import flixel.FlxState;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.util.FlxTimer;
-
+import openfl.events.FileListEvent;
 import openfl.utils.Assets;
 import lime.utils.Assets as LimeAssets;
 import lime.utils.AssetLibrary;
 import lime.utils.AssetManifest;
+import flash.display.BitmapData;
+import flixel.graphics.FlxGraphic;
 
 import haxe.io.Path;
 
@@ -26,6 +28,8 @@ class LoadingState extends MusicBeatState
 	var logo:FlxSprite;
 	var gfDance:FlxSprite;
 	var danceLeft = false;
+
+	public static var bitmapData:Map<String,FlxGraphic>;
 	
 	function new(target:FlxState, stopMusic:Bool)
 	{
@@ -54,8 +58,10 @@ class LoadingState extends MusicBeatState
 		add(logo);
 	
 
+
 		initSongsManifest().onComplete
 		(
+
 			function (lib)
 			{
 				callbacks = new MultiCallback(onLoad);
@@ -69,6 +75,7 @@ class LoadingState extends MusicBeatState
 				else
 					checkLibrary("tutorial");
 				
+
 				var fadeTime = 0.5;
 				FlxG.camera.fade(FlxG.camera.bgColor, fadeTime, true);
 				new FlxTimer().start(fadeTime + MIN_TIME, function(_) introComplete());
@@ -90,29 +97,30 @@ class LoadingState extends MusicBeatState
 			Assets.loadSound(path).onComplete(function (_) { callback(); });
 		}
 	}
-	
+	// function preloadCharacters(event:FileListEvent):Void {
+	// var list:Array = events.files;
+	// var images = [];
+	// if (!list.endsWith(".png"))
+	// 	continue;
+	// images.push();
+	// trace(images);
+	// }
 	function checkLibrary(library:String)
 	{
-		if(PlayState.storyWeek == 3){
-			Assets.loadLibrary('shared/images/characters/gopico');
-			Assets.loadImage('shared/images/characters/gopico/');
-			trace('pico');
 
-			for (i in FileSystem.readDirectory(FileSystem.absolutePath("assets/songs/shared/images/characters/gopico")))
-				{
-					music.push(i);
-				}
-		}
 
 		trace(Assets.hasLibrary(library));
 		if (Assets.getLibrary(library) == null)
 		{
+
 			@:privateAccess
 			if (!LimeAssets.libraryPaths.exists(library))
 				throw "Missing library: " + library;
 			
 			var callback = callbacks.add("library:" + library);
 			Assets.loadLibrary(library).onComplete(function (_) { callback(); });
+
+			//preloadCharacters('assets/shared/images/characters/gopico');
 		}
 	}
 	

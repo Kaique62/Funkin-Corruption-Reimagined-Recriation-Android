@@ -81,6 +81,7 @@ class Main extends Sprite
 		gameWidth = 1280;
 		gameHeight = 720;
 		zoom = 1;
+		framerate = 60;
 		#end
 
 		game = new FlxGame(gameWidth, gameHeight, initialState, zoom, 120, 120, skipSplash, startFullscreen);
