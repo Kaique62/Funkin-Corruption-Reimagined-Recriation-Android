@@ -95,7 +95,7 @@ class LoadingState extends MusicBeatState
 	{
 		if(PlayState.storyWeek == 3){
 			Assets.loadLibrary('shared/images/characters/gopico');
-			Assets.loadImage('shared/images/characters/gopico/');
+			
 			trace('pico');
 
 			
