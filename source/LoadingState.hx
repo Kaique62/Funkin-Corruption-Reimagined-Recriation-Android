@@ -98,10 +98,7 @@ class LoadingState extends MusicBeatState
 			Assets.loadImage('shared/images/characters/gopico/');
 			trace('pico');
 
-			for (i in FileSystem.readDirectory(FileSystem.absolutePath("assets/songs/shared/images/characters/gopico")))
-				{
-					music.push(i);
-				}
+			
 		}
 
 		trace(Assets.hasLibrary(library));
