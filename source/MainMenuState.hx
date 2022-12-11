@@ -156,11 +156,11 @@ class MainMenuState extends MusicBeatState
 		}
  */
 		FlxTween.tween(story, {x: -660}, 1, {ease: FlxEase.expoInOut});	
-		new FlxTimer().start(0.5, function(tmr:FlxTimer)
+		new FlxTimer().start(0.3, function(tmr:FlxTimer)
 			{
 		FlxTween.tween(freeplay, {x: -630}, 1, {ease: FlxEase.expoInOut});	
 			});
-		new FlxTimer().start(1, function(tmr:FlxTimer)
+		new FlxTimer().start(0.5, function(tmr:FlxTimer)
 			{
 			FlxTween.tween(options, {x: -630}, 1, {ease: FlxEase.expoInOut});	
 			});			

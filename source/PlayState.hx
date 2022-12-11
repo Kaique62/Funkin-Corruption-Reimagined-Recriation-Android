@@ -1046,7 +1046,6 @@ class PlayState extends MusicBeatState
 		}
 
 		add(camFollow);
-
 		FlxG.camera.follow(camFollow, LOCKON, 0.04 * (30 / (cast (Lib.current.getChildAt(0), Main)).getFPS()));
 		// FlxG.camera.setScrollBounds(0, FlxG.width, 0, FlxG.height);
 		FlxG.camera.zoom = defaultCamZoom;
@@ -2311,6 +2310,7 @@ class PlayState extends MusicBeatState
 					offsetY = luaModchart.getVar("followYOffset", "float");
 				}
 				#end
+				
 				camFollow.setPosition(boyfriend.getMidpoint().x - 100 + offsetX, boyfriend.getMidpoint().y - 100 + offsetY);
 
 				#if windows
@@ -3714,10 +3714,21 @@ class PlayState extends MusicBeatState
 		if(curSong == 'Extrication'){
 			switch (curStep){
 				case 60:
-				FlxTween.tween(FlxG.camera, {zoom: 1.15}, 0.3);
+				camZooming = true;	
+				defaultCamZoom = 1.15;
+				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 0.3);
 				case 127:	
-				FlxTween.tween(FlxG.camera, {zoom: 1.3}, 1);	
-				FlxTween.tween(FlxG.camera, {x: FlxG.camera.x + 300}, 1);	
+				defaultCamZoom = 1.3;	
+				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 1);	
+				case 192:
+				defaultCamZoom = 1.35;
+				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 0.5);		
+				case 208:
+				defaultCamZoom = 1.4;
+				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 0.5);		
+				case 258:
+				defaultCamZoom = 1.15;
+				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 1);											
 				case 450:
 				FlxG.camera.flash(FlxColor.WHITE, 1);	
 				changeDAD('pico-3-2', 300, 400);
@@ -3795,10 +3806,12 @@ class PlayState extends MusicBeatState
 			camHUD.zoom += 0.03;
 		}
 
-		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)
-		{
-			FlxG.camera.zoom += 0.015;
-			camHUD.zoom += 0.03;
+		if(curSong != "Extrication"){
+			if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)
+				{
+					FlxG.camera.zoom += 0.015;
+					camHUD.zoom += 0.03;
+				}
 		}
 
 		iconP1.setGraphicSize(Std.int(iconP1.width + 30));
