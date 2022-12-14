@@ -6297,7 +6297,7 @@
 			}
 		],
 		"player2": "momd1",
-		"gfVersion": "gf-blank",
+		"gfVersion": "gf-pixel",
 		"events": [
 			[
 				6274.50980392157,
@@ -6324,7 +6324,7 @@
 		"needsVoices": true,
 		"sections": 0,
 		"validScore": true,
-		"stage": "limo",
+		"stage": "limod1",
 		"bpm": 153,
 		"speed": 2.7,
 		"noteStyle": "corrupted"

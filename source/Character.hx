@@ -61,6 +61,38 @@ class Character extends FlxSprite
 				addOffset('scared', -2, -17);
 
 				playAnim('danceRight');
+
+			case 'gf-blank':
+				tex = Paths.getSparrowAtlas('characters/gfBlank');
+				frames = tex;
+
+				animation.addByPrefix('cheer', 'GF Cheer', 24, false);
+				animation.addByPrefix('singLEFT', 'GF left note', 24, false);
+				animation.addByPrefix('singRIGHT', 'GF Right Note', 24, false);
+				animation.addByPrefix('singUP', 'GF Up Note', 24, false);
+				animation.addByPrefix('singDOWN', 'GF Down Note', 24, false);
+				animation.addByIndices('sad', 'gf sad', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "", 24, false);
+				animation.addByIndices('danceLeft', 'GF Dancing Beat', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
+				animation.addByIndices('danceRight', 'GF Dancing Beat', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
+				animation.addByIndices('hairBlow', "GF Dancing Beat Hair blowing", [0, 1, 2, 3], "", 24);
+				animation.addByIndices('hairFall', "GF Dancing Beat Hair Landing", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "", 24, false);
+				animation.addByPrefix('scared', 'GF FEAR', 24);
+
+				addOffset('cheer');
+				addOffset('sad', -2, -2);
+				addOffset('danceLeft', 0, -9);
+				addOffset('danceRight', 0, -9);
+
+				addOffset("singUP", 0, 4);
+				addOffset("singRIGHT", 0, -20);
+				addOffset("singLEFT", 0, -19);
+				addOffset("singDOWN", 0, -20);
+				addOffset('hairBlow', 45, -8);
+				addOffset('hairFall', 0, -9);
+
+				addOffset('scared', -2, -17);
+
+				playAnim('danceRight');
 	
 			case 'gf-pico':
 				// GIRLFRIEND CODE
@@ -239,6 +271,41 @@ class Character extends FlxSprite
 				addOffset("singRIGHT", 10, -60);
 				addOffset("singLEFT", 250, -23);
 				addOffset("singDOWN", 20, -160);
+
+				playAnim('idle');
+
+			case 'momd1':
+				tex = Paths.getSparrowAtlas('characters/woman/d1/momd1');
+				frames = tex;
+
+				animation.addByPrefix('idle', "Mom Idle", 24, false);
+				animation.addByPrefix('singUP', "Mom Up Pose", 24, false);
+				animation.addByPrefix('singDOWN', "MOM DOWN POSE", 24, false);
+				animation.addByPrefix('singLEFT', 'Mom Left Pose', 24, false);
+				animation.addByPrefix('singRIGHT', 'Mom Pose Left', 24, false);
+
+				addOffset('idle', 50, 60);
+				addOffset("singUP", 68, 130);
+				addOffset("singRIGHT", -6, -4);
+				addOffset("singLEFT", 321, 33);
+				addOffset("singDOWN", 51, -110);
+
+				playAnim('idle');
+			case 'momd1alt':
+				tex = Paths.getSparrowAtlas('characters/woman/d1/momd1-2');
+				frames = tex;
+
+				animation.addByPrefix('idle', "Mom Idle", 24, false);
+				animation.addByPrefix('singUP', "Mom Up Pose", 24, false);
+				animation.addByPrefix('singDOWN', "MOM DOWN POSE", 24, false);
+				animation.addByPrefix('singLEFT', 'Mom Left Pose', 24, false);
+				animation.addByPrefix('singRIGHT', 'Mom Pose Left', 24, false);
+
+				addOffset('idle', 50, 60);
+				addOffset("singUP", 68, 130);
+				addOffset("singRIGHT", -6, -4);
+				addOffset("singLEFT", 321, 33);
+				addOffset("singDOWN", 52, -110);
 
 				playAnim('idle');
 			case 'monster':
@@ -468,6 +535,50 @@ class Character extends FlxSprite
 				addOffset('gf-shoot', 15, 28);
 				addOffset('gf-reload', 36, 0);
 				addOffset('singUPalt', 10, 25);
+
+				playAnim('idle');
+				flipX = true;
+
+		    case 'picod1-alt':
+		       frames = Paths.getSparrowAtlas('characters/woman/d1/picod1-shadow');
+
+				animation.addByPrefix('idle', 'Pico Idle Dance', 24, false);
+				animation.addByPrefix('singLEFT', 'Pico Note Right0', 24, false);
+				animation.addByPrefix('singDOWN', 'Pico Down Note0', 24, false);
+				animation.addByPrefix('singUP', 'pico Up note0', 24, false);
+				animation.addByPrefix('singRIGHT', 'Pico NOTE LEFT0', 24, false);
+				animation.addByPrefix('reload', 'Pico RELOAD', 24, false);
+				animation.addByPrefix('shoot', 'Pico Shoot', 24, false);
+
+				addOffset('idle', 23, 60);
+				addOffset('singLEFT', 72, 55);
+				addOffset('singDOWN', 58, -16);
+				addOffset('singUP', -22, 106);
+				addOffset('singRIGHT', -74, 63);
+				addOffset('reload', -30, 38);
+				addOffset('shoot', 466, 55);
+
+				playAnim('idle');
+				flipX = true;
+
+			case 'picod1':
+		       frames = Paths.getSparrowAtlas('characters/woman/d1/picod1');
+
+				animation.addByPrefix('idle', 'Pico Idle Dance', 24, false);
+				animation.addByPrefix('singLEFT', 'Pico Note Right0', 24, false);
+				animation.addByPrefix('singDOWN', 'Pico Down Note0', 24, false);
+				animation.addByPrefix('singUP', 'pico Up note0', 24, false);
+				animation.addByPrefix('singRIGHT', 'Pico NOTE LEFT0', 24, false);
+				animation.addByPrefix('reload', 'Pico RELOAD', 24, false);
+				animation.addByPrefix('shoot', 'Pico Shoot', 24, false);
+
+				addOffset('idle', 23, 60);
+				addOffset('singLEFT', 103, 50);
+				addOffset('singDOWN', 88, 28);
+				addOffset('singUP', 48, 110);
+				addOffset('singRIGHT', -14, 80);
+				addOffset('reload', -48, 71);
+				addOffset('shoot', 466, 82);
 
 				playAnim('idle');
 				flipX = true;
@@ -824,6 +935,16 @@ class Character extends FlxSprite
 						else
 							playAnim('danceLeft');
 					}
+				case 'gf-blank':
+					if (!animation.curAnim.name.startsWith('hair'))
+					{
+						danced = !danced;
+
+						if (danced)
+							playAnim('danceRight');
+						else
+							playAnim('danceLeft');
+					}
 				case 'gf-pico':
 					if (!animation.curAnim.name.startsWith('hair'))
 					{
@@ -833,7 +954,7 @@ class Character extends FlxSprite
 							playAnim('danceRight');
 						else
 							playAnim('danceLeft');
-					}	//gf-pico2alt				
+					}				
 				case 'gf-pico2alt':
 					if (!animation.curAnim.name.startsWith('hair'))
 					{

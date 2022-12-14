@@ -161,6 +161,8 @@ class PlayState extends MusicBeatState
 	var halloweenBG:FlxSprite;
 	var isHalloween:Bool = false;
 
+	var fog:FlxSprite;
+
 	var phillyCityLights:FlxTypedGroup<FlxSprite>;
 	var phillyTrain:FlxSprite;
 	var trainSound:FlxSound;
@@ -550,42 +552,21 @@ class PlayState extends MusicBeatState
 			trace('preload');
 
 			}						
-			case 'limo':
+			case 'limod1':
 			{
-					curStage = 'limo';
+					curStage = 'limod1';
 					defaultCamZoom = 0.90;
 
 					var skyBG:FlxSprite = new FlxSprite(-120, -50).loadGraphic(Paths.image('limo/limoSunset','week4'));
 					skyBG.scrollFactor.set(0.1, 0.1);
 					add(skyBG);
 
-					var bgLimo:FlxSprite = new FlxSprite(-200, 480);
+					var bgLimo:FlxSprite = new FlxSprite(-200,480);
 					bgLimo.frames = Paths.getSparrowAtlas('limo/bgLimo','week4');
-					bgLimo.animation.addByPrefix('drive', "background limo pink", 24);
+					bgLimo.animation.addByPrefix('drive', "BG limo PINK", 24);
 					bgLimo.animation.play('drive');
 					bgLimo.scrollFactor.set(0.4, 0.4);
 					add(bgLimo);
-					if(FlxG.save.data.distractions){
-						grpLimoDancers = new FlxTypedGroup<BackgroundDancer>();
-						add(grpLimoDancers);
-	
-						for (i in 0...5)
-						{
-								var dancer:BackgroundDancer = new BackgroundDancer((370 * i) + 130, bgLimo.y - 400);
-								dancer.scrollFactor.set(0.4, 0.4);
-								grpLimoDancers.add(dancer);
-						}
-					}
-
-					var overlayShit:FlxSprite = new FlxSprite(-500, -600).loadGraphic(Paths.image('limo/limoOverlay','week4'));
-					overlayShit.alpha = 0.5;
-					// add(overlayShit);
-
-					// var shaderBullshit = new BlendModeEffect(new OverlayShader(), FlxColor.RED);
-
-					// FlxG.camera.setFilters([new ShaderFilter(cast shaderBullshit.shader)]);
-
-					// overlayShit.shader = shaderBullshit;
 
 					var limoTex = Paths.getSparrowAtlas('limo/limoDrive','week4');
 
@@ -594,9 +575,27 @@ class PlayState extends MusicBeatState
 					limo.animation.addByPrefix('drive', "Limo stage", 24);
 					limo.animation.play('drive');
 					limo.antialiasing = true;
+					add(limo);
 
-					fastCar = new FlxSprite(-300, 160).loadGraphic(Paths.image('limo/fastCarLol','week4'));
-					// add(limo);
+					var widthshit = FlxG.width;
+					var heightshit = FlxG.height;
+
+					fog = new FlxSprite(widthshit, heightshit);
+					fog.frames = Paths.getSparrowAtlas('limo/fog', 'week4');
+					fog.animation.addByPrefix('anim', "theFog", 24);
+					fog.animation.play('anim');
+					fog.alpha = 0.5;
+					fog.screenCenter();
+					add(fog);
+					fog.cameras = [camHUD];
+
+					var preload = new Character(0,0, 'momd1alt');
+					preload.visible = false;
+					add(preload);
+
+					var preload2 = new Character(0,0, 'picod1');
+					preload2.visible = false;
+					add(preload2);
 			}
 			case 'mall':
 			{
@@ -878,6 +877,8 @@ class PlayState extends MusicBeatState
 				gfVersion = 'gf-pico';
 			case 'gf-1-3-2':
 				gfVersion = 'gf-1-3-2';
+			case 'gf-blank':
+			    gfVersion = 'gf-blank';
 			default:
 				gfVersion = 'gf';
 		}
@@ -911,6 +912,8 @@ class PlayState extends MusicBeatState
 				dad.y += 130;
 			case 'dad':
 				camPos.x += 400;
+			case 'picod1-alt':
+			    dad.x -= 300;
 			case 'pico':
 				camPos.x += 600;
 				dad.y += 300;
@@ -946,13 +949,9 @@ class PlayState extends MusicBeatState
 		// REPOSITIONING PER STAGE
 		switch (curStage)
 		{
-			case 'limo':
-				boyfriend.y -= 220;
+			case 'limod1':
+				boyfriend.y -= 190;
 				boyfriend.x += 260;
-				if(FlxG.save.data.distractions){
-					resetFastCar();
-					add(fastCar);
-				}
 
 			case 'mall':
 				boyfriend.x += 200;		
@@ -1002,8 +1001,6 @@ class PlayState extends MusicBeatState
 		}
 
 		var doof:DialogueBox = new DialogueBox(false, dialogue);
-		// doof.x += 70;
-		// doof.y = FlxG.height * 0.5;
 		doof.scrollFactor.set();
 		doof.finishThing = startCountdown;
 
@@ -3742,7 +3739,18 @@ class PlayState extends MusicBeatState
 				FlxG.camera.flash(FlxColor.WHITE, 1);	
 				changeDAD('pico-3-5', 300, 400);																											
 			}
-		}		
+		}
+		if(curSong == 'Satin-Savagery'){
+		    switch (curStep){
+			    case 64:
+				FlxTween.tween(fog, {alpha: 0.001}, 0.5, {ease: FlxEase.quadInOut});
+				remove(boyfriend);
+				boyfriend = new Boyfriend(260, -190, 'picod1');
+				add(boyfriend);
+				case 640:
+				changeDAD('momd1alt', 0, 0);
+			}
+		}
 	}
 
 	var lightningStrikeBeat:Int = 0;
