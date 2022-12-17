@@ -493,7 +493,7 @@ class PlayState extends MusicBeatState
 					{
 					curStage = 'philly3';
 
-					var bg:FlxSprite = new FlxSprite(-100).loadGraphic(Paths.image('philly3/sky', 'week3'));
+					bg = new FlxSprite(-100).loadGraphic(Paths.image('philly3/sky', 'week3'));
 					bg.scrollFactor.set(0.1, 0.1);
 					add(bg);
 
@@ -519,8 +519,15 @@ class PlayState extends MusicBeatState
 							phillyCityLights.add(light);
 					}
 
-					var streetBehind:FlxSprite = new FlxSprite(-40, 50).loadGraphic(Paths.image('philly3/behindTrain','week3'));
+					streetBehind = new FlxSprite(-40, 50).loadGraphic(Paths.image('philly3/behindTrain','week3'));
 					add(streetBehind);
+
+					lights = new FlxSprite(-100).loadGraphic(Paths.image('philly2/window', 'week3'));
+					lights.setGraphicSize(Std.int(lights.width * 0.85));
+					lights.scrollFactor.set(0.1, 0.1);
+					lights.color = 0xFFFF00FF;
+					lights.visible = false;
+					add(lights);
 
 
 					trainSound = new FlxSound().loadEmbedded(Paths.sound('train_passes','week3'));
@@ -528,10 +535,10 @@ class PlayState extends MusicBeatState
 
 					// var cityLights:FlxSprite = new FlxSprite().loadGraphic(AssetPaths.win0.png);
 
-					var street:FlxSprite = new FlxSprite(-40, streetBehind.y).loadGraphic(Paths.image('philly3/street','week3'));
+					street = new FlxSprite(-40, streetBehind.y).loadGraphic(Paths.image('philly3/street','week3'));
 					add(street);
 
-								var preload1 = new Character (0,0, 'pico-3-2');
+			var preload1 = new Character (0,0, 'pico-3-2');
 			preload1.visible = false;
 			add(preload1);
 
@@ -547,7 +554,15 @@ class PlayState extends MusicBeatState
 			preload4.visible = false;
 			add(preload4);
 
-			trace('preload');
+			var preload5 = new Character (0,0, 'bf-1-3-2');
+			preload5.visible = false;
+			add(preload5);
+
+			var preload6 = new Character (0,0, 'gf-1-3');
+			preload6.visible = false;
+			add(preload6);
+
+			trace('preload'); 
 
 			}						
 			case 'limo':
@@ -1089,7 +1104,12 @@ class PlayState extends MusicBeatState
 		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
 			'health', 0, 2);
 		healthBar.scrollFactor.set();
-		healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
+		switch(dad.curCharacter){
+			case 'pico' | 'pico2' | 'pico3-1' | 'pico-3-2' | 'pico-3-3' | 'pico-3-4' | 'pico-3-5':
+				healthBar.createFilledBar(0xFF00B200, 0xFF000000);	
+			default:
+			healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);	
+		}
 		// healthBar
 		add(healthBar);
 
@@ -2834,6 +2854,7 @@ class PlayState extends MusicBeatState
 					shits++;
 					if(daNote.notetype == "bullet"){
 						dad.animation.play("shoot");
+						FlxG.camera.shake(0.01,  0.5);
 					}
 					if (FlxG.save.data.accuracyMod == 0)
 						totalNotesHit += 0.25;
@@ -2845,6 +2866,7 @@ class PlayState extends MusicBeatState
 					bads++;
 					if(daNote.notetype == "bullet"){
 						dad.animation.play("shoot");
+						FlxG.camera.shake(0.01,  0.5);
 					}
 					if (FlxG.save.data.accuracyMod == 0)
 						totalNotesHit += 0.50;
@@ -2855,6 +2877,7 @@ class PlayState extends MusicBeatState
 					goods++;
 					if(daNote.notetype == "bullet"){
 						dad.animation.play("shoot");
+						FlxG.camera.shake(0.01,  0.5);
 					}
 					if (health < 2)
 						health += 0.04;
@@ -2868,6 +2891,7 @@ class PlayState extends MusicBeatState
 					grpNoteSplashes.add(recycledNote);
 					if(daNote.notetype == "bullet"){
 						dad.animation.play("shoot");
+						FlxG.camera.shake(0.01,  0.5);
 					}
 					if (FlxG.save.data.accuracyMod == 0)
 						totalNotesHit += 1;
@@ -3278,11 +3302,11 @@ class PlayState extends MusicBeatState
 					}
 				});
 				
-			/*	if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && (!holdArray.contains(true) /*|| FlxG.save.data.botplay ))
+				if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && (!holdArray.contains(true) || FlxG.save.data.botplay ))
 				{
 					if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
 						boyfriend.playAnim('idle');
-				} */
+				} 
 		 
 				playerStrums.forEach(function(spr:FlxSprite)
 				{
@@ -3673,9 +3697,9 @@ class PlayState extends MusicBeatState
 			switch(curStep){
 				case 1:
 				remove(gfPreLoad);
-				purBg = new FlxSprite(0, 0).makeGraphic(FlxG.width, 400, 0xFFFF00FF);
+				purBg = new FlxSprite(0, 0).makeGraphic(FlxG.width, 400, 0xFF000000);
 				purBg.setGraphicSize(Std.int(purBg.width * 6));
-				purBg.alpha = 0.15;
+				purBg.alpha = 0.3;
 				add(purBg);
 				FlxG.camera.flash(FlxColor.WHITE, 1);
 				FlxG.camera.zoom = 1.5;
@@ -3730,17 +3754,52 @@ class PlayState extends MusicBeatState
 				defaultCamZoom = 1.15;
 				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 1);											
 				case 450:
+				defaultCamZoom = 1.3;	
+				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 1);	
 				FlxG.camera.flash(FlxColor.WHITE, 1);	
-				changeDAD('pico-3-2', 300, 400);
+				changeDAD('pico-3-2', 100, 400);
+				case 500:
+				defaultCamZoom = 1.4;	
+				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 1);				
 				case 512:
+				defaultCamZoom = 1;	
+				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 1);	
 				FlxG.camera.flash(FlxColor.WHITE, 1);	
-				changeDAD('pico-3-3', 300, 400);	
+				changeDAD('pico-3-3', 100, 400);	
 				case 586:
 				FlxG.camera.flash(FlxColor.WHITE, 1);	
-				changeDAD('pico-3-4', 300, 400);
+				changeDAD('pico-3-4', 100, 400);
+				case 590:
+				defaultCamZoom = 1.2;	
+				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 1);	
 				case 622:
 				FlxG.camera.flash(FlxColor.WHITE, 1);	
-				changeDAD('pico-3-5', 300, 400);																											
+				changeBF('bf-1-3-2', 770,  460);
+				changeGF('gf-1-3', 400,  130);
+				case 634:
+				changeDAD('pico-3-5', 100, 400);
+				case 640:
+				defaultCamZoom = 1.5;
+				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 1);			
+				purBg = new FlxSprite(0, 0).makeGraphic(FlxG.width, 400, 0xFF000000);
+				purBg.setGraphicSize(Std.int(purBg.width * 6));
+				purBg.alpha = 0.3;
+				add(purBg);
+				city.visible = false;
+				streetBehind.visible = false;
+				street.visible = false;
+				bg.visible = false;
+				lights.visible = true;
+				case 768:
+				remove(purBg);
+				defaultCamZoom = 1;	
+				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 1);	
+				city.visible = true;
+				streetBehind.visible = true;
+				street.visible = true;
+				bg.visible = true;
+				lights.visible = false;	
+
 			}
 		}		
 	}
@@ -3752,7 +3811,21 @@ class PlayState extends MusicBeatState
 		remove(dad);
 		dad = new Character(x, y, char);
 		add(dad);
+
+		iconP2.animation.play(char);
 	}
+	function changeBF(char, x, y){
+		remove(boyfriend);
+		boyfriend = new Boyfriend(x, y, char);
+		add(boyfriend);
+
+		iconP1.animation.play(char);
+	}
+	function changeGF(char, x, y){
+		remove(gf);
+		gf = new Character(x, y, char);
+		add(gf);
+	}		
 
 	override function beatHit()
 	{
@@ -3885,25 +3958,8 @@ class PlayState extends MusicBeatState
 				}
 
 				}
-			case "philly2":
-				if(FlxG.save.data.distractions){
-					if (!trainMoving)
-						trainCooldown += 1;
-	
-					if (curBeat % 4 == 0)
-					{
-						phillyCityLights.forEach(function(light:FlxSprite)
-						{
-							light.visible = false;
-						});
-	
-						curLight = FlxG.random.int(0, phillyCityLights.length - 1);
-	
-						phillyCityLights.members[curLight].visible = true;
-						// phillyCityLights.members[curLight].alpha = 1;
-				}
 
-				}				
+							
 
 				if (curBeat % 8 == 4 && FlxG.random.bool(30) && !trainMoving && trainCooldown > 8)
 				{

@@ -7,7 +7,6 @@ import flixel.FlxState;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.util.FlxTimer;
-import openfl.events.FileListEvent;
 import openfl.utils.Assets;
 import lime.utils.Assets as LimeAssets;
 import lime.utils.AssetLibrary;
@@ -15,7 +14,12 @@ import lime.utils.AssetManifest;
 import flash.display.BitmapData;
 import flixel.graphics.FlxGraphic;
 
+import sys.FileSystem;
+import sys.io.File;
+
 import haxe.io.Path;
+
+using StringTools;
 
 class LoadingState extends MusicBeatState
 {
@@ -25,13 +29,22 @@ class LoadingState extends MusicBeatState
 	var stopMusic = false;
 	var callbacks:MultiCallback;
 	
+
 	var logo:FlxSprite;
 	var gfDance:FlxSprite;
 	var danceLeft = false;
 
+	var toBeDone = 0;
+	var done = 0;
+
+	var loaded = false;
+
 	public static var bitmapData:Map<String,FlxGraphic>;
+
+	var images = [];
+
 	
-	function new(target:FlxState, stopMusic:Bool)
+	public function new(target:FlxState, stopMusic:Bool)
 	{
 		super();
 		this.target = target;
@@ -59,6 +72,35 @@ class LoadingState extends MusicBeatState
 	
 
 
+        bitmapData = new Map<String,FlxGraphic>();
+
+			if(PlayState.SONG.song == 'Extrication'){
+
+			/*	#if android
+				for (i in HSys.readDirectory("assets/shared/images/characters/gopico/"))
+				#else
+				for (i in FileSystem.readDirectory(FileSystem.absolutePath("assets/shared/images/characters/gopico/")))
+				#end     
+				{
+					if (!i.endsWith(".png"))
+						continue;
+					images.push(i);
+				}*/
+			images = ['picod3-2.png', 'picod3-3.png', 'picod3-4.png', 'picod3-5.png', 'gf-3-2.png', 'bf-3-2.png'];
+			toBeDone = Lambda.count(images); 
+	
+			trace('Preloading Pico Character swaps');
+			
+	
+			// cache thread
+	
+			sys.thread.Thread.create(() -> {
+				trace('caching');
+				cache();
+			});
+			}
+
+
 		initSongsManifest().onComplete
 		(
 
@@ -83,6 +125,31 @@ class LoadingState extends MusicBeatState
 		);
 	}
 	
+	function cache()
+		{
+			trace("LOADING: " + toBeDone + " OBJECTS.");
+	
+			for (i in images)
+			{
+				trace(i);
+				var replaced = i.replace(".png","");
+				var data:BitmapData = BitmapData.fromFile("assets/shared/images/characters/gopico/" + i);
+				trace('id ' + replaced + ' file - assets/shared/images/characters/gopico/' + i + ' ${data.width}');
+				var graph = FlxGraphic.fromBitmapData(data);
+				graph.persist = true;
+				graph.destroyOnNoUse = false;
+				trace('working');
+				bitmapData.set(replaced,graph);
+				trace('possible crash');
+				done++;
+			}
+	
+	
+			trace("Finished caching...");
+	
+			LoadingState.loadAndSwitchState(new PlayState(), true);
+		}
+
 	function checkLoadSong(path:String)
 	{
 		if (!Assets.cache.hasSound(path))
@@ -150,7 +217,8 @@ class LoadingState extends MusicBeatState
 		if (stopMusic && FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 		
-		FlxG.switchState(target);
+			FlxG.switchState(target);
+
 	}
 	
 	static function getSongPath()
@@ -165,7 +233,7 @@ class LoadingState extends MusicBeatState
 	
 	inline static public function loadAndSwitchState(target:FlxState, stopMusic = false)
 	{
-		FlxG.switchState(getNextState(target, stopMusic));
+			FlxG.switchState(getNextState(target, stopMusic));
 	}
 	
 	static function getNextState(target:FlxState, stopMusic = false):FlxState

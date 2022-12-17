@@ -430,6 +430,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('RELOAD', 'Pico Reload Gun0', 24, false);
 				animation.addByPrefix('gf-shoot', 'Pico Shoot Gf', 25, false);
 				animation.addByPrefix('gf-reload', 'Look Gf Pico Reloading Gun', 24, false);
+				animation.addByPrefix('singUP-alt', 'pico Up note ALT', 24, false);
 
 				addOffset('idle', 0);
 				addOffset('singLEFT', 35, -5);
@@ -440,6 +441,7 @@ class Character extends FlxSprite
 				addOffset('RELOAD', 20, 0);
 				addOffset('gf-shoot', 15, 28);
 				addOffset('gf-reload', 36, 0);
+				addOffset('singUP-alt', 10, 25);
 
 				playAnim('idle');
 				flipX = true;
@@ -456,7 +458,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('RELOAD', 'Pico Reload Gun0', 24, false);
 				animation.addByPrefix('gf-shoot', 'Pico Shoot Gf', 25, false);
 				animation.addByPrefix('gf-reload', 'Look Gf Pico Reloading Gun', 24, false);
-				animation.addByPrefix('singUPalt', 'pico Up note ALT', 24, false);
+				
 
 				addOffset('idle', 0);
 				addOffset('singLEFT', 69, 19);
@@ -467,7 +469,6 @@ class Character extends FlxSprite
 				addOffset('RELOAD', 20, 0);
 				addOffset('gf-shoot', 15, 28);
 				addOffset('gf-reload', 36, 0);
-				addOffset('singUPalt', 10, 25);
 
 				playAnim('idle');
 				flipX = true;
@@ -844,6 +845,16 @@ class Character extends FlxSprite
 						else
 							playAnim('danceLeft');
 					}//gf-1-3-2' 
+				case 'gf-1-3':
+					if (!animation.curAnim.name.startsWith('hair'))
+					{
+						danced = !danced;
+
+						if (danced)
+							playAnim('danceRight');
+						else
+							playAnim('danceLeft');
+					}//gf-1-3-2' 					
 				case 'gf-1-3-2':
 					if (!animation.curAnim.name.startsWith('hair'))
 					{

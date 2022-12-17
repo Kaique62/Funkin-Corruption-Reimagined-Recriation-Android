@@ -231,7 +231,7 @@ class FreeplayState extends MusicBeatState
 			PlayState.storyDifficulty = curDifficulty;
 			PlayState.storyWeek = songs[curSelected].week;
 			trace('CUR WEEK' + PlayState.storyWeek);
-			LoadingState.loadAndSwitchState(new PlayState());
+			LoadingState.loadAndSwitchState(new PlayState(), true);
 		}
 	}
 
@@ -297,9 +297,9 @@ class FreeplayState extends MusicBeatState
 		// lerpScore = 0;
 		#end
 
-		#if PRELOAD_ALL
+
 		FlxG.sound.playMusic(Paths.inst(songs[curSelected].songName), 0);
-		#end
+
 
 		var bullShit:Int = 0;
 

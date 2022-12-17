@@ -20,7 +20,7 @@ class HealthIcon extends FlxSprite
 		animation.add('bf-pico', [1, 2], 0, false, isPlayer);
 		animation.add('bf-pico2', [5, 6], 0, false, isPlayer);
 		animation.add('bf-1-3', [9, 11], 0, false, isPlayer);
-		animation.add('bf-1-3-2', [0, 1], 0, false, isPlayer);
+		animation.add('bf-1-3-2', [5, 6], 0, false, isPlayer);
 		animation.add('bf-car', [0, 1], 0, false, isPlayer);
 		animation.add('bf-christmas', [0, 1], 0, false, isPlayer);
 		animation.add('bf-pixel', [21, 21], 0, false, isPlayer);
@@ -28,10 +28,10 @@ class HealthIcon extends FlxSprite
 		animation.add('pico', [3, 4], 0, false, isPlayer);
 		animation.add('pico2', [7, 8], 0, false, isPlayer);
 		animation.add('pico3-1', [12, 13], 0, false, isPlayer);
-		animation.add('pico-3-2', [4, 5], 0, false, isPlayer);
-		animation.add('pico-3-3', [4, 5], 0, false, isPlayer);
-		animation.add('pico-3-4', [4, 5], 0, false, isPlayer);
-		animation.add('pico-3-5', [4, 5], 0, false, isPlayer);
+		animation.add('pico-3-2', [14, 15], 0, false, isPlayer);
+		animation.add('pico-3-3', [16, 17], 0, false, isPlayer);
+		animation.add('pico-3-4', [18, 19], 0, false, isPlayer);
+		animation.add('pico-3-5', [20, 21], 0, false, isPlayer);
 		animation.add('mom', [6, 7], 0, false, isPlayer);
 		animation.add('mom-car', [6, 7], 0, false, isPlayer);
 		animation.add('tankman', [8, 9], 0, false, isPlayer);
