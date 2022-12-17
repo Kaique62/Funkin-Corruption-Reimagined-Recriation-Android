@@ -1,10 +1,13 @@
 bf
 dad
 gf
+gf-blank
 spooky
 pico
+picod1-alt
 mom
 mom-car
+momd1
 bf-car
 parents-christmas
 monster-christmas
