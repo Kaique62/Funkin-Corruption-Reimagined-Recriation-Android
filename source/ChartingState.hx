@@ -1426,6 +1426,8 @@ class ChartingState extends MusicBeatState
 		var notetype = 'normal';
 		if (FlxG.keys.pressed.ONE)
 			notetype = 'normal';
+		if(FlxG.keys.pressed.CONTROL)
+			notetype = 'ghost';
 		if (FlxG.keys.pressed.ALT)
 			notetype = 'bullet';
 		if (n != null)

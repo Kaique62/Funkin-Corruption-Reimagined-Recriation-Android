@@ -92,6 +92,8 @@ class Note extends FlxSprite
 			default:
 				var daPath:String = 'NOTE_assets';
 				switch(notetype){
+					case 'ghost':
+						daPath = 'ghostNote';
 					case 'bullet':
 						daPath = 'BULLETS_assets';
 				//	default:
