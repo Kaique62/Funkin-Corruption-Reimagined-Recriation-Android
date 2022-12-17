@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="GHOSTbacktombs.png">
+	<!-- Created with Adobe Animate version 21.0.0.35450 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="ghost idle d30000" x="10" y="10" width="2105" height="997"/>
+	<SubTexture name="ghost idle d30001" x="10" y="10" width="2105" height="997"/>
+	<SubTexture name="ghost idle d30002" x="2125" y="10" width="2105" height="997"/>
+	<SubTexture name="ghost idle d30003" x="2125" y="10" width="2105" height="997"/>
+	<SubTexture name="ghost idle d30004" x="4240" y="10" width="2105" height="997"/>
+	<SubTexture name="ghost idle d30005" x="4240" y="10" width="2105" height="997"/>
+	<SubTexture name="ghost idle d30006" x="10" y="1017" width="2105" height="997"/>
+	<SubTexture name="ghost idle d30007" x="10" y="1017" width="2105" height="997"/>
+	<SubTexture name="ghost idle d30008" x="2125" y="1017" width="2105" height="997"/>
+	<SubTexture name="ghost idle d30009" x="2125" y="1017" width="2105" height="997"/>
+	<SubTexture name="ghost idle d30010" x="2125" y="1017" width="2105" height="997"/>
+	<SubTexture name="ghost idle d30011" x="2125" y="1017" width="2105" height="997"/>
+	<SubTexture name="ghost idle d30012" x="2125" y="1017" width="2105" height="997"/>
+	<SubTexture name="ghost idle d30013" x="2125" y="1017" width="2105" height="997"/>
+	<SubTexture name="ghost idle d30014" x="2125" y="1017" width="2105" height="997"/>
+</TextureAtlas>

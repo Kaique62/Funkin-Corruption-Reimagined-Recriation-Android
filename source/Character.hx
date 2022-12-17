@@ -66,17 +66,17 @@ class Character extends FlxSprite
 				tex = Paths.getSparrowAtlas('characters/gfBlank');
 				frames = tex;
 
-				animation.addByPrefix('cheer', 'GF Cheer', 24, false);
-				animation.addByPrefix('singLEFT', 'GF left note', 24, false);
-				animation.addByPrefix('singRIGHT', 'GF Right Note', 24, false);
-				animation.addByPrefix('singUP', 'GF Up Note', 24, false);
-				animation.addByPrefix('singDOWN', 'GF Down Note', 24, false);
-				animation.addByIndices('sad', 'gf sad', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "", 24, false);
-				animation.addByIndices('danceLeft', 'GF Dancing Beat', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
-				animation.addByIndices('danceRight', 'GF Dancing Beat', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
-				animation.addByIndices('hairBlow', "GF Dancing Beat Hair blowing", [0, 1, 2, 3], "", 24);
-				animation.addByIndices('hairFall', "GF Dancing Beat Hair Landing", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "", 24, false);
-				animation.addByPrefix('scared', 'GF FEAR', 24);
+				animation.addByPrefix('cheer', 'GF Dancing Beat Hair blowing CAR', 24, false);
+				animation.addByPrefix('singLEFT', 'GF Dancing Beat Hair blowing CAR', 24, false);
+				animation.addByPrefix('singRIGHT', 'GF Dancing Beat Hair blowing CAR', 24, false);
+				animation.addByPrefix('singUP', 'GF Dancing Beat Hair blowing CAR', 24, false);
+				animation.addByPrefix('singDOWN', 'GF Dancing Beat Hair blowing CAR', 24, false);
+				animation.addByIndices('sad', 'GF Dancing Beat Hair blowing CAR', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "", 24, false);
+				animation.addByIndices('danceLeft', 'GF Dancing Beat Hair blowing CAR', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
+				animation.addByIndices('danceRight', 'GF Dancing Beat Hair blowing CAR', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
+				animation.addByIndices('hairBlow', "GF Dancing Beat Hair blowing CAR", [0, 1, 2, 3], "", 24);
+				animation.addByIndices('hairFall', "GF Dancing Beat Hair blowing CAR", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "", 24, false);
+				animation.addByPrefix('scared', 'GF Dancing Beat Hair blowing CAR', 24);
 
 				addOffset('cheer');
 				addOffset('sad', -2, -2);
@@ -216,22 +216,22 @@ class Character extends FlxSprite
 
 				playAnim('idle');
 			case 'spooky':
-				tex = Paths.getSparrowAtlas('characters/spooky_kids_assets');
+				tex = Paths.getSparrowAtlas('characters/picoisacriminal/spooky-3-1');
 				frames = tex;
 				animation.addByPrefix('singUP', 'spooky UP NOTE', 24, false);
 				animation.addByPrefix('singDOWN', 'spooky DOWN note', 24, false);
 				animation.addByPrefix('singLEFT', 'note sing left', 24, false);
 				animation.addByPrefix('singRIGHT', 'spooky sing right', 24, false);
-				animation.addByIndices('danceLeft', 'spooky dance idle', [0, 2, 6], "", 12, false);
+				animation.addByIndices('danceLeft', 'spooky dance idle', [0, 2, 4, 6], "", 12, false);
 				animation.addByIndices('danceRight', 'spooky dance idle', [8, 10, 12, 14], "", 12, false);
 
 				addOffset('danceLeft');
 				addOffset('danceRight');
 
-				addOffset("singUP", -20, 26);
-				addOffset("singRIGHT", -130, -14);
-				addOffset("singLEFT", 130, -10);
-				addOffset("singDOWN", -50, -130);
+				addOffset("singUP", 19, 89);
+				addOffset("singLEFT", 181, 50);
+				addOffset("singRIGHT", -84, 53);
+				addOffset("singDOWN", 32, -76);
 
 				playAnim('danceRight');
 			case 'mom':
@@ -583,6 +583,29 @@ class Character extends FlxSprite
 
 				playAnim('idle');
 				flipX = true;
+
+			case 'pico-spooky':
+		       frames = Paths.getSparrowAtlas('characters/picoisacriminal/pico-3');
+
+				animation.addByPrefix('idle', 'Pico Idle Dance', 24, false);
+				animation.addByPrefix('singLEFT', 'Pico Note Right0', 24, false);
+				animation.addByPrefix('singDOWN', 'Pico Down Note0', 24, false);
+				animation.addByPrefix('singUP', 'pico Up note0', 24, false);
+				animation.addByPrefix('singRIGHT', 'Pico NOTE LEFT0', 24, false);
+				animation.addByPrefix('reload', 'Pico RELOAD', 24, false);
+				animation.addByPrefix('shoot', 'Pico Shoot', 24, false);
+
+				addOffset('idle', 23, 60);
+				addOffset('singLEFT', 103, 50);
+				addOffset('singDOWN', 88, 28);
+				addOffset('singUP', 48, 110);
+				addOffset('singRIGHT', -14, 80);
+				addOffset('reload', -48, 71);
+				addOffset('shoot', 466, 82);
+
+				playAnim('idle');
+				flipX = true;
+
 
 			case 'bf':
 				var tex = Paths.getSparrowAtlas('characters/BOYFRIEND', 'shared');
