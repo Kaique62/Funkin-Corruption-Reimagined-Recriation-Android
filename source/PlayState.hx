@@ -167,6 +167,8 @@ class PlayState extends MusicBeatState
 	var phillyTrain:FlxSprite;
 	var trainSound:FlxSound;
 
+	var babyArrow:FlxSprite;
+
 	var limo:FlxSprite;
 	var grpLimoDancers:FlxTypedGroup<BackgroundDancer>;
 	var grpNoteSplashes:FlxTypedGroup<NoteSplash>;
@@ -1740,7 +1742,7 @@ class PlayState extends MusicBeatState
 		for (i in 0...4)
 		{
 			// FlxG.log.add(i);
-			var babyArrow:FlxSprite = new FlxSprite(0, strumLine.y);
+			babyArrow = new FlxSprite(0, strumLine.y);
 
 			switch (SONG.noteStyle)
 			{
@@ -1957,8 +1959,16 @@ class PlayState extends MusicBeatState
 
 	public static var songRate = 1.5;
 
+
+
 	override public function update(elapsed:Float)
 	{
+		if (camHUD.alpha == 0.5){
+		new FlxTimer().start(3, function(tmr:FlxTimer)
+			{
+			FlxTween.tween(camHUD, {alpha: 1}, 1);	
+			});			
+		}
 		#if !debug
 		perfectMode = false;
 		#end
@@ -2885,6 +2895,12 @@ class PlayState extends MusicBeatState
 						dad.animation.play("shoot");
 						FlxG.camera.shake(0.01,  0.5);
 					}
+					else if(daNote.notetype == "ghost"){
+						FlxTween.tween(camHUD, {alpha: 0.5}, 1);	
+					}
+					if(camHUD.alpha == 0.5 && !daNote.wasGoodHit && daNote.notetype == "ghost"){
+						health -= 1000;
+					}
 					if (FlxG.save.data.accuracyMod == 0)
 						totalNotesHit += 0.25;
 				case 'bad':
@@ -2897,6 +2913,12 @@ class PlayState extends MusicBeatState
 						dad.animation.play("shoot");
 						FlxG.camera.shake(0.01,  0.5);
 					}
+					else if(daNote.notetype == "ghost"){
+						FlxTween.tween(camHUD, {alpha: 0.5}, 1);	
+					}
+					if(camHUD.alpha == 0.5 && !daNote.wasGoodHit && daNote.notetype == "ghost"){
+						health -= 1000;
+					}
 					if (FlxG.save.data.accuracyMod == 0)
 						totalNotesHit += 0.50;
 				case 'good':
@@ -2907,6 +2929,12 @@ class PlayState extends MusicBeatState
 					if(daNote.notetype == "bullet"){
 						dad.animation.play("shoot");
 						FlxG.camera.shake(0.01,  0.5);
+					}
+					else if(daNote.notetype == "ghost"){
+						FlxTween.tween(camHUD, {alpha: 0.5}, 1);	
+					}
+					if(camHUD.alpha == 0.5 && !daNote.wasGoodHit && daNote.notetype == "ghost"){
+						health -= 1000;
 					}
 					if (health < 2)
 						health += 0.04;
@@ -2921,6 +2949,12 @@ class PlayState extends MusicBeatState
 					if(daNote.notetype == "bullet"){
 						dad.animation.play("shoot");
 						FlxG.camera.shake(0.01,  0.5);
+					}
+					else if(daNote.notetype == "ghost"){
+						FlxTween.tween(camHUD, {alpha: 0.5}, 1);	
+					}
+					if(camHUD.alpha == 0.5 && !daNote.wasGoodHit && daNote.notetype == "ghost"){
+						health -= 1000;
 					}
 					if (FlxG.save.data.accuracyMod == 0)
 						totalNotesHit += 1;
@@ -3357,7 +3391,7 @@ class PlayState extends MusicBeatState
 
 	function noteMiss(direction:Int = 1, daNote:Note):Void
 	{
-		if (!boyfriend.stunned)
+		if (!boyfriend.stunned && daNote.notetype != 'ghost')
 		{
 			health -= 0.04;
 			if (combo > 5 && gf.animOffsets.exists('sad'))

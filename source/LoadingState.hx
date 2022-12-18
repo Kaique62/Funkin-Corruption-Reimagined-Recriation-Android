@@ -13,6 +13,7 @@ import lime.utils.AssetLibrary;
 import lime.utils.AssetManifest;
 import flash.display.BitmapData;
 import flixel.graphics.FlxGraphic;
+import flixel.ui.FlxBar;
 
 import sys.FileSystem;
 import sys.io.File;
