@@ -234,6 +234,46 @@ class Character extends FlxSprite
 				addOffset("singDOWN", 32, -76);
 
 				playAnim('danceRight');
+			
+			case 'spooky-2':
+				tex = Paths.getSparrowAtlas('characters/picoisacriminal/spooky-3-2');
+				frames = tex;
+				animation.addByPrefix('singUP', 'spooky UP NOTE', 24, false);
+				animation.addByPrefix('singDOWN', 'spooky DOWN note', 24, false);
+				animation.addByPrefix('singLEFT', 'note sing left', 24, false);
+				animation.addByPrefix('singRIGHT', 'spooky sing right', 24, false);
+				animation.addByIndices('danceLeft', 'spooky dance idle', [0, 2, 4, 6], "", 12, false);
+				animation.addByIndices('danceRight', 'spooky dance idle', [8, 10, 12, 14], "", 12, false);
+
+				addOffset('danceLeft');
+				addOffset('danceRight');
+
+				addOffset("singUP", 19, 89);
+				addOffset("singLEFT", 181, 50);
+				addOffset("singRIGHT", -84, 53);
+				addOffset("singDOWN", 32, -76);
+
+				playAnim('danceRight');
+				
+			case 'spooky-3':
+				tex = Paths.getSparrowAtlas('characters/picoisacriminal/spooky-3-3');
+				frames = tex;
+				animation.addByPrefix('singUP', 'spooky UP NOTE', 24, false);
+				animation.addByPrefix('singDOWN', 'spooky DOWN note', 24, false);
+				animation.addByPrefix('singLEFT', 'note sing left', 24, false);
+				animation.addByPrefix('singRIGHT', 'spooky sing right', 24, false);
+				animation.addByIndices('danceLeft', 'spooky dance idle', [0, 2, 4, 6], "", 12, false);
+				animation.addByIndices('danceRight', 'spooky dance idle', [8, 10, 12, 14], "", 12, false);
+
+				addOffset('danceLeft');
+				addOffset('danceRight');
+
+				addOffset("singUP", 19, 89);
+				addOffset("singLEFT", 181, 50);
+				addOffset("singRIGHT", -84, 53);
+				addOffset("singDOWN", 32, -76);
+
+				playAnim('danceRight');				
 			case 'mom':
 				tex = Paths.getSparrowAtlas('characters/Mom_Assets');
 				frames = tex;
@@ -595,13 +635,13 @@ class Character extends FlxSprite
 				animation.addByPrefix('reload', 'Pico RELOAD', 24, false);
 				animation.addByPrefix('shoot', 'Pico Shoot', 24, false);
 
-				addOffset('idle', 23, 60);
-				addOffset('singLEFT', 103, 50);
-				addOffset('singDOWN', 88, 28);
-				addOffset('singUP', 48, 110);
-				addOffset('singRIGHT', -14, 80);
-				addOffset('reload', -48, 71);
-				addOffset('shoot', 466, 82);
+				addOffset('idle', 3, 0);
+				addOffset('singLEFT', 50, -7);
+				addOffset('singDOWN', 55, -84);
+				addOffset('singUP', -48, 38);
+				addOffset('singRIGHT', -96, 2);
+				addOffset('reload', -76, -22);
+				addOffset('shoot', 445, 41);
 
 				playAnim('idle');
 				flipX = true;
@@ -1041,7 +1081,7 @@ class Character extends FlxSprite
 							playAnim('danceLeft');
 					}
 
-				case 'spooky':
+				case 'spooky' | 'spooky-2' | 'spooky-3':
 					danced = !danced;
 
 					if (danced)

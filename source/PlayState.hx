@@ -407,6 +407,93 @@ class PlayState extends MusicBeatState
 				bg6.screenCenter();
 				add(bg6);					
 			}
+			case 'spooky-2': 
+			{
+				curStage = 'spooky-2';
+				defaultCamZoom = 0.8;
+
+
+				var bg:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('d2/bg', 'week2'));
+				bg.screenCenter();
+				add(bg);
+
+				var bg3:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('d2/spookymansion', 'week2'));
+				bg3.screenCenter();
+				add(bg3);
+
+				var bg5:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('d2/backhills', 'week2'));
+				bg5.screenCenter();
+				add(bg5);
+
+				var bg7:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('d2/backhills', 'week2'));
+				bg7.screenCenter();
+				add(bg7);
+
+				var bg2:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('d2/backtombs', 'week2'));
+				bg2.screenCenter();
+				add(bg2);
+
+				var bg4:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('d2/gate', 'week2'));
+				bg4.screenCenter();
+				add(bg4);	
+
+				var lemon:FlxSprite = new FlxSprite(-100,0);
+				lemon.frames = Paths.getSparrowAtlas('d2/lemon','week2');
+				lemon.animation.addByPrefix('idle', "monster idle", 24);
+				lemon.animation.play('idle');
+				add(lemon);
+					
+				var bg6:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('d2/frontgraves', 'week2'));
+				bg6.screenCenter();
+				add(bg6);					
+			}
+			case 'spooky-3': 
+			{
+				curStage = 'spooky-3';
+				defaultCamZoom = 0.8;
+
+
+				var bg:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('d3/bg', 'week2'));
+				bg.screenCenter();
+				add(bg);
+
+				var bg3:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('d3/spookymansion', 'week2'));
+				bg3.screenCenter();
+				add(bg3);
+
+				var bg5:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('d3/backhills', 'week2'));
+				bg5.screenCenter();
+				add(bg5);
+
+				var bg7:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('d3/backhills', 'week2'));
+				bg7.screenCenter();
+				add(bg7);
+
+				var bg2:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('d3/backtombs', 'week2'));
+				bg2.screenCenter();
+				add(bg2);
+
+				var ghosts:FlxSprite = new FlxSprite(-300, -100);
+				ghosts.frames = Paths.getSparrowAtlas('d3/GHOSTbacktombs','week2');
+				ghosts.animation.addByPrefix('idle', "ghost idle d3", 24);
+				ghosts.animation.play('idle');
+				add(ghosts);							
+
+
+				var bg4:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('d3/gate', 'week2'));
+				bg4.screenCenter();
+				add(bg4);	
+				
+				var lemon:FlxSprite = new FlxSprite(-150,0);
+				lemon.frames = Paths.getSparrowAtlas('d2/lemon','week2');
+				lemon.animation.addByPrefix('idle', "monster idle", 24);
+				lemon.animation.play('idle');
+				add(lemon);			
+				
+				var bg6:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('d3/frontgraves', 'week2'));
+				bg6.screenCenter();
+				add(bg6);					
+			}						
 			case 'philly': 
 					{
 					curStage = 'philly';
@@ -938,7 +1025,7 @@ class PlayState extends MusicBeatState
 					tweenCamIn();
 				}
 
-			case "spooky":
+			case 'spooky' | 'spooky-2' | 'spooky-3':
 				dad.x -= 100;
 				dad.y = 280;
 			//	camPos.x -= 70;
@@ -986,9 +1073,9 @@ class PlayState extends MusicBeatState
 		// REPOSITIONING PER STAGE
 		switch (curStage)
 		{
-			case 'spooky':
+			case 'spooky' | 'spooky-2' | 'spooky-3':
 				boyfriend.x = 830;
-				boyfriend.y = 400;
+				boyfriend.y = 370;
 				gf.x = 400;
 				gf.y = 205;
 			case 'limod1':
@@ -2339,7 +2426,7 @@ class PlayState extends MusicBeatState
 
 				switch (dad.curCharacter)
 				{
-					case 'spooky':
+					case 'spooky' | 'spooky-2' | 'spooky-3':
 						camFollow.y = dad.getMidpoint().y - 140;
 					case 'mom':
 						camFollow.y = dad.getMidpoint().y;
@@ -2376,7 +2463,7 @@ class PlayState extends MusicBeatState
 
 				switch (curStage)
 				{
-					case 'spooky':
+					case 'spooky' | 'spooky-2' | 'spooky-3':
 						camFollow.x = boyfriend.getMidpoint().x - 300;
 						camFollow.y = boyfriend.getMidpoint().y - 200;
 					case 'limo':
@@ -2668,6 +2755,9 @@ class PlayState extends MusicBeatState
 							{
 								daNote.kill();
 								notes.remove(daNote, true);
+							}
+							else if (daNote.notetype == "ghost"){
+
 							}
 							else
 							{
@@ -3874,6 +3964,12 @@ class PlayState extends MusicBeatState
 				add(boyfriend);
 				case 640:
 				changeDAD('momd1alt', 0, 0);
+			}
+		}
+		if(curSong == 'Xenophobia'){
+			switch(curStep){
+				case 895:
+					FlxG.camera.flash(FlxColor.BLACK, 1);
 			}
 		}
 	}
