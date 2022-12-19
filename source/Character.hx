@@ -332,7 +332,7 @@ class Character extends FlxSprite
 
 				playAnim('idle');
 			case 'momd1alt':
-				tex = Paths.getSparrowAtlas('characters/woman/d1/momd1-2');
+				tex = Paths.getSparrowAtlas('characters/woman/d3/momd1-2');
 				frames = tex;
 
 				animation.addByPrefix('idle', "Mom Idle", 24, false);
@@ -348,6 +348,23 @@ class Character extends FlxSprite
 				addOffset("singDOWN", 52, -110);
 
 				playAnim('idle');
+			case 'momd3-1':
+				tex = Paths.getSparrowAtlas('characters/woman/d3/ANGRYMOM');
+				frames = tex;
+
+				animation.addByPrefix('idle', "Mom Idle", 24, false);
+				animation.addByPrefix('singUP', "Mom Up Pose", 24, false);
+				animation.addByPrefix('singDOWN', "MOM DOWN POSE", 24, false);
+				animation.addByPrefix('singLEFT', 'Mom Left Pose', 24, false);
+				animation.addByPrefix('singRIGHT', 'Mom Pose Left', 24, false);
+
+				addOffset('idle', 50, 60);
+				addOffset("singUP", 68, 130);
+				addOffset("singRIGHT", -6, -4);
+				addOffset("singLEFT", 321, 33);
+				addOffset("singDOWN", 52, -110);
+
+				playAnim('idle');				
 			case 'monster':
 				tex = Paths.getSparrowAtlas('characters/Monster_Assets');
 				frames = tex;
@@ -646,6 +663,25 @@ class Character extends FlxSprite
 				playAnim('idle');
 				flipX = true;
 
+       case 'picod3-1':
+		    frames = Paths.getSparrowAtlas('characters/woman/d3/picod3');
+
+				animation.addByPrefix('idle', 'Pico Idle Dance', 24, false);
+				animation.addByPrefix('singLEFT', 'Pico Note Right0', 24, false);
+				animation.addByPrefix('singDOWN', 'Pico Down Note0', 24, false);
+				animation.addByPrefix('singUP', 'pico Up note0', 24, false);
+				animation.addByPrefix('singRIGHT', 'Pico NOTE LEFT0', 24, false);
+				animation.addByPrefix('reload', 'Pico RELOAD', 24, false);
+				animation.addByPrefix('shoot', 'Pico Shoot', 24, false);
+
+				addOffset('idle', 0);
+				addOffset('singLEFT', 30, -5);
+				addOffset('singDOWN', 246, -75);
+				addOffset('singUP', 11, 27);
+				addOffset('singRIGHT', -35, -9);
+
+				playAnim('idle');
+				flipX = true;
 
 			case 'bf':
 				var tex = Paths.getSparrowAtlas('characters/BOYFRIEND', 'shared');

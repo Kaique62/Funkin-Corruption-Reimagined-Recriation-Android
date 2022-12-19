@@ -718,6 +718,51 @@ class PlayState extends MusicBeatState
 					preload2.visible = false;
 					add(preload2);
 			}
+			case 'limo3':
+			{
+					curStage = 'limo3';
+					defaultCamZoom = 0.90;
+
+					var skyBG:FlxSprite = new FlxSprite(-120, -50).loadGraphic(Paths.image('limo3/limoSunset','week4'));
+					skyBG.scrollFactor.set(0.1, 0.1);
+					add(skyBG);
+
+					var bgLimo:FlxSprite = new FlxSprite(-200,480);
+					bgLimo.frames = Paths.getSparrowAtlas('limo3/bgLimo','week4');
+					bgLimo.animation.addByPrefix('drive', "BG limo PINK", 24);
+					bgLimo.animation.play('drive');
+					bgLimo.scrollFactor.set(0.4, 0.4);
+					add(bgLimo);
+
+					var limoTex = Paths.getSparrowAtlas('limo3/limoDrive','week4');
+
+					limo = new FlxSprite(-120, 550);
+					limo.frames = limoTex;
+					limo.animation.addByPrefix('drive', "Limo stage", 24);
+					limo.animation.play('drive');
+					limo.antialiasing = true;
+					add(limo);
+
+					var widthshit = FlxG.width;
+					var heightshit = FlxG.height;
+
+					fog = new FlxSprite(widthshit, heightshit);
+					fog.frames = Paths.getSparrowAtlas('limo/fog', 'week4');
+					fog.animation.addByPrefix('anim', "theFog", 24);
+					fog.animation.play('anim');
+					fog.alpha = 0.5;
+					fog.screenCenter();
+				//	add(fog);
+					fog.cameras = [camHUD];
+
+				/*	var preload = new Character(0,0, 'momd1alt');
+					preload.visible = false;
+					add(preload);
+
+					var preload2 = new Character(0,0, 'picod1');
+					preload2.visible = false;
+					add(preload2);*/
+			}			
 			case 'mall':
 			{
 					curStage = 'mall';
@@ -1081,6 +1126,10 @@ class PlayState extends MusicBeatState
 			case 'limod1':
 				boyfriend.y -= 190;
 				boyfriend.x += 260;
+
+			case 'limo3':
+				boyfriend.y -= 190;
+				boyfriend.x += 260;	
 
 			case 'mall':
 				boyfriend.x += 200;		
@@ -2631,7 +2680,7 @@ class PlayState extends MusicBeatState
 								}
 							}else
 							{
-								if (daNote.mustPress)
+								if (daNote.mustPress && daNote.notetype != "ghost")
 									daNote.y = (playerStrums.members[Math.floor(Math.abs(daNote.noteData))].y - 0.45 * (Conductor.songPosition - daNote.strumTime) * FlxMath.roundDecimal(FlxG.save.data.scrollSpeed == 1 ? SONG.speed : FlxG.save.data.scrollSpeed, 2));
 								else
 									daNote.y = (strumLineNotes.members[Math.floor(Math.abs(daNote.noteData))].y - 0.45 * (Conductor.songPosition - daNote.strumTime) * FlxMath.roundDecimal(FlxG.save.data.scrollSpeed == 1 ? SONG.speed : FlxG.save.data.scrollSpeed, 2));
@@ -2651,11 +2700,20 @@ class PlayState extends MusicBeatState
 											daNote.clipRect = swagRect;
 										}
 									}else {
-										var swagRect = new FlxRect(0, 0, daNote.width / daNote.scale.x, daNote.height / daNote.scale.y);
-										swagRect.y = (strumLineNotes.members[Math.floor(Math.abs(daNote.noteData))].y + Note.swagWidth / 2 - daNote.y) / daNote.scale.y;
-										swagRect.height -= swagRect.y;
+										if(daNote.notetype != "ghost"){
+											var swagRect = new FlxRect(0, 0, daNote.width / daNote.scale.x, daNote.height / daNote.scale.y);
+											swagRect.y = (strumLineNotes.members[Math.floor(Math.abs(daNote.noteData))].y + Note.swagWidth / 2 - daNote.y) / daNote.scale.y;
+											swagRect.height -= swagRect.y;
+		
+											daNote.clipRect = swagRect;
+										}
+										else{
+											var swagRect = new FlxRect(0, 0, daNote.width / daNote.scale.x, daNote.height / daNote.scale.y);
+											swagRect.y = (strumLineNotes.members[Math.floor(Math.abs(daNote.noteData))].y + Note.swagWidth / 2 - daNote.y) / daNote.scale.y;
+											swagRect.height -= swagRect.y;
 	
-										daNote.clipRect = swagRect;
+											daNote.clipRect = swagRect;
+										}
 									}
 								}
 							}
@@ -3436,8 +3494,8 @@ class PlayState extends MusicBeatState
 					!FlxG.save.data.downscroll && daNote.y < strumLine.y)
 					{
 						// Force good note hit regardless if it's too late to hit it or not as a fail safe
-						if(FlxG.save.data.botplay && daNote.canBeHit && daNote.mustPress ||
-						FlxG.save.data.botplay && daNote.tooLate && daNote.mustPress)
+						if(FlxG.save.data.botplay && daNote.canBeHit && daNote.mustPress && daNote.notetype != "ghost" ||
+						FlxG.save.data.botplay && daNote.tooLate && daNote.mustPress  && daNote.notetype != "ghost")
 						{
 							if(loadRep)
 							{
@@ -3455,7 +3513,7 @@ class PlayState extends MusicBeatState
 					}
 				});
 				
-				if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && (!holdArray.contains(true) || FlxG.save.data.botplay ))
+				if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && (!holdArray.contains(true) || FlxG.save.data.botplay))
 				{
 					if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
 						boyfriend.playAnim('idle');
@@ -3969,7 +4027,7 @@ class PlayState extends MusicBeatState
 		if(curSong == 'Xenophobia'){
 			switch(curStep){
 				case 895:
-					FlxG.camera.flash(FlxColor.BLACK, 1);
+				FlxG.camera.flash(FlxColor.BLACK, 1);
 			}
 		}
 	}

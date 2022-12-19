@@ -33,11 +33,15 @@ class HealthIcon extends FlxSprite
 		animation.add('pico-3-2', [14, 15], 0, false, isPlayer);
 		animation.add('pico-3-3', [16, 17], 0, false, isPlayer);
 		animation.add('pico-3-4', [18, 19], 0, false, isPlayer);
-		animation.add('pico-3-5', [20, 21], 0, false, isPlayer);
+		animation.add('pico-3-5', [20, 21], 0, false, isPlayer); 
+		animation.add('picod3-1', [12, 13], 0, false, isPlayer);
 		animation.add('pico-spooky', [20, 21], 0, false, isPlayer);
 		animation.add('mom', [6, 7], 0, false, isPlayer);
-		animation.add('momd1', [1, 2], 0, false, isPlayer);
-		animation.add('momd1alt', [1, 2], 0, false, isPlayer);
+		animation.add('momd1', [28, 29], 0, false, isPlayer);
+		animation.add('momd2', [30, 31], 0, false, isPlayer);
+		animation.add('momd3', [32, 33], 0, false, isPlayer); 
+		animation.add('momd3-1', [34, 35], 0, false, isPlayer);
+		animation.add('momd1alt', [28, 29], 0, false, isPlayer);
 		animation.add('picod1-alt', [1, 2], 0, false, isPlayer);
 		animation.add('picod1', [1, 2], 0, false, isPlayer);
 		animation.add('mom-car', [6, 7], 0, false, isPlayer);
