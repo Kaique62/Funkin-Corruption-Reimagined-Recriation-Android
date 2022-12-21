@@ -29,7 +29,7 @@ class StoryMenuState extends MusicBeatState
 	var weekData:Array<Dynamic> = [
 		['Tutorial'],
 		['Emancipation', 'Gunned-Down', 'Extrication'],
-		['Saint-Savagery', 'Dispatch', "Glammed"],
+		['Satin-Savagery', 'Dispatch', "Glammed"],
 		['Distress', 'Xenophobia', "Killer"],
 		['Mayhem', "Devitalization", "Devastation"],
 		['Blissfull-Ignorance', 'Disconnction', 'Short-Circuit','Banishment'],
