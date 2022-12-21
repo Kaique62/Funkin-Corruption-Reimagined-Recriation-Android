@@ -297,9 +297,6 @@ class FreeplayState extends MusicBeatState
 		// lerpScore = 0;
 		#end
 
-
-		FlxG.sound.playMusic(Paths.inst(songs[curSelected].songName), 0);
-
 		var bullShit:Int = 0;
 
 		for (i in 0...iconArray.length)

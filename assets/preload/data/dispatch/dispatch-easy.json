@@ -999,7 +999,7 @@
 				]
 			]
 		],
-		"gfVersion": "gf-blank",
+		"gfVersion": "gf-pixel",
 		"player2": "momd2",
 		"notes": [
 			{
@@ -6408,6 +6408,6 @@
 		"sections": 0,
 		"bpm": 180,
 		"speed": 2.8,
-		"gf": "gf-blank"
+		"gf": "gf-pixel"
 	}
 }

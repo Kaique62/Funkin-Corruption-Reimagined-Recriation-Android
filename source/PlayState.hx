@@ -209,6 +209,7 @@ class PlayState extends MusicBeatState
 	var street:FlxSprite;
 	var bg:FlxSprite;
 	var purBg:FlxSprite;
+	var cum:FlxSprite;
 
 	public static var timeCurrently:Float = 0;
 	public static var timeCurrentlyR:Float = 0;
@@ -231,6 +232,7 @@ class PlayState extends MusicBeatState
 	var mcontrols:Mobilecontrols; 
 	#end
 
+	var healthDrain:Bool = false;
 
 	// API stuff
 	
@@ -718,6 +720,27 @@ class PlayState extends MusicBeatState
 					preload2.visible = false;
 					add(preload2);
 			}
+			case 'limo2':
+			{
+					curStage = 'limo2';
+					defaultCamZoom = 0.90;
+
+					var skyBG:FlxSprite = new FlxSprite(-120, -50).loadGraphic(Paths.image('limo2/limoSunset','week4'));
+					skyBG.scrollFactor.set(0.1, 0.1);
+					add(skyBG);
+
+					var limoTex = Paths.getSparrowAtlas('limo2/limoDrive','week4');
+					limo = new FlxSprite(-120, 550);
+					limo.frames = limoTex;
+					limo.animation.addByPrefix('drive', "Limo stage", 24);
+					limo.animation.play('drive');
+					limo.antialiasing = true;
+					add(limo);
+
+					var preload = new Character(0,0, 'pico-mom2');
+					preload.visible = false;
+					add(preload);
+			}
 			case 'mall':
 			{
 					curStage = 'mall';
@@ -1028,8 +1051,6 @@ class PlayState extends MusicBeatState
 			case 'spooky' | 'spooky-2' | 'spooky-3':
 				dad.x -= 100;
 				dad.y = 280;
-			//	camPos.x -= 70;
-			//	camPos.y = -100;
 			case "monster":
 				dad.y += 100;
 			case 'monster-christmas':
@@ -1037,7 +1058,10 @@ class PlayState extends MusicBeatState
 			case 'dad':
 				camPos.x += 400;
 			case 'picod1-alt':
-			    dad.x -= 300;
+			    camPos.x -= 300;
+			case 'momd2':
+			    dad.y -= 20;
+				camPos.y -= 400;
 			case 'pico':
 				camPos.x += 600;
 				dad.y += 300;
@@ -1049,7 +1073,9 @@ class PlayState extends MusicBeatState
 				dad.y += 300;
 			case 'pico3-2':
 				camPos.x += 600;
-				dad.y += 300;														
+				dad.y += 300;				
+			case 'picod2':
+			    camPos.x -= 750;
 			case 'parents-christmas':
 				dad.x -= 500;
 			case 'senpai':
@@ -1078,7 +1104,7 @@ class PlayState extends MusicBeatState
 				boyfriend.y = 370;
 				gf.x = 400;
 				gf.y = 205;
-			case 'limod1':
+			case 'limod1' | 'limo2':
 				boyfriend.y -= 190;
 				boyfriend.x += 260;
 
@@ -1218,7 +1244,7 @@ class PlayState extends MusicBeatState
 		switch(dad.curCharacter){
 			case 'pico' | 'pico2' | 'pico3-1' | 'pico-3-2' | 'pico-3-3' | 'pico-3-4' | 'pico-3-5':
 				healthBar.createFilledBar(0xFF00B200, 0xFF000000);	
-			case 'spooky': // 0xFF808080	
+			case 'spooky':
 				healthBar.createFilledBar(0xFF808080, 0xFF000000);	
 			default:
 				healthBar.createFilledBar(0xFFFF0000, 0xFF000000);	
@@ -2468,6 +2494,8 @@ class PlayState extends MusicBeatState
 						camFollow.y = boyfriend.getMidpoint().y - 200;
 					case 'limo':
 						camFollow.x = boyfriend.getMidpoint().x - 300;
+					case 'limo2':
+					    camFollow.x = boyfriend.getMidpoint().x - 300;
 					case 'mall':
 						camFollow.y = boyfriend.getMidpoint().y - 200;
 					case 'school':
@@ -2684,6 +2712,16 @@ class PlayState extends MusicBeatState
 								dad.playAnim('singDOWN' + altAnim, true);
 							case 0:
 								dad.playAnim('singLEFT' + altAnim, true);
+						}
+						if (healthDrain && !daNote.isSustainNote)
+						{
+						     if(dad.curCharacter == 'momd2'){
+							     health -= (0.013 * (curBeat / 50));
+							 }
+							 if(health <= 0.01)
+							 {
+							     health = 0.01;
+							 }
 						}
 						if (FlxG.save.data.cpuStrums)
 						{
@@ -3933,7 +3971,7 @@ class PlayState extends MusicBeatState
 				changeDAD('pico-3-5', 100, 400);
 				case 640:
 				defaultCamZoom = 1.5;
-				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 1);			
+				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 1);
 				purBg = new FlxSprite(0, 0).makeGraphic(FlxG.width, 400, 0xFF000000);
 				purBg.setGraphicSize(Std.int(purBg.width * 6));
 				purBg.alpha = 0.3;
@@ -3958,7 +3996,8 @@ class PlayState extends MusicBeatState
 		if(curSong == 'Satin-Savagery'){
 		    switch (curStep){
 			    case 64:
-				FlxTween.tween(fog, {alpha: 0.001}, 0.5, {ease: FlxEase.quadInOut});
+				FlxTween.tween(fog, {alpha: 0.01}, 0.5, {ease: FlxEase.quadInOut});
+				case 65:
 				remove(boyfriend);
 				boyfriend = new Boyfriend(260, -190, 'picod1');
 				add(boyfriend);
@@ -3966,6 +4005,67 @@ class PlayState extends MusicBeatState
 				changeDAD('momd1alt', 0, 0);
 			}
 		}
+		if(curSong == 'Dispatch'){
+		    switch(curStep){
+			    case 1:
+				    FlxTween.tween(FlxG.camera, {zoom: 1.2}, 2.8, {ease: FlxEase.quadInOut});
+					healthDrain = true;
+				case 30:
+				    defaultCamZoom = 0.9;
+				case 272:
+				    defaultCamZoom = 1.15;
+				case 535:
+				    defaultCamZoom = 0.9;
+					boyfriend.playAnim('reload');
+				case 543:
+				    FlxG.camera.flash(FlxColor.WHITE, 1);
+					remove(boyfriend);
+				    boyfriend = new Boyfriend(1030, 220, 'pico-mom2');
+				    add(boyfriend);
+				case 720:
+				    boyfriend.playAnim('reload');
+					defaultCamZoom = 1.1;
+				case 727:
+				    boyfriend.playAnim('shoot');
+					FlxG.camera.flash(FlxColor.WHITE, 1);
+					defaultCamZoom = 0.9;
+				case 792:
+				    boyfriend.playAnim('reload');
+				case 927:
+				    boyfriend.playAnim('shoot');
+					FlxG.camera.flash(FlxColor.WHITE, 1);
+					defaultCamZoom = 1.1;
+				case 984:
+				    boyfriend.playAnim('reload');
+					FlxG.camera.zoom += 0.025;
+			        camHUD.zoom += 0.04;
+				case 987:
+				    boyfriend.playAnim('reload');
+				    FlxG.camera.zoom += 0.025;
+			        camHUD.zoom += 0.04;
+				case 991:
+				    boyfriend.playAnim('shoot');
+					FlxG.camera.flash(FlxColor.WHITE, 1);
+				case 1119:
+				    FlxG.camera.zoom += 0.025;
+			        camHUD.zoom += 0.04;
+			    case 1175:
+				    boyfriend.playAnim('reload');
+				    FlxG.camera.zoom += 0.025;
+			        camHUD.zoom += 0.04;
+				case 1179:
+				    boyfriend.playAnim('reload');
+				    FlxG.camera.zoom += 0.025;
+			        camHUD.zoom += 0.04;
+				case 1183:
+				    FlxG.camera.flash(FlxColor.WHITE, 20);
+				case 1185:
+				    cum = new FlxSprite(0, 0).makeGraphic(FlxG.width, 400, 0xFFFFFF);
+				    cum.setGraphicSize(Std.int(cum.width * 6));
+					add(cum);
+					cum.cameras = [camHUD];
+			}
+	    }
 		if(curSong == 'Xenophobia'){
 			switch(curStep){
 				case 895:
@@ -4047,6 +4147,12 @@ class PlayState extends MusicBeatState
 		{
 			FlxG.camera.zoom += 0.015;
 			camHUD.zoom += 0.03;
+		}
+
+		if (curSong.toLowerCase() == 'dispatch' && curStep >= 272 && curStep < 535 && camZooming && FlxG.camera.zoom < 1.35)
+		{
+			FlxG.camera.zoom += 0.020;
+			camHUD.zoom += 0.04;
 		}
 
 		if(curSong != "Extrication"){
