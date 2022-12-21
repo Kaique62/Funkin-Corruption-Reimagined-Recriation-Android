@@ -33,7 +33,6 @@ class HealthIcon extends FlxSprite
 		animation.add('pico-3-2', [14, 15], 0, false, isPlayer);
 		animation.add('pico-3-3', [16, 17], 0, false, isPlayer);
 		animation.add('pico-3-4', [18, 19], 0, false, isPlayer);
-
 		animation.add('pico-3-5', [20, 21], 0, false, isPlayer);
 		animation.add('pico-spooky', [20, 21], 0, false, isPlayer);
 		animation.add('mom', [6, 7], 0, false, isPlayer);
@@ -59,22 +58,6 @@ class HealthIcon extends FlxSprite
 		animation.add('picod2', [1, 2], 0, false, isPlayer);
 		animation.add('pico-mom2', [1, 2], 0, false, isPlayer);
 		animation.add('mom-car', [6, 7], 0, false, isPlayer);
-		animation.add('tankman', [8, 9], 0, false, isPlayer);
-		animation.add('face', [10, 11], 0, false, isPlayer);
-		animation.add('gf-1-3-2', [10, 11], 0, false, isPlayer);
-		animation.add('gf-1-3', [10, 11], 0, false, isPlayer);
-		animation.add('dad', [12, 13], 0, false, isPlayer);
-		animation.add('senpai', [22, 22], 0, false, isPlayer);
-		animation.add('senpai-angry', [22, 22], 0, false, isPlayer);
-		animation.add('spirit', [23, 23], 0, false, isPlayer);
-		animation.add('bf-old', [14, 15], 0, false, isPlayer);
-		animation.add('gf', [16], 0, false, isPlayer);
-		animation.add('gf-pico', [16], 0, false, isPlayer);
-		animation.add('gf-christmas', [16], 0, false, isPlayer);
-		animation.add('gf-pixel', [16], 0, false, isPlayer);
-		animation.add('parents-christmas', [17, 18], 0, false, isPlayer);
-		animation.add('monster', [19, 20], 0, false, isPlayer);
-		animation.add('monster-christmas', [19, 20], 0, false, isPlayer);
 		animation.play(char);
 
 		switch(char)

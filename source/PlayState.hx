@@ -2829,11 +2829,11 @@ class PlayState extends MusicBeatState
 								if(dad.curCharacter == 'momd3-1'){
 									health -= (0.02 * (curBeat / 50));									
 								}
-								else{
-									health -= (0.015 * (curBeat / 50));			
-								}
 								else if(dad.curCharacter == 'momd2'){
 									health -= (0.013 * (curBeat / 50));
+								}
+								else{
+									health -= (0.015 * (curBeat / 50));			
 								}
 								if (health <= 0.01)
 								{
