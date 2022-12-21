@@ -730,9 +730,41 @@ class PlayState extends MusicBeatState
 					skyBG.scrollFactor.set(0.1, 0.1);
 					add(skyBG);
 
-<<<<<<< Updated upstream
 					var limoTex = Paths.getSparrowAtlas('limo2/limoDrive','week4');
-=======
+
+					limo = new FlxSprite(-120, 550);
+					limo.frames = limoTex;
+					limo.animation.addByPrefix('drive', "Limo stage", 24);
+					limo.animation.play('drive');
+					limo.antialiasing = true;
+					add(limo);
+
+					var preload = new Character(0,0, 'pico-mom2');
+					preload.visible = false;
+					add(preload);
+			
+					var widthshit = FlxG.width;
+					var heightshit = FlxG.height;
+
+					fog = new FlxSprite(widthshit, heightshit);
+					fog.frames = Paths.getSparrowAtlas('limo/fog', 'week4');
+					fog.animation.addByPrefix('anim', "theFog", 24);
+					fog.animation.play('anim');
+					fog.alpha = 0.5;
+					fog.screenCenter();
+				//	add(fog);
+					fog.cameras = [camHUD];
+
+			}			
+			case 'limo3':
+			{
+					curStage = 'limo3';
+					defaultCamZoom = 0.90;
+
+					var skyBG:FlxSprite = new FlxSprite(-120, -50).loadGraphic(Paths.image('limo3/limoSunset','week4'));
+					skyBG.scrollFactor.set(0.1, 0.1);
+					add(skyBG);
+
 					var bgLimo:FlxSprite = new FlxSprite(-200,480);
 					bgLimo.frames = Paths.getSparrowAtlas('limo3/bgLimo','week4');
 					bgLimo.animation.addByPrefix('drive', "BG limo PINK", 24);
@@ -754,7 +786,6 @@ class PlayState extends MusicBeatState
 
 					var limoTex = Paths.getSparrowAtlas('limo3/limoDrive','week4');
 
->>>>>>> Stashed changes
 					limo = new FlxSprite(-120, 550);
 					limo.frames = limoTex;
 					limo.animation.addByPrefix('drive', "Limo stage", 24);
@@ -762,12 +793,6 @@ class PlayState extends MusicBeatState
 					limo.antialiasing = true;
 					add(limo);
 
-<<<<<<< Updated upstream
-					var preload = new Character(0,0, 'pico-mom2');
-					preload.visible = false;
-					add(preload);
-			}
-=======
 					var widthshit = FlxG.width;
 					var heightshit = FlxG.height;
 
@@ -811,8 +836,7 @@ class PlayState extends MusicBeatState
 					add(preload6);
 					remove(preload6);
 
-			}			
->>>>>>> Stashed changes
+			}	
 			case 'mall':
 			{
 					curStage = 'mall';
@@ -1123,14 +1147,12 @@ class PlayState extends MusicBeatState
 			case 'spooky' | 'spooky-2' | 'spooky-3':
 				dad.x -= 100;
 				dad.y = 280;
-<<<<<<< Updated upstream
-=======
+
 			//	camPos.x -= 70;
 			//	camPos.y = -100;
 			case 'momd3':
 				dad.x = 0;
 				dad.y = 100;
->>>>>>> Stashed changes
 			case "monster":
 				dad.y += 100;
 			case 'monster-christmas':
@@ -1188,13 +1210,11 @@ class PlayState extends MusicBeatState
 				boyfriend.y -= 190;
 				boyfriend.x += 260;
 
-<<<<<<< Updated upstream
-=======
+
 			case 'limo3':
 				boyfriend.y -= 190;
 				boyfriend.x = 1030;	
 
->>>>>>> Stashed changes
 			case 'mall':
 				boyfriend.x += 200;		
 
@@ -1331,15 +1351,9 @@ class PlayState extends MusicBeatState
 		switch(dad.curCharacter){
 			case 'pico' | 'pico2' | 'pico3-1' | 'pico-3-2' | 'pico-3-3' | 'pico-3-4' | 'pico-3-5':
 				healthBar.createFilledBar(0xFF00B200, 0xFF000000);	
-<<<<<<< Updated upstream
-			case 'spooky':
-				healthBar.createFilledBar(0xFF808080, 0xFF000000);	
-=======
 			case 'spooky' | 'spooky-2': // 0xFF808080	
 				healthBar.createFilledBar(0xFF808080, 0xFF000000);
 			case 'momd3-1' | 'momd3-2' | 'momd3-3' | 'momd3-4' | 'spooky-3':	
-				healthBar.createFilledBar(0xFF000000, 0xFF000000);	
->>>>>>> Stashed changes
 			default:
 				healthBar.createFilledBar(0xFFFF0000, 0xFF000000);	
 		}
@@ -2588,13 +2602,11 @@ class PlayState extends MusicBeatState
 						camFollow.y = boyfriend.getMidpoint().y - 200;
 					case 'limo':
 						camFollow.x = boyfriend.getMidpoint().x - 300;
-<<<<<<< Updated upstream
+
 					case 'limo2':
 					    camFollow.x = boyfriend.getMidpoint().x - 300;
-=======
 					case 'limo3':
 						camFollow.x = boyfriend.getMidpoint().x - 300;						
->>>>>>> Stashed changes
 					case 'mall':
 						camFollow.y = boyfriend.getMidpoint().y - 200;
 					case 'school':
@@ -2813,17 +2825,6 @@ class PlayState extends MusicBeatState
 								dad.playAnim('singLEFT' + altAnim, true);
 						}
 						if (healthDrain && !daNote.isSustainNote)
-<<<<<<< Updated upstream
-						{
-						     if(dad.curCharacter == 'momd2'){
-							     health -= (0.013 * (curBeat / 50));
-							 }
-							 if(health <= 0.01)
-							 {
-							     health = 0.01;
-							 }
-						}
-=======
 							{
 								if(dad.curCharacter == 'momd3-1'){
 									health -= (0.02 * (curBeat / 50));									
@@ -2831,12 +2832,14 @@ class PlayState extends MusicBeatState
 								else{
 									health -= (0.015 * (curBeat / 50));			
 								}
+								else if(dad.curCharacter == 'momd2'){
+									health -= (0.013 * (curBeat / 50));
+								}
 								if (health <= 0.01)
 								{
 									health = 0.01;
 								}
 							}
->>>>>>> Stashed changes
 						if (FlxG.save.data.cpuStrums)
 						{
 							cpuStrums.forEach(function(spr:FlxSprite)

@@ -33,14 +33,12 @@ class HealthIcon extends FlxSprite
 		animation.add('pico-3-2', [14, 15], 0, false, isPlayer);
 		animation.add('pico-3-3', [16, 17], 0, false, isPlayer);
 		animation.add('pico-3-4', [18, 19], 0, false, isPlayer);
-<<<<<<< Updated upstream
+
 		animation.add('pico-3-5', [20, 21], 0, false, isPlayer);
 		animation.add('pico-spooky', [20, 21], 0, false, isPlayer);
 		animation.add('mom', [6, 7], 0, false, isPlayer);
 		animation.add('momd1', [1, 2], 0, false, isPlayer);
 		animation.add('momd1alt', [1, 2], 0, false, isPlayer);
-=======
-		animation.add('pico-3-5', [20, 21], 0, false, isPlayer); 
 		animation.add('picod3-1', [12, 13], 0, false, isPlayer);
 		animation.add('picod3-2', [12, 13], 0, false, isPlayer);
 		animation.add('picod3-3', [14, 15], 0, false, isPlayer);
@@ -55,7 +53,6 @@ class HealthIcon extends FlxSprite
 		animation.add('momd3-3', [30, 31], 0, false, isPlayer);
 		animation.add('momd3-4', [30, 31], 0, false, isPlayer);
 		animation.add('momd1alt', [28, 29], 0, false, isPlayer);
->>>>>>> Stashed changes
 		animation.add('picod1-alt', [1, 2], 0, false, isPlayer);
 		animation.add('picod1', [1, 2], 0, false, isPlayer);
 		animation.add('momd2', [1, 2], 0, false, isPlayer);

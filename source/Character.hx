@@ -364,9 +364,6 @@ class Character extends FlxSprite
 				addOffset("singLEFT", 321, 33);
 				addOffset("singDOWN", 52, -110);
 
-<<<<<<< Updated upstream
-				playAnim('idle');
-=======
 				playAnim('idle');	
 			case 'momd3-2':
 				tex = Paths.getSparrowAtlas('characters/woman/d3/ANGRYMOM2');
@@ -419,7 +416,6 @@ class Character extends FlxSprite
 				addOffset("singDOWN", 52, -110);
 
 				playAnim('idle');																
->>>>>>> Stashed changes
 			case 'monster':
 				tex = Paths.getSparrowAtlas('characters/Monster_Assets');
 				frames = tex;
@@ -751,15 +747,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('reload', 'Pico RELOAD', 24, false);
 				animation.addByPrefix('shoot', 'Pico Shoot', 24, false);
 
-<<<<<<< Updated upstream
-				addOffset('idle', 3, 0);
-				addOffset('singLEFT', 50, -7);
-				addOffset('singDOWN', 55, -84);
-				addOffset('singUP', -48, 38);
-				addOffset('singRIGHT', -96, 2);
-				addOffset('reload', -76, -22);
-				addOffset('shoot', 445, 41);
-=======
+
 				addOffset('idle', 23, 60);
 				addOffset('singLEFT', 73, 53);
 				addOffset('singDOWN', 57, -17);
@@ -767,7 +755,6 @@ class Character extends FlxSprite
 				addOffset('singRIGHT', -74, 63);
 				addOffset('reload', -54, 38);
 				addOffset('shoot', -74, 63);
->>>>>>> Stashed changes
 
 				playAnim('idle');
 				flipX = true;
