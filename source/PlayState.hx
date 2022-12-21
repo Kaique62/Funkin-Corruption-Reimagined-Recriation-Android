@@ -211,6 +211,7 @@ class PlayState extends MusicBeatState
 	var purBg:FlxSprite;
 	var cum:FlxSprite;
 
+
 	public static var timeCurrently:Float = 0;
 	public static var timeCurrentlyR:Float = 0;
 	
@@ -729,7 +730,31 @@ class PlayState extends MusicBeatState
 					skyBG.scrollFactor.set(0.1, 0.1);
 					add(skyBG);
 
+<<<<<<< Updated upstream
 					var limoTex = Paths.getSparrowAtlas('limo2/limoDrive','week4');
+=======
+					var bgLimo:FlxSprite = new FlxSprite(-200,480);
+					bgLimo.frames = Paths.getSparrowAtlas('limo3/bgLimo','week4');
+					bgLimo.animation.addByPrefix('drive', "BG limo PINK", 24);
+					bgLimo.animation.play('drive');
+					bgLimo.scrollFactor.set(0.4, 0.4);
+					add(bgLimo);
+
+					grpLimoDancers = new FlxTypedGroup<BackgroundDancer>();
+					add(grpLimoDancers);
+
+					for (i in 0...5)
+					{
+							var dancer:BackgroundDancer = new BackgroundDancer((370 * i) + 130, bgLimo.y - 430);
+							dancer.scrollFactor.set(0.4, 0.4);
+							dancer.animation.play('idle');
+							grpLimoDancers.visible = false;
+							grpLimoDancers.add(dancer);
+					}
+
+					var limoTex = Paths.getSparrowAtlas('limo3/limoDrive','week4');
+
+>>>>>>> Stashed changes
 					limo = new FlxSprite(-120, 550);
 					limo.frames = limoTex;
 					limo.animation.addByPrefix('drive', "Limo stage", 24);
@@ -737,10 +762,57 @@ class PlayState extends MusicBeatState
 					limo.antialiasing = true;
 					add(limo);
 
+<<<<<<< Updated upstream
 					var preload = new Character(0,0, 'pico-mom2');
 					preload.visible = false;
 					add(preload);
 			}
+=======
+					var widthshit = FlxG.width;
+					var heightshit = FlxG.height;
+
+					fog = new FlxSprite(widthshit, heightshit);
+					fog.frames = Paths.getSparrowAtlas('limo/fog', 'week4');
+					fog.animation.addByPrefix('anim', "theFog", 24);
+					fog.animation.play('anim');
+					fog.alpha = 0.5;
+					fog.screenCenter();
+				//	add(fog);
+					fog.cameras = [camHUD];
+
+
+					var preload1 = new Character(0,0, 'picod3-4');
+				//	preload1.visible = false;
+					add(preload1);
+					remove(preload1);
+
+					var preload2 = new Character(0,0, 'picod3-3');
+				//	preload2.visible = false;
+					add(preload2);
+					remove(preload2);
+
+					var preload3 = new Character(0,0, 'picod3-2');
+					//preload3.visible = false;
+					add(preload3);
+					remove(preload3);
+
+					var preload4 = new Character(0,0, 'momd3-2');
+					//preload4.visible = false;
+					add(preload4);
+					remove(preload4);
+
+					var preload5 = new Character(0,0, 'momd3-3');
+					//preload5.visible = false;
+					add(preload5);
+					remove(preload5);
+
+					var preload6 = new Character(0,0, 'momd3-4');
+					//preload6.visible = false;
+					add(preload6);
+					remove(preload6);
+
+			}			
+>>>>>>> Stashed changes
 			case 'mall':
 			{
 					curStage = 'mall';
@@ -1051,6 +1123,14 @@ class PlayState extends MusicBeatState
 			case 'spooky' | 'spooky-2' | 'spooky-3':
 				dad.x -= 100;
 				dad.y = 280;
+<<<<<<< Updated upstream
+=======
+			//	camPos.x -= 70;
+			//	camPos.y = -100;
+			case 'momd3':
+				dad.x = 0;
+				dad.y = 100;
+>>>>>>> Stashed changes
 			case "monster":
 				dad.y += 100;
 			case 'monster-christmas':
@@ -1108,6 +1188,13 @@ class PlayState extends MusicBeatState
 				boyfriend.y -= 190;
 				boyfriend.x += 260;
 
+<<<<<<< Updated upstream
+=======
+			case 'limo3':
+				boyfriend.y -= 190;
+				boyfriend.x = 1030;	
+
+>>>>>>> Stashed changes
 			case 'mall':
 				boyfriend.x += 200;		
 
@@ -1244,8 +1331,15 @@ class PlayState extends MusicBeatState
 		switch(dad.curCharacter){
 			case 'pico' | 'pico2' | 'pico3-1' | 'pico-3-2' | 'pico-3-3' | 'pico-3-4' | 'pico-3-5':
 				healthBar.createFilledBar(0xFF00B200, 0xFF000000);	
+<<<<<<< Updated upstream
 			case 'spooky':
 				healthBar.createFilledBar(0xFF808080, 0xFF000000);	
+=======
+			case 'spooky' | 'spooky-2': // 0xFF808080	
+				healthBar.createFilledBar(0xFF808080, 0xFF000000);
+			case 'momd3-1' | 'momd3-2' | 'momd3-3' | 'momd3-4' | 'spooky-3':	
+				healthBar.createFilledBar(0xFF000000, 0xFF000000);	
+>>>>>>> Stashed changes
 			default:
 				healthBar.createFilledBar(0xFFFF0000, 0xFF000000);	
 		}
@@ -2494,8 +2588,13 @@ class PlayState extends MusicBeatState
 						camFollow.y = boyfriend.getMidpoint().y - 200;
 					case 'limo':
 						camFollow.x = boyfriend.getMidpoint().x - 300;
+<<<<<<< Updated upstream
 					case 'limo2':
 					    camFollow.x = boyfriend.getMidpoint().x - 300;
+=======
+					case 'limo3':
+						camFollow.x = boyfriend.getMidpoint().x - 300;						
+>>>>>>> Stashed changes
 					case 'mall':
 						camFollow.y = boyfriend.getMidpoint().y - 200;
 					case 'school':
@@ -2714,6 +2813,7 @@ class PlayState extends MusicBeatState
 								dad.playAnim('singLEFT' + altAnim, true);
 						}
 						if (healthDrain && !daNote.isSustainNote)
+<<<<<<< Updated upstream
 						{
 						     if(dad.curCharacter == 'momd2'){
 							     health -= (0.013 * (curBeat / 50));
@@ -2723,6 +2823,20 @@ class PlayState extends MusicBeatState
 							     health = 0.01;
 							 }
 						}
+=======
+							{
+								if(dad.curCharacter == 'momd3-1'){
+									health -= (0.02 * (curBeat / 50));									
+								}
+								else{
+									health -= (0.015 * (curBeat / 50));			
+								}
+								if (health <= 0.01)
+								{
+									health = 0.01;
+								}
+							}
+>>>>>>> Stashed changes
 						if (FlxG.save.data.cpuStrums)
 						{
 							cpuStrums.forEach(function(spr:FlxSprite)
@@ -2836,7 +2950,6 @@ class PlayState extends MusicBeatState
 
 	function endSong():Void
 	{
-
 		#if mobileC
 		mcontrols.visible = false;
 		#end
@@ -3020,10 +3133,16 @@ class PlayState extends MusicBeatState
 					ss = false;
 					shits++;
 					if(daNote.notetype == "bullet"){
+					switch(curSong){
+						case 'Emancipation'| 'Gunned-Down'| 'Extrication':	
 						dad.animation.play("shoot");
 						FlxG.camera.shake(0.01,  0.5);
+						default:
+						dad.animation.play("shoot");	
+						boyfriend.playAnim('shoot');
 					}
-					else if(daNote.notetype == "ghost"){
+				}
+					if(daNote.notetype == "ghost"){
 						FlxTween.tween(camHUD, {alpha: 0.5}, 1);	
 					}
 					if(camHUD.alpha == 0.5 && !daNote.wasGoodHit && daNote.notetype == "ghost"){
@@ -3038,10 +3157,16 @@ class PlayState extends MusicBeatState
 					ss = false;
 					bads++;
 					if(daNote.notetype == "bullet"){
-						dad.animation.play("shoot");
-						FlxG.camera.shake(0.01,  0.5);
+						switch(curSong){
+							case 'Emancipation'| 'Gunned-Down'| 'Extrication':	
+							dad.animation.play("shoot");
+							FlxG.camera.shake(0.01,  0.5);
+							default:
+							dad.animation.play("shoot");	
+							boyfriend.playAnim('shoot');
+						}
 					}
-					else if(daNote.notetype == "ghost"){
+					if(daNote.notetype == "ghost"){
 						FlxTween.tween(camHUD, {alpha: 0.5}, 1);	
 					}
 					if(camHUD.alpha == 0.5 && !daNote.wasGoodHit && daNote.notetype == "ghost"){
@@ -3055,10 +3180,16 @@ class PlayState extends MusicBeatState
 					ss = false;
 					goods++;
 					if(daNote.notetype == "bullet"){
-						dad.animation.play("shoot");
-						FlxG.camera.shake(0.01,  0.5);
+						switch(curSong){
+							case 'Emancipation'| 'Gunned-Down'| 'Extrication':	
+							dad.animation.play("shoot");
+							FlxG.camera.shake(0.01,  0.5);
+							default:
+							dad.animation.play("shoot");	
+							boyfriend.playAnim('shoot');
+						}
 					}
-					else if(daNote.notetype == "ghost"){
+					if(daNote.notetype == "ghost"){
 						FlxTween.tween(camHUD, {alpha: 0.5}, 1);	
 					}
 					if(camHUD.alpha == 0.5 && !daNote.wasGoodHit && daNote.notetype == "ghost"){
@@ -3075,10 +3206,16 @@ class PlayState extends MusicBeatState
 					recycledNote.setupNoteSplash(daNote.x, daNote.y, daNote.noteData);
 					grpNoteSplashes.add(recycledNote);
 					if(daNote.notetype == "bullet"){
-						dad.animation.play("shoot");
-						FlxG.camera.shake(0.01,  0.5);
+						switch(curSong){
+							case 'Emancipation'| 'Gunned-Down'| 'Extrication':	
+							dad.animation.play("shoot");
+							FlxG.camera.shake(0.01,  0.5);
+							default:
+							dad.animation.play("shoot");	
+							boyfriend.playAnim('shoot');
+						}
 					}
-					else if(daNote.notetype == "ghost"){
+					if(daNote.notetype == "ghost"){
 						FlxTween.tween(camHUD, {alpha: 0.5}, 1);	
 					}
 					if(camHUD.alpha == 0.5 && !daNote.wasGoodHit && daNote.notetype == "ghost"){
@@ -3695,12 +3832,24 @@ class PlayState extends MusicBeatState
 					switch (note.noteData)
 					{
 						case 2:
+							if(note.notetype == 'bullet')
+							boyfriend.playAnim('shoot');
+							else
 							boyfriend.playAnim('singUP', true);
 						case 3:
+							if(note.notetype == 'bullet')
+							boyfriend.playAnim('shoot');
+							else
 							boyfriend.playAnim('singRIGHT', true);
 						case 1:
+							if(note.notetype == 'bullet')
+							boyfriend.playAnim('shoot');
+							else							
 							boyfriend.playAnim('singDOWN', true);
 						case 0:
+							if(note.notetype == 'bullet')
+							boyfriend.playAnim('shoot');
+							else							
 							boyfriend.playAnim('singLEFT', true);
 					}
 		
@@ -4072,6 +4221,34 @@ class PlayState extends MusicBeatState
 					FlxG.camera.flash(FlxColor.BLACK, 1);
 			}
 		}
+		if(curSong == 'Glammed'){
+			switch(curStep){
+				case 1:
+				healthDrain = true;
+				case 88 | 151 | 251 | 408 | 574:
+				boyfriend.playAnim('reload');
+				case 127 | 158 | 190 | 270 | 399 | 415 | 606 | 702:
+				FlxG.camera.flash(FlxColor.WHITE, 1);
+				case 640:
+				healthDrain = false;	
+				FlxG.camera.flash(FlxColor.WHITE, 1);
+				changeBF('picod3-4', 1030, 260);	
+				changeDAD('momd3-3', 0, 100);
+				boyfriend.playAnim('shoot');	
+				case 319:
+				FlxG.camera.flash(FlxColor.WHITE, 1);
+				changeBF('picod3-2', 1030, 260);	
+				case 510:
+				FlxG.camera.flash(FlxColor.WHITE, 1);
+				changeBF('picod3-3', 1030, 260);
+				changeDAD('momd3-2', 0, 100);
+				grpLimoDancers.visible = true;		
+				case 768:
+				FlxG.camera.flash(FlxColor.WHITE, 1);	
+				changeDAD('momd3-4', 0, 100);
+				boyfriend.playAnim('shoot');		
+			}
+		}
 	}
 
 	var lightningStrikeBeat:Int = 0;
@@ -4224,6 +4401,11 @@ class PlayState extends MusicBeatState
 						trainStart();
 					}
 				}
+			case 'limo3':
+				grpLimoDancers.forEach(function(dancer:BackgroundDancer)
+					{
+						dancer.animation.play('idle');
+					});
 		}
 
 		if (isHalloween && FlxG.random.bool(10) && curBeat > lightningStrikeBeat + lightningOffset)

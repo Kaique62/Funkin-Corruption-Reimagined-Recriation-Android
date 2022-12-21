@@ -100,6 +100,31 @@ class LoadingState extends MusicBeatState
 				cache();
 			});
 			}
+			if(PlayState.SONG.song == 'Glammed'){
+
+				/*	#if android
+					for (i in HSys.readDirectory("assets/shared/images/characters/gopico/"))
+					#else
+					for (i in FileSystem.readDirectory(FileSystem.absolutePath("assets/shared/images/characters/gopico/")))
+					#end     
+					{
+						if (!i.endsWith(".png"))
+							continue;
+						images.push(i);
+					}*/
+				images = ['ANGRYMOM.png', 'ANGRYMOM2.png', 'momd3.png', 'pico3-recorrupt.png', 'picod3.png', 'pico-recorruptfull.png', 'picouncorrupt2.png'];
+				toBeDone = Lambda.count(images); 
+		
+				trace('Preloading Pico Character swaps');
+				
+		
+				// cache thread
+		
+				sys.thread.Thread.create(() -> {
+					trace('caching');
+					cache();
+				});
+				}			
 
 
 		initSongsManifest().onComplete
@@ -128,8 +153,7 @@ class LoadingState extends MusicBeatState
 	
 	function cache()
 		{
-			trace("LOADING: " + toBeDone + " OBJECTS.");
-	
+			if (PlayState.SONG.song == "Extrication"){
 			for (i in images)
 			{
 				trace(i);
@@ -144,6 +168,25 @@ class LoadingState extends MusicBeatState
 				trace('possible crash');
 				done++;
 			}
+			}
+			else if(PlayState.SONG.song == "Glammed"){
+				for (i in images)
+					{
+						trace(i);
+						var replaced = i.replace(".png","");
+						var data:BitmapData = BitmapData.fromFile("assets/shared/images/characters/woman/d3/" + i);
+						trace('id ' + replaced + ' file - assets/shared/images/characters/woman/d3/' + i + ' ${data.width}');
+						var graph = FlxGraphic.fromBitmapData(data);
+						graph.persist = true;
+						graph.destroyOnNoUse = false;
+						trace('working');
+						bitmapData.set(replaced,graph);
+						trace('possible crash');
+						done++;
+					}		
+			}
+			trace("LOADING: " + toBeDone + " OBJECTS.");
+	
 	
 	
 			trace("Finished caching...");

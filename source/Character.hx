@@ -364,7 +364,62 @@ class Character extends FlxSprite
 				addOffset("singLEFT", 321, 33);
 				addOffset("singDOWN", 52, -110);
 
+<<<<<<< Updated upstream
 				playAnim('idle');
+=======
+				playAnim('idle');	
+			case 'momd3-2':
+				tex = Paths.getSparrowAtlas('characters/woman/d3/ANGRYMOM2');
+				frames = tex;
+
+				animation.addByPrefix('idle', "Mom Idle", 24, false);
+				animation.addByPrefix('singUP', "Mom Up Pose", 24, false);
+				animation.addByPrefix('singDOWN', "MOM DOWN POSE", 24, false);
+				animation.addByPrefix('singLEFT', 'Mom Left Pose', 24, false);
+				animation.addByPrefix('singRIGHT', 'Mom Pose Left', 24, false);
+
+				addOffset('idle', 50, 60);
+				addOffset("singUP", 68, 130);
+				addOffset("singRIGHT", -6, -4);
+				addOffset("singLEFT", 321, 33);
+				addOffset("singDOWN", 52, -110);
+
+				playAnim('idle');	
+			case 'momd3-3':
+				tex = Paths.getSparrowAtlas('characters/woman/d2/momd2');
+				frames = tex;
+
+				animation.addByPrefix('idle', "Mom Idle", 24, false);
+				animation.addByPrefix('singUP', "Mom Up Pose", 24, false);
+				animation.addByPrefix('singDOWN', "MOM DOWN POSE", 24, false);
+				animation.addByPrefix('singLEFT', 'Mom Left Pose', 24, false);
+				animation.addByPrefix('singRIGHT', 'Mom Pose Left', 24, false);
+
+				addOffset('idle', 50, 60);
+				addOffset("singUP", 68, 130);
+				addOffset("singRIGHT", -6, -4);
+				addOffset("singLEFT", 321, 33);
+				addOffset("singDOWN", 52, -110);
+
+				playAnim('idle');	
+			case 'momd3-4':
+				tex = Paths.getSparrowAtlas('characters/woman/d3/momd3');
+				frames = tex;
+
+				animation.addByPrefix('idle', "Mom Idle", 24, false);
+				animation.addByPrefix('singUP', "Mom Up Pose", 24, false);
+				animation.addByPrefix('singDOWN', "MOM DOWN POSE", 24, false);
+				animation.addByPrefix('singLEFT', 'Mom Left Pose', 24, false);
+				animation.addByPrefix('singRIGHT', 'Mom Pose Left', 24, false);
+
+				addOffset('idle', 50, 60);
+				addOffset("singUP", 68, 130);
+				addOffset("singRIGHT", -6, -4);
+				addOffset("singLEFT", 321, 33);
+				addOffset("singDOWN", 52, -110);
+
+				playAnim('idle');																
+>>>>>>> Stashed changes
 			case 'monster':
 				tex = Paths.getSparrowAtlas('characters/Monster_Assets');
 				frames = tex;
@@ -696,6 +751,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('reload', 'Pico RELOAD', 24, false);
 				animation.addByPrefix('shoot', 'Pico Shoot', 24, false);
 
+<<<<<<< Updated upstream
 				addOffset('idle', 3, 0);
 				addOffset('singLEFT', 50, -7);
 				addOffset('singDOWN', 55, -84);
@@ -703,9 +759,81 @@ class Character extends FlxSprite
 				addOffset('singRIGHT', -96, 2);
 				addOffset('reload', -76, -22);
 				addOffset('shoot', 445, 41);
+=======
+				addOffset('idle', 23, 60);
+				addOffset('singLEFT', 73, 53);
+				addOffset('singDOWN', 57, -17);
+				addOffset('singUP', -13, 105);
+				addOffset('singRIGHT', -74, 63);
+				addOffset('reload', -54, 38);
+				addOffset('shoot', -74, 63);
+>>>>>>> Stashed changes
 
 				playAnim('idle');
 				flipX = true;
+       case 'picod3-2':
+		    frames = Paths.getSparrowAtlas('characters/woman/d3/picouncorrupt2');
+
+				animation.addByPrefix('idle', 'Pico Idle Dance', 24, false);
+				animation.addByPrefix('singLEFT', 'Pico Note Right0', 24, false);
+				animation.addByPrefix('singDOWN', 'Pico Down Note0', 24, false);
+				animation.addByPrefix('singUP', 'pico Up note0', 24, false);
+				animation.addByPrefix('singRIGHT', 'Pico NOTE LEFT0', 24, false);
+				animation.addByPrefix('reload', 'Pico RELOAD', 24, false);
+				animation.addByPrefix('shoot', 'Pico Shoot', 24, false);
+
+				addOffset('idle', 23, 60);
+				addOffset('singLEFT', 73, 53);
+				addOffset('singDOWN', 57, -17);
+				addOffset('singUP', -13, 105);
+				addOffset('singRIGHT', -74, 63);
+				addOffset('reload', -54, 38);
+				addOffset('shoot', -74, 63);
+
+				playAnim('idle');
+				flipX = true;					
+       case 'picod3-3':
+		    frames = Paths.getSparrowAtlas('characters/woman/d3/pico3-recorrupt');
+
+				animation.addByPrefix('idle', 'Pico Idle Dance', 24, false);
+				animation.addByPrefix('singLEFT', 'Pico Note Right0', 24, false);
+				animation.addByPrefix('singDOWN', 'Pico Down Note0', 24, false);
+				animation.addByPrefix('singUP', 'pico Up note0', 24, false);
+				animation.addByPrefix('singRIGHT', 'Pico NOTE LEFT0', 24, false);
+				animation.addByPrefix('reload', 'Pico RELOAD', 24, false);
+				animation.addByPrefix('shoot', 'Pico Shoot', 24, false);
+
+				addOffset('idle', 23, 60);
+				addOffset('singLEFT', 73, 53);
+				addOffset('singDOWN', 57, -17);
+				addOffset('singUP', -13, 105);
+				addOffset('singRIGHT', -74, 63);
+				addOffset('reload', -54, 38);
+				addOffset('shoot', -74, 63);
+
+				playAnim('idle');
+				flipX = true;	
+       case 'picod3-4':
+		    frames = Paths.getSparrowAtlas('characters/woman/d3/pico-recorruptfull');
+
+				animation.addByPrefix('idle', 'Pico Idle Dance', 24, false);
+				animation.addByPrefix('singLEFT', 'Pico Note Right0', 24, false);
+				animation.addByPrefix('singDOWN', 'Pico Down Note0', 24, false);
+				animation.addByPrefix('singUP', 'pico Up note0', 24, false);
+				animation.addByPrefix('singRIGHT', 'Pico NOTE LEFT0', 24, false);
+				animation.addByPrefix('reload', 'Pico RELOAD', 24, false);
+				animation.addByPrefix('shoot', 'Pico Shoot', 24, false);
+
+				addOffset('idle', 23, 60);
+				addOffset('singLEFT', 73, 53);
+				addOffset('singDOWN', 57, -17);
+				addOffset('singUP', -13, 105);
+				addOffset('singRIGHT', -74, 63);
+				addOffset('reload', -54, 38);
+				addOffset('shoot', 464, 101);
+
+				playAnim('idle');
+				flipX = true;								
 
 
 			case 'bf':

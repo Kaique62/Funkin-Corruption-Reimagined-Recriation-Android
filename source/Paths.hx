@@ -4,13 +4,16 @@ import flixel.FlxG;
 import flixel.graphics.frames.FlxAtlasFrames;
 import openfl.utils.AssetType;
 import openfl.utils.Assets as OpenFlAssets;
+import flixel.graphics.FlxGraphic;
 
 class Paths
 {
 	inline public static var SOUND_EXT = #if web "mp3" #else "ogg" #end;
 
+	
 	static var currentLevel:String;
-
+	public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
+	public static var localTrackedAssets:Array<String> = [];
 	static public function setCurrentLevel(name:String)
 	{
 		currentLevel = name.toLowerCase();
