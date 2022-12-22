@@ -599,6 +599,12 @@ class PlayState extends MusicBeatState
 					street = new FlxSprite(-40, streetBehind.y).loadGraphic(Paths.image('philly2/street','week3'));
 					add(street);
 
+					var preload1 = new Character (0,0, 'gf-pico2alt');
+					preload1.visible = false;
+					add(preload1);
+					remove(preload1);
+
+
 			}
 			case 'philly3': 
 					{
@@ -652,26 +658,32 @@ class PlayState extends MusicBeatState
 			var preload1 = new Character (0,0, 'pico-3-2');
 			preload1.visible = false;
 			add(preload1);
+			remove(preload1);
 
 			var preload2 = new Character (0,0, 'pico-3-3');
 			preload2.visible = false;
 			add(preload2);
+			remove(preload2);
 
 			var preload3 = new Character (0,0, 'pico-3-4');
 			preload3.visible = false;
 			add(preload3);
+			remove(preload3);
 
 			var preload4 = new Character (0,0, 'pico-3-5');
 			preload4.visible = false;
 			add(preload4);
+			remove(preload4);
 
 			var preload5 = new Character (0,0, 'bf-1-3-2');
 			preload5.visible = false;
 			add(preload5);
+			remove(preload5);
 
 			var preload6 = new Character (0,0, 'gf-1-3');
 			preload6.visible = false;
 			add(preload6);
+			remove(preload6);
 
 			trace('preload'); 
 
@@ -1160,7 +1172,7 @@ class PlayState extends MusicBeatState
 			//	camPos.y = -100;
 			case 'momd3':
 				dad.x = 0;
-				dad.y = 100;
+				dad.y = 150;
 			case "monster":
 				dad.y += 100;
 			case 'monster-christmas':
@@ -2609,7 +2621,7 @@ class PlayState extends MusicBeatState
 					case 'spooky' | 'spooky-2' | 'spooky-3':
 						camFollow.x = boyfriend.getMidpoint().x - 300;
 						camFollow.y = boyfriend.getMidpoint().y - 200;
-					case 'limo':
+					case 'limod1':
 						camFollow.x = boyfriend.getMidpoint().x - 300;
 					case 'limo2':
 					    camFollow.x = boyfriend.getMidpoint().x - 300;
@@ -4033,6 +4045,19 @@ class PlayState extends MusicBeatState
 		// Updating Discord Rich Presence (with Time Left)
 		DiscordClient.changePresence(detailsText + " " + SONG.song + " (" + storyDifficultyText + ") " + Ratings.GenerateLetterRank(accuracy), "Acc: " + HelperFunctions.truncateFloat(accuracy, 2) + "% | Score: " + songScore + " | Misses: " + misses  , iconRPC,true,  songLength - Conductor.songPosition);
 		#end
+
+		if(curSong == 'Satin Savagery' || curSong == 'satin-savagery' || curSong == 'Satin-Savagery'){
+		    switch (curStep){
+			    case 64:
+				FlxTween.tween(fog, {alpha: 0}, 0.5);	
+				case 65:
+				changeBF('picod1', 1030, 260);	
+				case 640:
+				changeDAD('momd1alt', 0, 150);
+				healthDrain = true;
+			}
+		}
+
 		if(curSong == 'Emancipation'){
 			switch (curStep){
 				case 120:
@@ -4165,18 +4190,6 @@ class PlayState extends MusicBeatState
 
 			}
 		}
-		if(curSong == 'Satin-Savagery'){
-		    switch (curStep){
-			    case 64:
-				FlxTween.tween(fog, {alpha: 0.01}, 0.5, {ease: FlxEase.quadInOut});
-				case 65:
-				remove(boyfriend);
-				boyfriend = new Boyfriend(260, -190, 'picod1');
-				add(boyfriend);
-				case 640:
-				changeDAD('momd1alt', 0, 0);
-			}
-		}
 		if(curSong == 'Dispatch'){
 		    switch(curStep){
 			    case 1:
@@ -4256,7 +4269,7 @@ class PlayState extends MusicBeatState
 				healthDrain = false;	
 				FlxG.camera.flash(FlxColor.WHITE, 1);
 				changeBF('picod3-4', 1030, 260);	
-				changeDAD('momd3-3', 0, 100);
+				changeDAD('momd3-3', 0, 150);
 				boyfriend.playAnim('shoot');	
 				case 319:
 				FlxG.camera.flash(FlxColor.WHITE, 1);
@@ -4264,11 +4277,11 @@ class PlayState extends MusicBeatState
 				case 510:
 				FlxG.camera.flash(FlxColor.WHITE, 1);
 				changeBF('picod3-3', 1030, 260);
-				changeDAD('momd3-2', 0, 100);
+				changeDAD('momd3-2', 0, 150);
 				grpLimoDancers.visible = true;		
 				case 768:
 				FlxG.camera.flash(FlxColor.WHITE, 1);	
-				changeDAD('momd3-4', 0, 100);
+				changeDAD('momd3-4', 0, 150);
 				boyfriend.playAnim('shoot');		
 			}
 		}

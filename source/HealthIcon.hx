@@ -38,7 +38,7 @@ class HealthIcon extends FlxSprite
 		animation.add('picod3-1', [12, 13], 0, false, isPlayer);
 		animation.add('picod3-2', [12, 13], 0, false, isPlayer);
 		animation.add('picod3-3', [14, 15], 0, false, isPlayer);
-		animation.add('picod3-4', [20, 21], 0, false, isPlayer);
+		animation.add('picod3-4', [19, 20], 0, false, isPlayer);
 		animation.add('momd1', [28, 29], 0, false, isPlayer);
 		animation.add('momd2', [30, 31], 0, false, isPlayer);
 		animation.add('momd3', [32, 33], 0, false, isPlayer); 
@@ -48,8 +48,8 @@ class HealthIcon extends FlxSprite
 		animation.add('momd3-4', [30, 31], 0, false, isPlayer);
 		animation.add('momd1alt', [28, 29], 0, false, isPlayer);
 		animation.add('picod1-alt', [20, 20], 0, false, isPlayer);
-		animation.add('picod1', [20, 21], 0, false, isPlayer);
-		animation.add('picod2', [18, 19], 0, false, isPlayer);
+		animation.add('picod1', [19, 20], 0, false, isPlayer);
+		animation.add('picod2', [19, 20], 0, false, isPlayer);
 		animation.add('pico-mom2', [1, 2], 0, false, isPlayer);
 		animation.add('mom-car', [6, 7], 0, false, isPlayer);
 		animation.play(char);
