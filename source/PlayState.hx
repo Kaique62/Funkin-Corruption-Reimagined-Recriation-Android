@@ -730,6 +730,14 @@ class PlayState extends MusicBeatState
 					skyBG.scrollFactor.set(0.1, 0.1);
 					add(skyBG);
 
+
+					var bgLimo:FlxSprite = new FlxSprite(-200,480);
+					bgLimo.frames = Paths.getSparrowAtlas('limo3/bgLimo','week4');
+					bgLimo.animation.addByPrefix('drive', "BG limo PINK", 24);
+					bgLimo.animation.play('drive');
+					bgLimo.scrollFactor.set(0.4, 0.4);
+					add(bgLimo);
+
 					var limoTex = Paths.getSparrowAtlas('limo2/limoDrive','week4');
 
 					limo = new FlxSprite(-120, 550);
@@ -1354,6 +1362,7 @@ class PlayState extends MusicBeatState
 			case 'spooky' | 'spooky-2': // 0xFF808080	
 				healthBar.createFilledBar(0xFF808080, 0xFF000000);
 			case 'momd3-1' | 'momd3-2' | 'momd3-3' | 'momd3-4' | 'spooky-3':	
+				healthBar.createFilledBar(0xFF000000, 0xFF000000);	
 			default:
 				healthBar.createFilledBar(0xFFFF0000, 0xFF000000);	
 		}
@@ -2602,7 +2611,6 @@ class PlayState extends MusicBeatState
 						camFollow.y = boyfriend.getMidpoint().y - 200;
 					case 'limo':
 						camFollow.x = boyfriend.getMidpoint().x - 300;
-
 					case 'limo2':
 					    camFollow.x = boyfriend.getMidpoint().x - 300;
 					case 'limo3':
@@ -2951,6 +2959,18 @@ class PlayState extends MusicBeatState
 		#end
 	}
 
+	public function skipSong():Void
+		{
+			FlxG.sound.music.volume = 0;
+			vocals.volume = 0;
+			canPause = false;
+					switch (curSong.toLowerCase())
+					{
+						default:
+							endSong();
+					}
+				
+		}
 	function endSong():Void
 	{
 		#if mobileC

@@ -2,9 +2,9 @@ Tutorial:gf:1
 Emancipation:pico:3
 Gunned-Down:pico2:3
 Extrication:pico3-1:3
-Satin-Savagery:spooky:2
-Dispatch:spooky:4
-Glammed:monster:4
+Satin-Savagery:momd1:2
+Dispatch:momd2:4
+Glammed:momd3-1:4
 Distress:spooky:2
 Xenophobia:spooky-2:2
 Killer:spooky-3:2
