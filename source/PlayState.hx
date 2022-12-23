@@ -54,6 +54,7 @@ import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
 import ui.Mobilecontrols;
+import extension.videoview.VideoView;
 
 #if windows
 import Discord.DiscordClient;
@@ -3114,12 +3115,26 @@ class PlayState extends MusicBeatState
 					PlayState.SONG = Song.loadFromJson(nextSongLowercase + difficulty, PlayState.storyPlaylist[0]);
 					FlxG.sound.music.stop();
 
+					if(curSong == "Extrication"){
+					VideoView.playVideo('assets/videos/picod3cutscene.mp4');
+					VideoView.onCompletion = function(){
+					FlxG.switchState(new FreeplayState());
+					}	
+					}
+					else
 					LoadingState.loadAndSwitchState(new PlayState());
 				}
 			}
 			else
 			{
 				trace('WENT BACK TO FREEPLAY??');
+				if(curSong == "Extrication"){
+					VideoView.playVideo('assets/videos/picod3cutscene.mp4');
+					VideoView.onCompletion = function(){
+					FlxG.switchState(new FreeplayState());
+					}	
+				}
+				else
 				FlxG.switchState(new FreeplayState());
 			}
 		}

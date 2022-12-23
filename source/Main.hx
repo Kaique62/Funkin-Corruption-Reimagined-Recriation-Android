@@ -77,6 +77,16 @@ class Main extends Sprite
 		initialState = TitleState;
 		#end
 
+		var ourSource:String = "assets/videos/daWeirdVid/dontDelete.webm";
+
+		var str1:String = "WEBM SHIT"; 
+		var webmHandle = new WebmHandler();
+		webmHandle.source(ourSource);
+		webmHandle.makePlayer();
+		webmHandle.webm.name = str1;
+		addChild(webmHandle.webm);
+		GlobalVideo.setWebm(webmHandle);
+
 		#if mobile
 		gameWidth = 1280;
 		gameHeight = 720;
