@@ -8,6 +8,7 @@ Glammed:momd3-1:4
 Distress:spooky:2
 Xenophobia:spooky-2:2
 Killer:spooky-3:2
+<<<<<<< Updated upstream
 Mayhem:mom:4
 Devitalization:mom:4
 Devastation:mom:4
@@ -20,3 +21,5 @@ Familiar-Finale:spirit:6
 Savestate:senpai:6
 Chances:senpai:6
 Soliloquy:spirit:6
+=======
+>>>>>>> Stashed changes

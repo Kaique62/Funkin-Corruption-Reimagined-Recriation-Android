@@ -31,10 +31,10 @@ class StoryMenuState extends MusicBeatState
 		['Emancipation', 'Gunned-Down', 'Extrication'],
 		['Saint-Savagery', 'Dispatch', "Glammed"],
 		['Distress', 'Xenophobia', "Killer"],
-		['Mayhem', "Devitalization", "Devastation"],
-		['Blissfull-Ignorance', 'Disconnction', 'Short-Circuit','Banishment'],
-		['Bedeviled', 'Affliction', 'Familiar-Finale'],
-		['SaveState', 'Chances','Full-Circle','Soliloquy','Take-Two']
+	//	['Mayhem', "Devitalization", "Devastation"],
+//		['Blissfull-Ignorance', 'Disconnction', 'Short-Circuit','Banishment'],
+//		['Bedeviled', 'Affliction', 'Familiar-Finale'],
+//		['SaveState', 'Chances','Full-Circle','Soliloquy','Take-Two']
 	];
 	var curDifficulty:Int = 1;
 
