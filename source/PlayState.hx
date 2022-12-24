@@ -858,6 +858,18 @@ class PlayState extends MusicBeatState
 					remove(preload6);
 
 			}	
+			case 'alleyway':
+				{
+					curStage = 'alleyway';	
+					defaultCamZoom = 0.95;
+
+					var limosky:FlxSprite = new FlxSprite(-1000, -500).loadGraphic(Paths.image('alley/limosky','week5'));
+					add(limosky);
+
+					var walls:FlxSprite = new FlxSprite(-1000, -500).loadGraphic(Paths.image('alley/walls','week5'));
+					add(walls);
+
+				}
 			case 'mall':
 			{
 					curStage = 'mall';
@@ -3115,26 +3127,26 @@ class PlayState extends MusicBeatState
 					PlayState.SONG = Song.loadFromJson(nextSongLowercase + difficulty, PlayState.storyPlaylist[0]);
 					FlxG.sound.music.stop();
 
-					if(curSong == "Extrication"){
-					VideoView.playVideo('assets/videos/picod3cutscene.mp4');
+				/*	if(curSong == "Extrication"){
+					VideoView.playVideo(Paths.video('picod3cutscene'));
 					VideoView.onCompletion = function(){
 					FlxG.switchState(new FreeplayState());
 					}	
 					}
-					else
+					else */
 					LoadingState.loadAndSwitchState(new PlayState());
 				}
 			}
 			else
 			{
 				trace('WENT BACK TO FREEPLAY??');
-				if(curSong == "Extrication"){
-					VideoView.playVideo('assets/videos/picod3cutscene.mp4');
+				/*if(curSong == "Extrication"){
+					VideoView.playVideo(Paths.video('picod3cutscene'));
 					VideoView.onCompletion = function(){
 					FlxG.switchState(new FreeplayState());
 					}	
 				}
-				else
+				else */
 				FlxG.switchState(new FreeplayState());
 			}
 		}
@@ -3882,22 +3894,22 @@ class PlayState extends MusicBeatState
 					switch (note.noteData)
 					{
 						case 2:
-							if(note.notetype == 'bullet')
+							if(note.notetype == 'bullet' && curSong == "Glammed")
 							boyfriend.playAnim('shoot');
 							else
 							boyfriend.playAnim('singUP', true);
 						case 3:
-							if(note.notetype == 'bullet')
+							if(note.notetype == 'bullet' && curSong == "Glammed")
 							boyfriend.playAnim('shoot');
 							else
 							boyfriend.playAnim('singRIGHT', true);
 						case 1:
-							if(note.notetype == 'bullet')
+							if(note.notetype == 'bullet' && curSong == "Glammed")
 							boyfriend.playAnim('shoot');
 							else							
 							boyfriend.playAnim('singDOWN', true);
 						case 0:
-							if(note.notetype == 'bullet')
+							if(note.notetype == 'bullet' && curSong == "Glammed")
 							boyfriend.playAnim('shoot');
 							else							
 							boyfriend.playAnim('singLEFT', true);
@@ -4270,6 +4282,7 @@ class PlayState extends MusicBeatState
 			switch(curStep){
 				case 895:
 					FlxG.camera.flash(FlxColor.BLACK, 1);
+					stageOverlay.visible = true;
 			}
 		}
 		if(curSong == 'Glammed'){

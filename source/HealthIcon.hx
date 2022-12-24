@@ -20,7 +20,7 @@ class HealthIcon extends FlxSprite
 		animation.add('bf-pico', [1, 2], 0, false, isPlayer);
 		animation.add('bf-pico2', [5, 6], 0, false, isPlayer);
 		animation.add('bf-1-3', [9, 11], 0, false, isPlayer);
-		animation.add('bf-1-3-2', [5, 6], 0, false, isPlayer);
+		animation.add('bf-1-3-2', [9, 11], 0, false, isPlayer);
 		animation.add('bf-car', [0, 1], 0, false, isPlayer);
 		animation.add('bf-christmas', [0, 1], 0, false, isPlayer);
 		animation.add('bf-pixel', [21, 21], 0, false, isPlayer);
@@ -52,6 +52,9 @@ class HealthIcon extends FlxSprite
 		animation.add('picod2', [19, 20], 0, false, isPlayer);
 		animation.add('pico-mom2', [1, 2], 0, false, isPlayer);
 		animation.add('mom-car', [6, 7], 0, false, isPlayer);
+		//alley
+		animation.add('mom-valor', [30, 31], 0, false, isPlayer);
+		animation.add('bf-4-1', [9, 21], 0, false, isPlayer); 
 		animation.play(char);
 
 		switch(char)

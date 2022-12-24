@@ -8,7 +8,7 @@ Glammed:momd3-1:4
 Distress:spooky:2
 Xenophobia:spooky-2:2
 Killer:spooky-3:2
-Mayhem:mom:4
+Mayhem:mom-valor:5
 Devitalization:mom:4
 Devastation:mom:4
 Blissful-Ignorance:parents-christmas:5
