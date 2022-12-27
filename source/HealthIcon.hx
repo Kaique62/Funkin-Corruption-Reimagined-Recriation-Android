@@ -53,8 +53,14 @@ class HealthIcon extends FlxSprite
 		animation.add('pico-mom2', [1, 2], 0, false, isPlayer);
 		animation.add('mom-car', [6, 7], 0, false, isPlayer);
 		//alley
-		animation.add('mom-valor', [30, 31], 0, false, isPlayer);
-		animation.add('bf-4-1', [9, 21], 0, false, isPlayer); 
+		animation.add('mom-valor', [46, 47], 0, false, isPlayer);
+		animation.add('mom-wolf-alt', [48, 49], 0, false, isPlayer);
+		animation.add('mom-wolf', [46, 47], 0, false, isPlayer);
+		animation.add('bf-4-1', [38, 39], 0, false, isPlayer); 
+		animation.add('bf-4-2', [40, 41], 0, false, isPlayer); 
+		animation.add('bf-4-2-alt', [42, 43], 0, false, isPlayer); 
+		animation.add('bf-4-3', [44, 45], 0, false, isPlayer); 
+		animation.add('bf-4-4', [1, 2], 0, false, isPlayer); 
 		animation.play(char);
 
 		switch(char)

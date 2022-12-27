@@ -44,7 +44,7 @@ class OutdatedSubState extends MusicBeatState
 		add(txt);
 		
 		#if mobileC
-		addVirtualPad(NONE, A_B);
+		addVirtualPad(NONE, A);
 		#end
 	}
 
@@ -52,7 +52,8 @@ class OutdatedSubState extends MusicBeatState
 	{
 		if (controls.ACCEPT)
 		{
-			fancyOpenURL("https://kadedev.github.io/Kade-Engine/changelogs/changelog-" + needVer);
+			leftState = true;
+			FlxG.switchState(new MainMenuState());
 		}
 		if (controls.BACK)
 		{

@@ -138,7 +138,7 @@ class StoryMenuState extends MusicBeatState
 		menu4.screenCenter();
 		add(menu4);
 
-		menu5 = new FlxSprite(0, -50).loadGraphic(Paths.image('menubackgrounds/menu_philly'));
+		menu5 = new FlxSprite(0, -50).loadGraphic(Paths.image('menubackgrounds/menu_alley'));
 		menu5.screenCenter();
 		add(menu5);
 

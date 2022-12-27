@@ -1154,6 +1154,95 @@ class Character extends FlxSprite
 
 				playAnim('idle');
 				flipX = true;		
+
+			case 'bf-4-2':
+				frames = Paths.getSparrowAtlas('characters/alley/bf-4-2');
+
+				animation.addByPrefix('idle', 'BF idle dance', 24, false);
+				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
+				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
+				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+
+				addOffset('idle', -5, 10);
+				addOffset('singLEFT', 19, -5);
+				addOffset('singDOWN', -9, -53);
+				addOffset('singUP', -34, 34);
+				addOffset('singRIGHT', -43, 3);
+
+				playAnim('idle');
+				flipX = true;		
+				
+			case 'bf-4-2-alt':
+				frames = Paths.getSparrowAtlas('characters/alley/bf-4-2-alt');
+
+				animation.addByPrefix('idle', 'BF idle dance', 24, false);
+				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
+				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
+				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+
+				addOffset('idle', -5, 10);
+				addOffset('singLEFT', 19, -5);
+				addOffset('singDOWN', -9, -53);
+				addOffset('singUP', -34, 34);
+				addOffset('singRIGHT', -43, 3);
+
+				playAnim('idle');
+				flipX = true;		
+				
+			case 'bf-4-3':
+				frames = Paths.getSparrowAtlas('characters/alley/bf-4-3');
+
+				animation.addByPrefix('idle', 'BF idle dance', 24, false);
+				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
+				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
+				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+
+				addOffset('idle', -5, 10);
+				addOffset('singLEFT', 19, -5);
+				addOffset('singDOWN', -9, -53);
+				addOffset('singUP', -34, 34);
+				addOffset('singRIGHT', -43, 3);
+
+				playAnim('idle');
+				flipX = true;	
+		
+			case 'bf-4-3-alt':
+				frames = Paths.getSparrowAtlas('characters/alley/bf-4-3-alt');
+
+				animation.addByPrefix('idle', 'BF idle dance', 24, false);
+				animation.addByPrefix('idle-alt', 'BF idle dance', 24, false);
+				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
+				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
+				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+
+				addOffset('idle', -5, 10);
+				addOffset('idle-alt', -5, 10);
+				addOffset('singLEFT', 19, -5);
+				addOffset('singDOWN', -9, -53);
+				addOffset('singUP', -34, 34);
+				addOffset('singRIGHT', -43, 3);
+
+				playAnim('idle');
+				flipX = true;	
+				
+			case 'bf-4-4':
+				frames = Paths.getSparrowAtlas('characters/alley/bf-4-4');
+
+				animation.addByPrefix('idle', 'BF idle dance', 24, false);
+				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
+				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
+				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+
+				addOffset('idle', 335, 29);
+				addOffset('singUP', 32, 153);
+
+				playAnim('idle');
+				flipX = true;					
 				
 			case 'mom-valor':
 				tex = Paths.getSparrowAtlas('characters/alley/mom-4-valor');
@@ -1173,7 +1262,46 @@ class Character extends FlxSprite
 				addOffset("singLEFT", 250, -23);
 				addOffset("singDOWN", 20, -160);
 
-				playAnim('idle');				
+				playAnim('idle');	
+				
+			case 'mom-wolf-alt':
+				tex = Paths.getSparrowAtlas('characters/alley/mom-4-wolf');
+				frames = tex;
+
+				animation.addByPrefix('idle', "Mom Idle", 24, false);
+				animation.addByPrefix('singUP', "Mom Up Pose", 24, false);
+				animation.addByPrefix('singDOWN', "MOM DOWN POSE", 24, false);
+				animation.addByPrefix('singLEFT', 'Mom Left Pose', 24, false);
+				// ANIMATION IS CALLED MOM LEFT POSE BUT ITS FOR THE RIGHT
+				// CUZ DAVE IS DUMB!
+				animation.addByPrefix('singRIGHT', 'Mom Pose Left', 24, false);
+
+				addOffset('idle');
+				addOffset("singUP", 14, 71);
+				addOffset("singRIGHT", 10, -60);
+				addOffset("singLEFT", 250, -23);
+				addOffset("singDOWN", 20, -160);
+
+				playAnim('idle');	
+			case 'mom-wolf':
+				tex = Paths.getSparrowAtlas('characters/alley/mom-4-wolfAlt');
+				frames = tex;
+
+				animation.addByPrefix('idle', "Mom Idle", 24, false);
+				animation.addByPrefix('singUP', "Mom Up Pose", 24, false);
+				animation.addByPrefix('singDOWN', "MOM DOWN POSE", 24, false);
+				animation.addByPrefix('singLEFT', 'Mom Left Pose', 24, false);
+				// ANIMATION IS CALLED MOM LEFT POSE BUT ITS FOR THE RIGHT
+				// CUZ DAVE IS DUMB!
+				animation.addByPrefix('singRIGHT', 'Mom Pose Left', 24, false);
+
+				addOffset('idle');
+				addOffset("singUP", 14, 71);
+				addOffset("singRIGHT", 10, -60);
+				addOffset("singLEFT", 250, -23);
+				addOffset("singDOWN", 20, -160);
+
+				playAnim('idle');									
 		}
 
 		dance();
