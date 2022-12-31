@@ -29,7 +29,7 @@ class Note extends FlxSprite
 
 	public var noteScore:Float = 1;
 
-	public var notetype:String = "normal";
+	public static var notetype:String = "normal";
 
 	public static var swagWidth:Float = 160 * 0.7;
 	public static var PURP_NOTE:Int = 0;
@@ -46,7 +46,7 @@ class Note extends FlxSprite
 		if (prevNote == null)
 			prevNote = this;
 
-		this.notetype = notetype;
+		Note.notetype = notetype;
 		this.prevNote = prevNote;
 		isSustainNote = sustainNote;
 
@@ -98,7 +98,7 @@ class Note extends FlxSprite
 						daPath = 'BULLETS_assets';
 				//	default:
 				//		daPath = 'NOTE_assets';	
-					case 'normal':
+					case 'normal' | 'p3':
 						daPath = 'NOTE_assets';
 				}
 				frames = Paths.getSparrowAtlas(daPath);

@@ -111,6 +111,7 @@ class PlayState extends MusicBeatState
 	public static var dad:Character;
 	public static var gf:Character;
 	public static var boyfriend:Boyfriend;
+	public static var player3:Character;
 
 	public var notes:FlxTypedGroup<Note>;
 	private var unspawnNotes:Array<Note> = [];
@@ -1181,6 +1182,7 @@ class PlayState extends MusicBeatState
 		gf.scrollFactor.set(0.95, 0.95);
 
 		dad = new Character(100, 100, SONG.player2);
+		player3 = new Character(100, 100, SONG.player3);
 
 
 		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
@@ -1308,6 +1310,9 @@ class PlayState extends MusicBeatState
 		if (curStage == 'limo')
 			add(limo);
 
+		if(player3.curCharacter != 'null'){
+			add(player3);
+		}
 		add(dad);
 		add(boyfriend);
 		if (loadRep)
@@ -2886,16 +2891,31 @@ class PlayState extends MusicBeatState
 							if (SONG.notes[Math.floor(curStep / 16)].altAnim)
 								altAnim = '-alt';
 						}
-						switch (Math.abs(daNote.noteData))
-						{
-							case 2:
-								dad.playAnim('singUP' + altAnim, true);
-							case 3:
-								dad.playAnim('singRIGHT' + altAnim, true);
-							case 1:
-								dad.playAnim('singDOWN' + altAnim, true);
-							case 0:
-								dad.playAnim('singLEFT' + altAnim, true);
+						if (Note.notetype == "p3"){
+							switch (Math.abs(daNote.noteData))
+							{
+								case 2:
+									player3.playAnim('singUP' + altAnim, true);
+								case 3:
+									player3.playAnim('singRIGHT' + altAnim, true);
+								case 1:
+									player3.playAnim('singDOWN' + altAnim, true);
+								case 0:
+									player3.playAnim('singLEFT' + altAnim, true);
+							}							
+						}
+						else{
+							switch (Math.abs(daNote.noteData))
+							{
+								case 2:
+									dad.playAnim('singUP' + altAnim, true);
+								case 3:
+									dad.playAnim('singRIGHT' + altAnim, true);
+								case 1:
+									dad.playAnim('singDOWN' + altAnim, true);
+								case 0:
+									dad.playAnim('singLEFT' + altAnim, true);
+							}
 						}
 						if (healthDrain && !daNote.isSustainNote)
 							{
@@ -2984,7 +3004,7 @@ class PlayState extends MusicBeatState
 								daNote.kill();
 								notes.remove(daNote, true);
 							}
-							else if (daNote.notetype == "ghost"){
+							else if (Note.notetype == "ghost"){
 
 							}
 							else
@@ -3234,7 +3254,7 @@ class PlayState extends MusicBeatState
 					health -= 0.2;
 					ss = false;
 					shits++;
-					if(daNote.notetype == "bullet"){
+					if(Note.notetype == "bullet"){
 					switch(curSong){
 						case 'Emancipation'| 'Gunned-Down'| 'Extrication':	
 						dad.animation.play("shoot");
@@ -3244,10 +3264,10 @@ class PlayState extends MusicBeatState
 						boyfriend.playAnim('shoot');
 					}
 				}
-					if(daNote.notetype == "ghost"){
+					if(Note.notetype == "ghost"){
 						FlxTween.tween(camHUD, {alpha: 0.5}, 1);	
 					}
-					if(camHUD.alpha == 0.5 && !daNote.wasGoodHit && daNote.notetype == "ghost"){
+					if(camHUD.alpha == 0.5 && !daNote.wasGoodHit && Note.notetype == "ghost"){
 						health -= 1000;
 					}
 					if (FlxG.save.data.accuracyMod == 0)
@@ -3258,7 +3278,7 @@ class PlayState extends MusicBeatState
 					health -= 0.06;
 					ss = false;
 					bads++;
-					if(daNote.notetype == "bullet"){
+					if(Note.notetype == "bullet"){
 						switch(curSong){
 							case 'Emancipation'| 'Gunned-Down'| 'Extrication':	
 							dad.animation.play("shoot");
@@ -3268,10 +3288,10 @@ class PlayState extends MusicBeatState
 							boyfriend.playAnim('shoot');
 						}
 					}
-					if(daNote.notetype == "ghost"){
+					if(Note.notetype == "ghost"){
 						FlxTween.tween(camHUD, {alpha: 0.5}, 1);	
 					}
-					if(camHUD.alpha == 0.5 && !daNote.wasGoodHit && daNote.notetype == "ghost"){
+					if(camHUD.alpha == 0.5 && !daNote.wasGoodHit && Note.notetype == "ghost"){
 						health -= 1000;
 					}
 					if (FlxG.save.data.accuracyMod == 0)
@@ -3281,7 +3301,7 @@ class PlayState extends MusicBeatState
 					score = 200;
 					ss = false;
 					goods++;
-					if(daNote.notetype == "bullet"){
+					if(Note.notetype == "bullet"){
 						switch(curSong){
 							case 'Emancipation'| 'Gunned-Down'| 'Extrication':	
 							dad.animation.play("shoot");
@@ -3291,10 +3311,10 @@ class PlayState extends MusicBeatState
 							boyfriend.playAnim('shoot');
 						}
 					}
-					if(daNote.notetype == "ghost"){
+					if(Note.notetype == "ghost"){
 						FlxTween.tween(camHUD, {alpha: 0.5}, 1);	
 					}
-					if(camHUD.alpha == 0.5 && !daNote.wasGoodHit && daNote.notetype == "ghost"){
+					if(camHUD.alpha == 0.5 && !daNote.wasGoodHit && Note.notetype == "ghost"){
 						health -= 1000;
 					}
 					if (health < 2)
@@ -3307,7 +3327,7 @@ class PlayState extends MusicBeatState
 					var recycledNote = grpNoteSplashes.recycle(NoteSplash);
 					recycledNote.setupNoteSplash(daNote.x, daNote.y, daNote.noteData);
 					grpNoteSplashes.add(recycledNote);
-					if(daNote.notetype == "bullet"){
+					if(Note.notetype == "bullet"){
 						switch(curSong){
 							case 'Emancipation'| 'Gunned-Down'| 'Extrication':	
 							dad.animation.play("shoot");
@@ -3317,10 +3337,10 @@ class PlayState extends MusicBeatState
 							boyfriend.playAnim('shoot');
 						}
 					}
-					if(daNote.notetype == "ghost"){
+					if(Note.notetype == "ghost"){
 						FlxTween.tween(camHUD, {alpha: 0.5}, 1);	
 					}
-					if(camHUD.alpha == 0.5 && !daNote.wasGoodHit && daNote.notetype == "ghost"){
+					if(camHUD.alpha == 0.5 && !daNote.wasGoodHit && Note.notetype == "ghost"){
 						health -= 1000;
 					}
 					if (FlxG.save.data.accuracyMod == 0)
@@ -3763,7 +3783,7 @@ class PlayState extends MusicBeatState
 
 	function noteMiss(direction:Int = 1, daNote:Note):Void
 	{
-		if (!boyfriend.stunned && daNote.notetype != 'ghost')
+		if (!boyfriend.stunned && Note.notetype != 'ghost')
 		{
 			health -= 0.04;
 			if (combo > 5 && gf.animOffsets.exists('sad'))
@@ -3939,22 +3959,22 @@ class PlayState extends MusicBeatState
 					switch (note.noteData)
 					{
 						case 2:
-							if(note.notetype == 'bullet' && curSong == "Glammed")
+							if(Note.notetype == 'bullet' && curSong == "Glammed")
 							boyfriend.playAnim('shoot');
 							else
 							boyfriend.playAnim('singUP', true);
 						case 3:
-							if(note.notetype == 'bullet' && curSong == "Glammed")
+							if(Note.notetype == 'bullet' && curSong == "Glammed")
 							boyfriend.playAnim('shoot');
 							else
 							boyfriend.playAnim('singRIGHT', true);
 						case 1:
-							if(note.notetype == 'bullet' && curSong == "Glammed")
+							if(Note.notetype == 'bullet' && curSong == "Glammed")
 							boyfriend.playAnim('shoot');
 							else							
 							boyfriend.playAnim('singDOWN', true);
 						case 0:
-							if(note.notetype == 'bullet' && curSong == "Glammed")
+							if(Note.notetype == 'bullet' && curSong == "Glammed")
 							boyfriend.playAnim('shoot');
 							else							
 							boyfriend.playAnim('singLEFT', true);

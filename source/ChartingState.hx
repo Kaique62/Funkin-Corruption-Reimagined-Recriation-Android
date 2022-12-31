@@ -69,6 +69,8 @@ class ChartingState extends MusicBeatState
 	var writingNotesText:FlxText;
 	var highlight:FlxSprite;
 
+	var curNoteType:String = 'normal';
+
 	var GRID_SIZE:Int = 40;
 
 	var dummyArrow:FlxSprite;
@@ -90,8 +92,11 @@ class ChartingState extends MusicBeatState
 	var gridBlackLine:FlxSprite;
 	var vocals:FlxSound;
 
+	var player3:Character = new Character(0,0, "null");
 	var player2:Character = new Character(0,0, "dad");
 	var player1:Boyfriend = new Boyfriend(0,0, "bf");
+
+	var daNote:Note;
 
 	var leftIcon:HealthIcon;
 	var rightIcon:HealthIcon;
@@ -123,6 +128,7 @@ class ChartingState extends MusicBeatState
 				needsVoices: true,
 				player1: 'bf',
 				player2: 'dad',
+				player3: 'null',
 				gfVersion: 'gf',
 				noteStyle: 'normal',
 				stage: 'stage',
@@ -337,6 +343,7 @@ class ChartingState extends MusicBeatState
 		var gfVersions:Array<String> = CoolUtil.coolTextFile(Paths.txt('gfVersionList'));
 		var stages:Array<String> = CoolUtil.coolTextFile(Paths.txt('stageList'));
 		var noteStyles:Array<String> = CoolUtil.coolTextFile(Paths.txt('noteStyleList'));
+		var notetype:Array<String> = CoolUtil.coolTextFile(Paths.txt('noteTypes'));
 
 		var player1DropDown = new FlxUIDropDownMenu(10, 100, FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
 		{
@@ -351,8 +358,16 @@ class ChartingState extends MusicBeatState
 			_song.player2 = characters[Std.parseInt(character)];
 		});
 		player2DropDown.selectedLabel = _song.player2;
-
+		
 		var player2Label = new FlxText(140,80,64,'Player 2');
+
+		var player3DropDown = new FlxUIDropDownMenu(270, 100, FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
+			{
+				_song.player3 = characters[Std.parseInt(character)];
+			});
+			player3DropDown.selectedLabel = _song.player3;
+
+			var player3Label = new FlxText(270,80,64,'Player 3 (Optional)');
 
 		var gfVersionDropDown = new FlxUIDropDownMenu(10, 200, FlxUIDropDownMenu.makeStrIdLabelArray(gfVersions, true), function(gfVersion:String)
 			{
@@ -377,6 +392,16 @@ class ChartingState extends MusicBeatState
 		noteStyleDropDown.selectedLabel = _song.noteStyle;
 
 		var noteStyleLabel = new FlxText(10,280,64,'Note Skin');
+
+		var noteTypeDropDown = new FlxUIDropDownMenu(140, 300, FlxUIDropDownMenu.makeStrIdLabelArray(notetype, true), function(noteTypes:String)
+			{
+				Note.notetype = notetype[Std.parseInt(noteTypes)];
+				curNoteType = Note.notetype;
+			});
+			noteTypeDropDown.selectedLabel = Note.notetype;
+		
+
+		var noteTypeLabel = new FlxText(140,280,64,'Note Type');			
 
 		var tab_group_song = new FlxUI(null, UI_box);
 		tab_group_song.name = "Song";
@@ -407,16 +432,20 @@ class ChartingState extends MusicBeatState
 
 		var tab_group_assets = new FlxUI(null, UI_box);
 		tab_group_assets.name = "Assets";
+		tab_group_assets.add(noteTypeDropDown);
 		tab_group_assets.add(noteStyleDropDown);
 		tab_group_assets.add(noteStyleLabel);
+		tab_group_assets.add(noteTypeLabel);
 		tab_group_assets.add(gfVersionDropDown);
 		tab_group_assets.add(gfVersionLabel);
 		tab_group_assets.add(stageDropDown);
 		tab_group_assets.add(stageLabel);
 		tab_group_assets.add(player1DropDown);
 		tab_group_assets.add(player2DropDown);
+		tab_group_assets.add(player3DropDown);
 		tab_group_assets.add(player1Label);
 		tab_group_assets.add(player2Label);
+		tab_group_assets.add(player3Label);
 
 		UI_box.addGroup(tab_group_song);
 		UI_box.addGroup(tab_group_assets);
@@ -688,6 +717,7 @@ class ChartingState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+		trace(curNoteType);
 		updateHeads();
 
 		snapText.text = "Snap: 1/" + snap + " (" + (doSnapShit ? "Control to disable" : "Snap Disabled, Control to renable") + ")\nAdd Notes: 1-8 (or click)\n";
@@ -1085,6 +1115,10 @@ class ChartingState extends MusicBeatState
 		{
 			player2.playAnim('idle');
 		}
+		if (!player3.animation.curAnim.name.startsWith("sing"))
+		{
+			player3.playAnim('idle');
+		}		
 		player1.dance();
 	}
 
@@ -1423,15 +1457,9 @@ class ChartingState extends MusicBeatState
 		var noteStrum = getStrumTime(dummyArrow.y) + sectionStartTime();
 		var noteData = Math.floor(FlxG.mouse.x / GRID_SIZE);
 		var noteSus = 0;
-		var notetype = 'normal';
-		if (FlxG.keys.pressed.ONE)
-			notetype = 'normal';
-		if(FlxG.keys.pressed.CONTROL)
-			notetype = 'ghost';
-		if (FlxG.keys.pressed.ALT)
-			notetype = 'bullet';
+		var notetype = curNoteType;
 		if (n != null)
-			_song.notes[curSection].sectionNotes.push([n.strumTime, n.noteData, n.sustainLength, n.notetype]);
+			_song.notes[curSection].sectionNotes.push([n.strumTime, n.noteData, n.sustainLength, Note.notetype]);
 		else
 			_song.notes[curSection].sectionNotes.push([noteStrum, noteData, noteSus, notetype]);
 

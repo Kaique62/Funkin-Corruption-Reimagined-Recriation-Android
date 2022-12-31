@@ -94,6 +94,39 @@ class Character extends FlxSprite
 
 				playAnim('danceRight');
 	
+			case 'null':
+				tex = Paths.getSparrowAtlas('characters/gfBlank');
+				frames = tex;
+
+				animation.addByPrefix('cheer', 'GF Dancing Beat Hair blowing CAR', 24, false);
+				animation.addByPrefix('singLEFT', 'GF Dancing Beat Hair blowing CAR', 24, false);
+				animation.addByPrefix('singRIGHT', 'GF Dancing Beat Hair blowing CAR', 24, false);
+				animation.addByPrefix('singUP', 'GF Dancing Beat Hair blowing CAR', 24, false);
+				animation.addByPrefix('singDOWN', 'GF Dancing Beat Hair blowing CAR', 24, false);
+				animation.addByIndices('sad', 'GF Dancing Beat Hair blowing CAR', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "", 24, false);
+				animation.addByIndices('danceLeft', 'GF Dancing Beat Hair blowing CAR', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
+				animation.addByIndices('danceRight', 'GF Dancing Beat Hair blowing CAR', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
+				animation.addByIndices('hairBlow', "GF Dancing Beat Hair blowing CAR", [0, 1, 2, 3], "", 24);
+				animation.addByIndices('hairFall', "GF Dancing Beat Hair blowing CAR", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "", 24, false);
+				animation.addByPrefix('scared', 'GF Dancing Beat Hair blowing CAR', 24);
+
+				addOffset('cheer');
+				addOffset('sad', -2, -2);
+				addOffset('danceLeft', 0, -9);
+				addOffset('danceRight', 0, -9);
+
+				addOffset("singUP", 0, 4);
+				addOffset("singRIGHT", 0, -20);
+				addOffset("singLEFT", 0, -19);
+				addOffset("singDOWN", 0, -20);
+				addOffset('hairBlow', 45, -8);
+				addOffset('hairFall', 0, -9);
+
+				addOffset('scared', -2, -17);
+
+				playAnim('danceRight');
+	
+
 			case 'gf-pico':
 				// GIRLFRIEND CODE
 				tex = Paths.getSparrowAtlas('characters/gopico/gf-1-1');

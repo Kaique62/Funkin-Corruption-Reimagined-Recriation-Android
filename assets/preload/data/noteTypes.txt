@@ -1,0 +1,4 @@
+normal
+bullet
+ghost
+p3
