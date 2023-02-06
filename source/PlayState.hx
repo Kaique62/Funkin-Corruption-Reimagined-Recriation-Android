@@ -1132,6 +1132,7 @@ class PlayState extends MusicBeatState
 	
 						add(stageCurtains);
 
+						dadText1 = new FlxSprite(0);
 						dadText1.frames = Paths.getSparrowAtlas('dadText/dadText1');
 						dadText1.animation.addByPrefix('ironic', 'A bit ironic instancia 1', 24, false);
 						add(dadText1);
@@ -1508,9 +1509,6 @@ class PlayState extends MusicBeatState
 		iconP2.y = healthBar.y - (iconP2.height / 2);
 		add(iconP2);
 
-		dadText1 = new FlxSprite(0);
-
-
 		stageOverlay = new FlxSprite(0).loadGraphic(Paths.image('philly2/stageoverlay', 'week3'));
 
 		switch (curSong){
@@ -1537,6 +1535,7 @@ class PlayState extends MusicBeatState
 		var stagecams = new FlxCamera();
 		FlxG.cameras.add(stagecams);
 		stagecams.bgColor.alpha = 0;
+		if (curStage == "stage-d1")
 		dadText1.cameras = [stagecams];
 		stageOverlay.cameras = [stagecams];
 
@@ -4490,7 +4489,7 @@ class PlayState extends MusicBeatState
 		}
 		if(curSong == 'Bedeviled'){
 			switch(curStep){
-				case 1:
+				case 256:
 					dadText1.visible = true;
 					dadText1.animation.play('ironic');
 			}
