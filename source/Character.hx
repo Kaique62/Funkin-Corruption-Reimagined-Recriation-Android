@@ -1376,7 +1376,43 @@ class Character extends FlxSprite
 				addOffset("singDOWN", 0, -30);
 
 				playAnim('idle');	
-				flipX = true;																				
+				flipX = true;	
+				
+			case 'dad-af':
+				// DAD ANIMATION LOADING CODE
+				tex = Paths.getSparrowAtlas('characters/depression/dad-6-2', 'shared');
+				frames = tex;
+				animation.addByPrefix('idle', 'Dad idle dance0', 24);
+				animation.addByPrefix('singUP', 'Dad Sing NOTE UP0', 24);
+				animation.addByPrefix('singRIGHT', 'Dad Sing NOTE RIGHT0', 24);
+				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24);
+				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT0', 24);
+
+				addOffset('idle');
+				addOffset("singUP", -6, 53);
+				addOffset("singRIGHT", -1, 23);
+				addOffset("singLEFT", -6, 10);
+				addOffset("singDOWN", 3, -4);
+
+				playAnim('idle');		
+			case 'gf-af':
+				// DAD ANIMATION LOADING CODE
+				tex = Paths.getSparrowAtlas('characters/depression/gf-6-2', 'shared');
+				frames = tex;
+				animation.addByPrefix('idle', 'BGF IdleNormal', 24);
+				animation.addByPrefix('singUP', 'BGF Note UPNormal', 24);
+				animation.addByPrefix('singRIGHT', 'BGF Note RIGHTNormal', 24);
+				animation.addByPrefix('singDOWN', 'BGF Note DOWNNormal', 24);
+				animation.addByPrefix('singLEFT', 'BGF Note LEFTNormal', 24);
+
+				addOffset('idle');
+				addOffset("singUP", -6, 50);
+				addOffset("singRIGHT", 0, 27);
+				addOffset("singLEFT", -10, 10);
+				addOffset("singDOWN", 0, -30);
+
+				playAnim('idle');	
+				flipX = true;					
 		}
 
 		dance();

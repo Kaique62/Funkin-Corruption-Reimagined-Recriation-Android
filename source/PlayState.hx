@@ -1139,7 +1139,44 @@ class PlayState extends MusicBeatState
 
 					trace('bedeviled');
 						
-				}			
+				}	
+			case 'stage-d2':
+				{
+						defaultCamZoom = 0.9;
+						curStage = 'stage-d2';
+						var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('stageback2	'));
+						bg.antialiasing = true;
+						bg.active = false;
+						add(bg);
+
+						var shadow:FlxSprite = new FlxSprite(-600, 0).loadGraphic(Paths.image('stagebackShadow'));
+						shadow.antialiasing = true;
+						shadow.active = false;
+						add(shadow);
+	
+						var stageFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic(Paths.image('stagefront2'));
+						stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
+						stageFront.updateHitbox();
+						stageFront.antialiasing = true;
+						stageFront.scrollFactor.set(0.9, 0.9);
+						stageFront.active = false;
+						add(stageFront);
+	
+						var stageCurtains:FlxSprite = new FlxSprite(-450, -200).loadGraphic(Paths.image('stagecurtains2'));
+						stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
+						stageCurtains.updateHitbox();
+						stageCurtains.antialiasing = true;
+						stageCurtains.active = false;
+	
+						add(stageCurtains);
+
+						dadText1.frames = Paths.getSparrowAtlas('dadText/dadText1');
+						dadText1.animation.addByPrefix('ironic', 'A bit ironic instancia 1', 24, false);
+						add(dadText1);
+
+					trace('bedeviled');	
+				}					
+				
 			case 'stage':
 				{
 						defaultCamZoom = 0.9;
@@ -1508,6 +1545,7 @@ class PlayState extends MusicBeatState
 		iconP2 = new HealthIcon(SONG.player2, false);
 		iconP2.y = healthBar.y - (iconP2.height / 2);
 		add(iconP2);
+
 
 		stageOverlay = new FlxSprite(0).loadGraphic(Paths.image('philly2/stageoverlay', 'week3'));
 
