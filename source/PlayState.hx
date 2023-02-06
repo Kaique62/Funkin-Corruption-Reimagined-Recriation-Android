@@ -81,6 +81,7 @@ class PlayState extends MusicBeatState
 	public static var bads:Int = 0;
 	public static var goods:Int = 0;
 	public static var sicks:Int = 0;
+	var dadText1:FlxSprite;
 
 	var altIdle:Bool = false;
 
@@ -1107,13 +1108,11 @@ class PlayState extends MusicBeatState
 						curStage = 'stage-d1';
 						var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('stageback'));
 						bg.antialiasing = true;
-						bg.scrollFactor.set(0.9, 0.9);
 						bg.active = false;
 						add(bg);
 
 						var shadow:FlxSprite = new FlxSprite(-600, 0).loadGraphic(Paths.image('stagebackShadow'));
 						shadow.antialiasing = true;
-						shadow.scrollFactor.set(0.9, 0.9);
 						shadow.active = false;
 						add(shadow);
 	
@@ -1125,14 +1124,17 @@ class PlayState extends MusicBeatState
 						stageFront.active = false;
 						add(stageFront);
 	
-						var stageCurtains:FlxSprite = new FlxSprite(-500, -300).loadGraphic(Paths.image('stagecurtains'));
+						var stageCurtains:FlxSprite = new FlxSprite(-450, -200).loadGraphic(Paths.image('stagecurtains'));
 						stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 						stageCurtains.updateHitbox();
 						stageCurtains.antialiasing = true;
-						stageCurtains.scrollFactor.set(1.3, 1.3);
 						stageCurtains.active = false;
 	
 						add(stageCurtains);
+
+						dadText1.frames = Paths.getSparrowAtlas('dadText/dadText1');
+						dadText1.animation.addByPrefix('ironic', 'A bit ironic instancia 1', 24, false);
+						add(dadText1);
 
 					trace('bedeviled');
 						
@@ -1298,6 +1300,7 @@ class PlayState extends MusicBeatState
 			default:
 				player3.x += 300;
 				player3.y += 300;
+				boyfriend.y -= 50;
 			case 'spooky' | 'spooky-2' | 'spooky-3':
 				boyfriend.x = 830;
 				boyfriend.y = 370;
@@ -1505,6 +1508,9 @@ class PlayState extends MusicBeatState
 		iconP2.y = healthBar.y - (iconP2.height / 2);
 		add(iconP2);
 
+		dadText1 = new FlxSprite(0);
+
+
 		stageOverlay = new FlxSprite(0).loadGraphic(Paths.image('philly2/stageoverlay', 'week3'));
 
 		switch (curSong){
@@ -1527,9 +1533,11 @@ class PlayState extends MusicBeatState
 
 		add(stageOverlay);
 
+
 		var stagecams = new FlxCamera();
 		FlxG.cameras.add(stagecams);
 		stagecams.bgColor.alpha = 0;
+		dadText1.cameras = [stagecams];
 		stageOverlay.cameras = [stagecams];
 
 		strumLineNotes.cameras = [camHUD];
@@ -4478,6 +4486,13 @@ class PlayState extends MusicBeatState
 				changeBF('bf-4-4', 140, -150);		
 				boyfriend.animation.play('singUP');		
 				FlxG.camera.fade(FlxColor.BLACK, 1, true);				
+			}
+		}
+		if(curSong == 'Bedeviled'){
+			switch(curStep){
+				case 1:
+					dadText1.visible = true;
+					dadText1.animation.play('ironic');
 			}
 		}
 	}
