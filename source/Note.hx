@@ -98,8 +98,10 @@ class Note extends FlxSprite
 						daPath = 'BULLETS_assets';
 				//	default:
 				//		daPath = 'NOTE_assets';	
-					case 'normal' | 'p3':
+					case 'normal':
 						daPath = 'NOTE_assets';
+					case 'p3':
+						daPath = 'NOTE_assets';	
 				}
 				frames = Paths.getSparrowAtlas(daPath);
 

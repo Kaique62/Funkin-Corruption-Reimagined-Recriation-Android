@@ -367,7 +367,7 @@ class ChartingState extends MusicBeatState
 			});
 			player3DropDown.selectedLabel = _song.player3;
 
-			var player3Label = new FlxText(270,80,64,'Player 3 (Optional)');
+			var player3Label = new FlxText(270,60,64,'Player 3 (Optional)');
 
 		var gfVersionDropDown = new FlxUIDropDownMenu(10, 200, FlxUIDropDownMenu.makeStrIdLabelArray(gfVersions, true), function(gfVersion:String)
 			{
@@ -717,7 +717,6 @@ class ChartingState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		trace(curNoteType);
 		updateHeads();
 
 		snapText.text = "Snap: 1/" + snap + " (" + (doSnapShit ? "Control to disable" : "Snap Disabled, Control to renable") + ")\nAdd Notes: 1-8 (or click)\n";
