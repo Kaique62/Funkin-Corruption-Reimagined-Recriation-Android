@@ -63,37 +63,26 @@ class Character extends FlxSprite
 				playAnim('danceRight');
 
 			case 'gf-blank':
-				tex = Paths.getSparrowAtlas('characters/gfBlank');
+
+
+			animation.addByPrefix('idle', 'BGF IdleNormal', 24);
+			animation.addByPrefix('singUP', 'BGF Note UPNormal', 24);
+			animation.addByPrefix('singRIGHT', 'BGF Note RIGHTNormal', 24);
+			animation.addByPrefix('singDOWN', 'BGF Note DOWNNormal', 24);
+			animation.addByPrefix('singLEFT', 'BGF Note LEFTNormal', 24);
+
+			addOffset('idle');
+			addOffset("singUP", -6, 50);
+			addOffset("singRIGHT", 0, 27);
+			addOffset("singLEFT", -10, 10);
+			addOffset("singDOWN", 0, -30);
+
+			playAnim('idle');	
+				tex = Paths.getSparrowAtlas('1px_image');
 				frames = tex;
 
-				animation.addByPrefix('cheer', 'GF Dancing Beat Hair blowing CAR', 24, false);
-				animation.addByPrefix('singLEFT', 'GF Dancing Beat Hair blowing CAR', 24, false);
-				animation.addByPrefix('singRIGHT', 'GF Dancing Beat Hair blowing CAR', 24, false);
-				animation.addByPrefix('singUP', 'GF Dancing Beat Hair blowing CAR', 24, false);
-				animation.addByPrefix('singDOWN', 'GF Dancing Beat Hair blowing CAR', 24, false);
-				animation.addByIndices('sad', 'GF Dancing Beat Hair blowing CAR', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "", 24, false);
-				animation.addByIndices('danceLeft', 'GF Dancing Beat Hair blowing CAR', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
-				animation.addByIndices('danceRight', 'GF Dancing Beat Hair blowing CAR', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
-				animation.addByIndices('hairBlow', "GF Dancing Beat Hair blowing CAR", [0, 1, 2, 3], "", 24);
-				animation.addByIndices('hairFall', "GF Dancing Beat Hair blowing CAR", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "", 24, false);
-				animation.addByPrefix('scared', 'GF Dancing Beat Hair blowing CAR', 24);
+			visible = false;
 
-				addOffset('cheer');
-				addOffset('sad', -2, -2);
-				addOffset('danceLeft', 0, -9);
-				addOffset('danceRight', 0, -9);
-
-				addOffset("singUP", 0, 4);
-				addOffset("singRIGHT", 0, -20);
-				addOffset("singLEFT", 0, -19);
-				addOffset("singDOWN", 0, -20);
-				addOffset('hairBlow', 45, -8);
-				addOffset('hairFall', 0, -9);
-
-				addOffset('scared', -2, -17);
-
-				playAnim('danceRight');
-	
 			case 'null':
 				tex = Paths.getSparrowAtlas('characters/gfBlank');
 				frames = tex;
@@ -897,45 +886,24 @@ class Character extends FlxSprite
 
 
 			case 'bf':
-				var tex = Paths.getSparrowAtlas('characters/BOYFRIEND', 'shared');
+
+			animation.addByPrefix('idle', 'BGF IdleNormal', 24);
+			animation.addByPrefix('singUP', 'BGF Note UPNormal', 24);
+			animation.addByPrefix('singRIGHT', 'BGF Note RIGHTNormal', 24);
+			animation.addByPrefix('singDOWN', 'BGF Note DOWNNormal', 24);
+			animation.addByPrefix('singLEFT', 'BGF Note LEFTNormal', 24);
+
+			addOffset('idle');
+			addOffset("singUP", -6, 50);
+			addOffset("singRIGHT", 0, 27);
+			addOffset("singLEFT", -10, 10);
+			addOffset("singDOWN", 0, -30);
+
+			playAnim('idle');	
+				var tex = Paths.getSparrowAtlas('1px_image', 'shared');
 				frames = tex;
 
-				trace(tex.frames.length);
-
-				animation.addByPrefix('idle', 'BF idle dance', 24, false);
-				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
-				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
-				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
-				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
-				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
-				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
-				animation.addByPrefix('hey', 'BF HEY', 24, false);
-
-				animation.addByPrefix('firstDeath', "BF dies", 24, false);
-				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
-				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
-
-				animation.addByPrefix('scared', 'BF idle shaking', 24);
-
-				addOffset('idle', -5);
-				addOffset("singUP", -29, 27);
-				addOffset("singRIGHT", -38, -7);
-				addOffset("singLEFT", 12, -6);
-				addOffset("singDOWN", -10, -50);
-				addOffset("singUPmiss", -29, 27);
-				addOffset("singRIGHTmiss", -30, 21);
-				addOffset("singLEFTmiss", 12, 24);
-				addOffset("singDOWNmiss", -11, -19);
-				addOffset("hey", 7, 4);
-				addOffset('firstDeath', 37, 11);
-				addOffset('deathLoop', 37, 5);
-				addOffset('deathConfirm', 37, 69);
-				addOffset('scared', -4);
-
-				playAnim('idle');
-
+				visible = false;
 				flipX = true;
 		
 			case 'bf-pico':
@@ -1334,7 +1302,59 @@ class Character extends FlxSprite
 				addOffset("singLEFT", 250, -23);
 				addOffset("singDOWN", 20, -160);
 
-				playAnim('idle');									
+				playAnim('idle');		
+			case 'bf-dad-new':
+				frames = Paths.getSparrowAtlas('characters/depression/bfdadweek');
+
+				animation.addByPrefix('idle', 'BF idle dance', 24, false);
+				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
+				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
+				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+
+				addOffset('idle', -5, 10);
+				addOffset('singLEFT', 19, -5);
+				addOffset('singDOWN', -9, -53);
+				addOffset('singUP', -34, 34);
+				addOffset('singRIGHT', -43, 3);
+
+				playAnim('idle');
+				flipX = true;		
+			case 'dad-bed':
+				// DAD ANIMATION LOADING CODE
+				tex = Paths.getSparrowAtlas('characters/depression/dad-6-1', 'shared');
+				frames = tex;
+				animation.addByPrefix('idle', 'Dad idle dance0', 24);
+				animation.addByPrefix('singUP', 'Dad Sing NOTE UP0', 24);
+				animation.addByPrefix('singRIGHT', 'Dad Sing NOTE RIGHT0', 24);
+				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24);
+				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT0', 24);
+
+				addOffset('idle');
+				addOffset("singUP", -6, 53);
+				addOffset("singRIGHT", -1, 23);
+				addOffset("singLEFT", -6, 10);
+				addOffset("singDOWN", 3, -4);
+
+				playAnim('idle');		
+			case 'gf-dad-bed':
+				// DAD ANIMATION LOADING CODE
+				tex = Paths.getSparrowAtlas('characters/depression/gf-6-1', 'shared');
+				frames = tex;
+				animation.addByPrefix('idle', 'BGF IdleNormal', 24);
+				animation.addByPrefix('singUP', 'BGF Note UPNormal', 24);
+				animation.addByPrefix('singRIGHT', 'BGF Note RIGHTNormal', 24);
+				animation.addByPrefix('singDOWN', 'BGF Note DOWNNormal', 24);
+				animation.addByPrefix('singLEFT', 'BGF Note LEFTNormal', 24);
+
+				addOffset('idle');
+				addOffset("singUP", -6, 50);
+				addOffset("singRIGHT", 0, 27);
+				addOffset("singLEFT", -10, 10);
+				addOffset("singDOWN", 0, -30);
+
+				playAnim('idle');	
+				flipX = true;																				
 		}
 
 		dance();
@@ -1405,16 +1425,6 @@ class Character extends FlxSprite
 			switch (curCharacter)
 			{
 				case 'gf':
-					if (!animation.curAnim.name.startsWith('hair'))
-					{
-						danced = !danced;
-
-						if (danced)
-							playAnim('danceRight');
-						else
-							playAnim('danceLeft');
-					}
-				case 'gf-blank':
 					if (!animation.curAnim.name.startsWith('hair'))
 					{
 						danced = !danced;

@@ -1101,6 +1101,42 @@ class PlayState extends MusicBeatState
 								add(waveSpriteFG);
 						*/
 			}
+			case 'stage-d1':
+				{
+						defaultCamZoom = 0.9;
+						curStage = 'stage-d1';
+						var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('stageback'));
+						bg.antialiasing = true;
+						bg.scrollFactor.set(0.9, 0.9);
+						bg.active = false;
+						add(bg);
+
+						var shadow:FlxSprite = new FlxSprite(-600, 0).loadGraphic(Paths.image('stagebackShadow'));
+						shadow.antialiasing = true;
+						shadow.scrollFactor.set(0.9, 0.9);
+						shadow.active = false;
+						add(shadow);
+	
+						var stageFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic(Paths.image('stagefront'));
+						stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
+						stageFront.updateHitbox();
+						stageFront.antialiasing = true;
+						stageFront.scrollFactor.set(0.9, 0.9);
+						stageFront.active = false;
+						add(stageFront);
+	
+						var stageCurtains:FlxSprite = new FlxSprite(-500, -300).loadGraphic(Paths.image('stagecurtains'));
+						stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
+						stageCurtains.updateHitbox();
+						stageCurtains.antialiasing = true;
+						stageCurtains.scrollFactor.set(1.3, 1.3);
+						stageCurtains.active = false;
+	
+						add(stageCurtains);
+
+					trace('bedeviled');
+						
+				}			
 			case 'stage':
 				{
 						defaultCamZoom = 0.9;
@@ -1259,6 +1295,9 @@ class PlayState extends MusicBeatState
 		// REPOSITIONING PER STAGE
 		switch (curStage)
 		{
+			default:
+				player3.x += 300;
+				player3.y += 300;
 			case 'spooky' | 'spooky-2' | 'spooky-3':
 				boyfriend.x = 830;
 				boyfriend.y = 370;
@@ -1474,6 +1513,17 @@ class PlayState extends MusicBeatState
 			default:
 				stageOverlay.visible = false;
 		}
+
+		/*if (curSong == "Bedeviled"){
+			var stageOverlayd1 = new FlxSprite(0).loadGraphic(Paths.image('stageoverlay'));
+			add(stageOverlayd1);
+	
+			var stagecamsd1 = new FlxCamera();
+			FlxG.cameras.add(stagecamsd1);
+			stagecamsd1.bgColor.alpha = 0;
+			//shadow.cameras = [stagecamsd1];
+			stageOverlayd1.cameras = [stagecamsd1];
+		} */
 
 		add(stageOverlay);
 
@@ -2401,6 +2451,13 @@ class PlayState extends MusicBeatState
 			}
 			else
 				openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+		}
+
+		if (FlxG.keys.justPressed.H && camHUD.visible == true){
+			camHUD.visible = false;
+		}
+		else if  (FlxG.keys.justPressed.H && camHUD.visible == false){
+			camHUD.visible = true;
 		}
 
 		if (FlxG.keys.justPressed.SEVEN)
