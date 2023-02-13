@@ -82,6 +82,13 @@ class PlayState extends MusicBeatState
 	public static var goods:Int = 0;
 	public static var sicks:Int = 0;
 	var dadText1:FlxSprite;
+	var dadText2:FlxSprite;
+	var dadText3:FlxSprite;
+	var dadText4:FlxSprite;
+	var dadText5:FlxSprite;
+	var dadText6:FlxSprite;
+
+	public static var dadIdleAlt:Bool = false;
 
 	var altIdle:Bool = false;
 
@@ -1106,16 +1113,17 @@ class PlayState extends MusicBeatState
 				{
 						defaultCamZoom = 0.9;
 						curStage = 'stage-d1';
-						var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('stageback'));
-						bg.antialiasing = true;
-						bg.active = false;
-						add(bg);
 
-						var shadow:FlxSprite = new FlxSprite(-600, 0).loadGraphic(Paths.image('stagebackShadow'));
+						var shadow:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('stagebackShadow'));
 						shadow.antialiasing = true;
 						shadow.active = false;
 						add(shadow);
-	
+
+						var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('stageback'));
+						bg.antialiasing = true;
+						bg.active = false;
+						add(bg);	
+
 						var stageFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic(Paths.image('stagefront'));
 						stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
 						stageFront.updateHitbox();
@@ -1137,6 +1145,21 @@ class PlayState extends MusicBeatState
 						dadText1.animation.addByPrefix('ironic', 'A bit ironic instancia 1', 24, false);
 						add(dadText1);
 
+						dadText2 = new FlxSprite(0);
+						dadText2.frames = Paths.getSparrowAtlas('dadText/dadText2');
+						dadText2.animation.addByPrefix('work', 'keep working instancia 1', 24, false);
+						add(dadText2);
+
+						dadText3 = new FlxSprite(0);
+						dadText3.frames = Paths.getSparrowAtlas('dadText/dadText3');
+						dadText3.animation.addByPrefix('slacking', 'slacking im trying here instancia 1', 24, false);
+						add(dadText3);
+
+						dadText4 = new FlxSprite(0);
+						dadText4.frames = Paths.getSparrowAtlas('dadText/dadText4');
+						dadText4.animation.addByPrefix('dont', 'Just Dont die instancia 1', 24, false);
+						add(dadText4);
+
 					trace('bedeviled');
 						
 				}	
@@ -1144,16 +1167,18 @@ class PlayState extends MusicBeatState
 				{
 						defaultCamZoom = 0.9;
 						curStage = 'stage-d2';
-						var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('stageback2	'));
-						bg.antialiasing = true;
-						bg.active = false;
-						add(bg);
+
 
 						var shadow:FlxSprite = new FlxSprite(-600, 0).loadGraphic(Paths.image('stagebackShadow'));
 						shadow.antialiasing = true;
 						shadow.active = false;
 						add(shadow);
-	
+
+						var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('stageback2'));
+						bg.antialiasing = true;
+						bg.active = false;
+						add(bg);
+
 						var stageFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic(Paths.image('stagefront2'));
 						stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
 						stageFront.updateHitbox();
@@ -1170,9 +1195,15 @@ class PlayState extends MusicBeatState
 	
 						add(stageCurtains);
 
-						dadText1.frames = Paths.getSparrowAtlas('dadText/dadText1');
-						dadText1.animation.addByPrefix('ironic', 'A bit ironic instancia 1', 24, false);
-						add(dadText1);
+						dadText3 = new FlxSprite(0);
+						dadText3.frames = Paths.getSparrowAtlas('dadText/dadText3');
+						dadText3.animation.addByPrefix('slacking', 'slacking im trying here instancia 1', 24, false);
+						add(dadText3);
+
+						dadText4 = new FlxSprite(0);
+						dadText4.frames = Paths.getSparrowAtlas('dadText/dadText4');
+						dadText4.animation.addByPrefix('dont', 'Just Dont die instancia 1', 24, false);
+						add(dadText4);
 
 					trace('bedeviled');	
 				}					
@@ -1265,6 +1296,8 @@ class PlayState extends MusicBeatState
 
 		switch (SONG.player2)
 		{
+			case 'dad-af':
+				dad.x -= 100;
 			case 'gf':
 				dad.setPosition(gf.x, gf.y);
 				gf.visible = false;
@@ -1338,7 +1371,11 @@ class PlayState extends MusicBeatState
 			default:
 				player3.x += 300;
 				player3.y += 300;
-				boyfriend.y -= 50;
+			case 'stage-d2':
+				player3.x += 200;
+				player3.y += 300;
+			case 'philly' | 'philly2' | 'philly3':
+				boyfriend.y += 30;
 			case 'spooky' | 'spooky-2' | 'spooky-3':
 				boyfriend.x = 830;
 				boyfriend.y = 370;
@@ -1424,6 +1461,9 @@ class PlayState extends MusicBeatState
 
 		playerStrums = new FlxTypedGroup<FlxSprite>();
 		cpuStrums = new FlxTypedGroup<FlxSprite>();
+		if(curSong == "Affliction"){
+			playerStrums.visible = false;
+		}
 
 		// startCountdown();
 
@@ -1573,8 +1613,16 @@ class PlayState extends MusicBeatState
 		var stagecams = new FlxCamera();
 		FlxG.cameras.add(stagecams);
 		stagecams.bgColor.alpha = 0;
-		if (curStage == "stage-d1")
-		dadText1.cameras = [stagecams];
+		if(curSong == "Bedeviled"){
+			dadText1.cameras = [stagecams];
+			dadText2.cameras = [stagecams];
+		}
+		else if (curSong == "Affliction"){
+			dadText3.cameras = [stagecams];
+			dadText4.cameras = [stagecams];
+		}
+
+
 		stageOverlay.cameras = [stagecams];
 
 		strumLineNotes.cameras = [camHUD];
@@ -2736,6 +2784,8 @@ class PlayState extends MusicBeatState
 
 				switch (dad.curCharacter)
 				{
+				//	case 'pico' | 'pico2' | 'pico3-1' | 'pico3-2' | 'pico3-3' | 'pico3-4' | 'pico3-5':
+				//		camFollow.x = dad.getMidpoint().x + 100;
 					case 'spooky' | 'spooky-2' | 'spooky-3':
 						camFollow.y = dad.getMidpoint().y - 140;
 					case 'mom':
@@ -2754,6 +2804,47 @@ class PlayState extends MusicBeatState
 				if (dad.curCharacter == 'mom')
 					vocals.volume = 1;
 			}
+
+			if (camFollow.x != player3.getMidpoint().x + 150 && !PlayState.SONG.notes[Std.int(curStep / 16)].mustHitSection)
+			{
+				var offsetX = 0;
+				var offsetY = 0;
+				#if windows
+				if (luaModchart != null)
+				{
+					offsetX = luaModchart.getVar("followXOffset", "float");
+					offsetY = luaModchart.getVar("followYOffset", "float");
+				}
+				#end
+				camFollow.setPosition(player3.getMidpoint().x + 150 + offsetX, player3.getMidpoint().y - 100 + offsetY);
+				#if windows
+				if (luaModchart != null)
+					luaModchart.executeState('playerTwoTurn', []);
+				#end
+				// camFollow.setPosition(lucky.getMidpoint().x - 120, lucky.getMidpoint().y + 210);
+
+				switch (dad.curCharacter)
+				{
+				/*	case 'pico' | 'pico2' | 'pico3-1' | 'pico3-2' | 'pico3-3' | 'pico3-4' | 'pico3-5':
+						camFollow.x = dad.getMidpoint().x + 100;
+					case 'spooky' | 'spooky-2' | 'spooky-3':
+						camFollow.y = dad.getMidpoint().y - 140;
+					case 'mom':
+						camFollow.y = dad.getMidpoint().y;
+					case 'senpai':
+						camFollow.y = dad.getMidpoint().y - 430;
+						camFollow.x = dad.getMidpoint().x - 100;
+					case 'senpai-angry':
+						camFollow.y = dad.getMidpoint().y - 430;
+						camFollow.x = dad.getMidpoint().x - 100;
+					case 'mom-valor' | 'mom-wolf-alt' | 'mom-wolf':	
+						camFollow.x = dad.getMidpoint().x + 140;
+						camFollow.y = dad.getMidpoint().y + 100; */
+				}
+
+				if (dad.curCharacter == 'mom')
+					vocals.volume = 1;
+			}			
 
 			if (PlayState.SONG.notes[Std.int(curStep / 16)].mustHitSection && camFollow.x != boyfriend.getMidpoint().x - 100)
 			{
@@ -2795,6 +2886,8 @@ class PlayState extends MusicBeatState
 					case 'schoolEvil':
 						camFollow.x = boyfriend.getMidpoint().x - 200;
 						camFollow.y = boyfriend.getMidpoint().y - 200;
+					case 'stage-d2':
+						camFollow.y = boyfriend.getMidpoint().y - 100;
 				}
 			}
 		}
@@ -2987,13 +3080,17 @@ class PlayState extends MusicBeatState
 							camZooming = true;
 
 						var altAnim:String = "";
+
+						if(dadIdleAlt){
+							altAnim = '-alt';
+						}
 	
 						if (SONG.notes[Math.floor(curStep / 16)] != null)
 						{
 							if (SONG.notes[Math.floor(curStep / 16)].altAnim)
 								altAnim = '-alt';
 						}
-						if (Note.notetype == "p3"){
+						if (daNote._notetype == "p3"){
 							switch (Math.abs(daNote.noteData))
 							{
 								case 2:
@@ -3021,6 +3118,9 @@ class PlayState extends MusicBeatState
 						}
 						if (healthDrain && !daNote.isSustainNote)
 							{
+								if(dad.curCharacter == 'dad-bed'){
+									health -= (0.02 * (curBeat / 50));	
+								}
 								if(dad.curCharacter == 'momd3-1'){
 									health -= (0.02 * (curBeat / 50));									
 								}
@@ -3106,7 +3206,7 @@ class PlayState extends MusicBeatState
 								daNote.kill();
 								notes.remove(daNote, true);
 							}
-							else if (Note.notetype == "ghost"){
+							else if (daNote._notetype == "ghost"){
 
 							}
 							else
@@ -3356,22 +3456,6 @@ class PlayState extends MusicBeatState
 					health -= 0.2;
 					ss = false;
 					shits++;
-					if(Note.notetype == "bullet"){
-					switch(curSong){
-						case 'Emancipation'| 'Gunned-Down'| 'Extrication':	
-						dad.animation.play("shoot");
-						FlxG.camera.shake(0.01,  0.5);
-						default:
-						dad.animation.play("shoot");	
-						boyfriend.playAnim('shoot');
-					}
-				}
-					if(Note.notetype == "ghost"){
-						FlxTween.tween(camHUD, {alpha: 0.5}, 1);	
-					}
-					if(camHUD.alpha == 0.5 && !daNote.wasGoodHit && Note.notetype == "ghost"){
-						health -= 1000;
-					}
 					if (FlxG.save.data.accuracyMod == 0)
 						totalNotesHit += 0.25;
 				case 'bad':
@@ -3380,22 +3464,6 @@ class PlayState extends MusicBeatState
 					health -= 0.06;
 					ss = false;
 					bads++;
-					if(Note.notetype == "bullet"){
-						switch(curSong){
-							case 'Emancipation'| 'Gunned-Down'| 'Extrication':	
-							dad.animation.play("shoot");
-							FlxG.camera.shake(0.01,  0.5);
-							default:
-							dad.animation.play("shoot");	
-							boyfriend.playAnim('shoot');
-						}
-					}
-					if(Note.notetype == "ghost"){
-						FlxTween.tween(camHUD, {alpha: 0.5}, 1);	
-					}
-					if(camHUD.alpha == 0.5 && !daNote.wasGoodHit && Note.notetype == "ghost"){
-						health -= 1000;
-					}
 					if (FlxG.save.data.accuracyMod == 0)
 						totalNotesHit += 0.50;
 				case 'good':
@@ -3403,22 +3471,6 @@ class PlayState extends MusicBeatState
 					score = 200;
 					ss = false;
 					goods++;
-					if(Note.notetype == "bullet"){
-						switch(curSong){
-							case 'Emancipation'| 'Gunned-Down'| 'Extrication':	
-							dad.animation.play("shoot");
-							FlxG.camera.shake(0.01,  0.5);
-							default:
-							dad.animation.play("shoot");	
-							boyfriend.playAnim('shoot');
-						}
-					}
-					if(Note.notetype == "ghost"){
-						FlxTween.tween(camHUD, {alpha: 0.5}, 1);	
-					}
-					if(camHUD.alpha == 0.5 && !daNote.wasGoodHit && Note.notetype == "ghost"){
-						health -= 1000;
-					}
 					if (health < 2)
 						health += 0.04;
 					if (FlxG.save.data.accuracyMod == 0)
@@ -3429,25 +3481,23 @@ class PlayState extends MusicBeatState
 					var recycledNote = grpNoteSplashes.recycle(NoteSplash);
 					recycledNote.setupNoteSplash(daNote.x, daNote.y, daNote.noteData);
 					grpNoteSplashes.add(recycledNote);
-					if(Note.notetype == "bullet"){
-						switch(curSong){
-							case 'Emancipation'| 'Gunned-Down'| 'Extrication':	
-							dad.animation.play("shoot");
-							FlxG.camera.shake(0.01,  0.5);
-							default:
-							dad.animation.play("shoot");	
-							boyfriend.playAnim('shoot');
-						}
-					}
-					if(Note.notetype == "ghost"){
-						FlxTween.tween(camHUD, {alpha: 0.5}, 1);	
-					}
-					if(camHUD.alpha == 0.5 && !daNote.wasGoodHit && Note.notetype == "ghost"){
-						health -= 1000;
-					}
 					if (FlxG.save.data.accuracyMod == 0)
 						totalNotesHit += 1;
 					sicks++;
+			}
+
+			if(daNote._notetype == "bullet"){
+				if (curSong == "Emancipation" || curSong == "Gunned-Down" || curSong == "Extrication"){
+					dad.animation.play("shoot");
+					FlxG.camera.shake(0.01,  0.5);
+				}
+			}
+
+			if(daNote._notetype == "ghost"){
+				FlxTween.tween(camHUD, {alpha: 0.5}, 1);	
+			}
+			if(camHUD.alpha == 0.5 && !daNote.wasGoodHit && daNote._notetype == "ghost"){
+				health -= 1000;
 			}
 
 			// trace('Wife accuracy loss: ' + wife + ' | Rating: ' + daRating + ' | Score: ' + score + ' | Weight: ' + (1 - wife));
@@ -3885,7 +3935,7 @@ class PlayState extends MusicBeatState
 
 	function noteMiss(direction:Int = 1, daNote:Note):Void
 	{
-		if (!boyfriend.stunned && Note.notetype != 'ghost')
+		if (!boyfriend.stunned && daNote._notetype != 'ghost')
 		{
 			health -= 0.04;
 			if (combo > 5 && gf.animOffsets.exists('sad'))
@@ -4061,22 +4111,22 @@ class PlayState extends MusicBeatState
 					switch (note.noteData)
 					{
 						case 2:
-							if(Note.notetype == 'bullet' && curSong == "Glammed")
+							if(note._notetype == 'bullet' && curSong == "Glammed")
 							boyfriend.playAnim('shoot');
 							else
 							boyfriend.playAnim('singUP', true);
 						case 3:
-							if(Note.notetype == 'bullet' && curSong == "Glammed")
+							if(note._notetype == 'bullet' && curSong == "Glammed")
 							boyfriend.playAnim('shoot');
 							else
 							boyfriend.playAnim('singRIGHT', true);
 						case 1:
-							if(Note.notetype == 'bullet' && curSong == "Glammed")
+							if(note._notetype == 'bullet' && curSong == "Glammed")
 							boyfriend.playAnim('shoot');
 							else							
 							boyfriend.playAnim('singDOWN', true);
 						case 0:
-							if(Note.notetype == 'bullet' && curSong == "Glammed")
+							if(note._notetype == 'bullet' && curSong == "Glammed")
 							boyfriend.playAnim('shoot');
 							else							
 							boyfriend.playAnim('singLEFT', true);
@@ -4530,7 +4580,43 @@ class PlayState extends MusicBeatState
 				case 256:
 					dadText1.visible = true;
 					dadText1.animation.play('ironic');
+				case 304:
+					dadText2.visible = true;
+					dadText2.animation.play('work');
+				case 768:
+					healthDrain = true;
+					dadIdleAlt = true;
+				case 1088:
+					healthDrain = false;
+					dadIdleAlt = false;	
 			}
+		}
+		if(curSong == "Affliction"){
+			var _note:Note;
+			switch(curStep){
+				case 127:
+				defaultCamZoom = 1.3;
+				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 0.4);
+				case 255:
+				defaultCamZoom = 0.9;
+				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 1);	
+				case 512:
+				dadText3.visible = true;
+				dadText3.animation.play('slacking');
+				case 580:
+				dadText4.visible = true;
+				dadText4.animation.play('dont');	
+				case 1023:
+				//pissed
+				case 1088:
+				//normal
+				case 1156:
+				//pissed
+				case 1214:
+				//normal
+				case 1360:
+				//pissed
+			}	
 		}
 	}
 

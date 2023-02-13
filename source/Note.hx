@@ -31,6 +31,8 @@ class Note extends FlxSprite
 
 	public static var notetype:String = "normal";
 
+	public var _notetype:String = "normal";
+
 	public static var swagWidth:Float = 160 * 0.7;
 	public static var PURP_NOTE:Int = 0;
 	public static var GREEN_NOTE:Int = 2;
@@ -47,6 +49,7 @@ class Note extends FlxSprite
 			prevNote = this;
 
 		Note.notetype = notetype;
+		_notetype = Note.notetype;
 		this.prevNote = prevNote;
 		isSustainNote = sustainNote;
 

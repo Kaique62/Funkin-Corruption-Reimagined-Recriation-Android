@@ -36,7 +36,7 @@ class StoryMenuState extends MusicBeatState
 		['Bedeviled', 'Affliction', 'Familiar-Finale'],
 		['SaveState', 'Chances','Full-Circle','Soliloquy','Take-Two']
 	];
-	var curDifficulty:Int = 1;
+	var curDifficulty:Int = 2;
 
 	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true];
 

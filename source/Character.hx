@@ -1334,11 +1334,11 @@ class Character extends FlxSprite
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
 				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
 
-				addOffset('idle', -5, 10);
-				addOffset('singLEFT', 19, -5);
-				addOffset('singDOWN', -9, -53);
-				addOffset('singUP', -34, 34);
-				addOffset('singRIGHT', -43, 3);
+				addOffset('idle', -5, 80);
+				addOffset('singLEFT', 9, 75);
+				addOffset('singDOWN', 10, 49);
+				addOffset('singUP', -23, 102);
+				addOffset('singRIGHT', -10, 68);
 
 				playAnim('idle');
 				flipX = true;		
@@ -1352,11 +1352,23 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24);
 				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT0', 24);
 
+				animation.addByPrefix('idle-alt', 'Dad idle dance Glow0', 24);
+				animation.addByPrefix('singUP-alt', 'Dad Sing NOTE UP Glow0', 24);
+				animation.addByPrefix('singRIGHT-alt', 'Dad Sing NOTE RIGHT Glow0', 24);
+				animation.addByPrefix('singDOWN-alt', 'Dad Sing Note DOWN Glow', 24);
+				animation.addByPrefix('singLEFT-alt', 'Dad Sing Note LEFT Glow0', 24);
+
 				addOffset('idle');
 				addOffset("singUP", -6, 53);
 				addOffset("singRIGHT", -1, 23);
 				addOffset("singLEFT", -6, 10);
 				addOffset("singDOWN", 3, -4);
+
+				addOffset('idle-alt');
+				addOffset("singUP-alt", -6, 53);
+				addOffset("singRIGHT-alt", -1, 23);
+				addOffset("singLEFT-alt", -6, 10);
+				addOffset("singDOWN-alt", 3, -4);
 
 				playAnim('idle');		
 			case 'gf-dad-bed':
@@ -1382,17 +1394,17 @@ class Character extends FlxSprite
 				// DAD ANIMATION LOADING CODE
 				tex = Paths.getSparrowAtlas('characters/depression/dad-6-2', 'shared');
 				frames = tex;
-				animation.addByPrefix('idle', 'Dad idle dance0', 24);
-				animation.addByPrefix('singUP', 'Dad Sing NOTE UP0', 24);
-				animation.addByPrefix('singRIGHT', 'Dad Sing NOTE RIGHT0', 24);
-				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24);
-				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT0', 24);
+				animation.addByPrefix('idle', 'Dad idle dance Corrupt1', 24);
+				animation.addByPrefix('singUP', 'Dad Sing NOTE UP Corrupt1', 24);
+				animation.addByPrefix('singRIGHT', 'Dad Sing NOTE RIGHT Corrupt1', 24);
+				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN Corrupt1', 24);
+				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT Corrupt1', 24);
 
 				addOffset('idle');
-				addOffset("singUP", -6, 53);
-				addOffset("singRIGHT", -1, 23);
-				addOffset("singLEFT", -6, 10);
-				addOffset("singDOWN", 3, -4);
+				addOffset("singUP", -8, 50);
+				addOffset("singRIGHT", -3, 20);
+				addOffset("singLEFT", -9, 8);
+				addOffset("singDOWN", 2, -4);
 
 				playAnim('idle');		
 			case 'gf-af':
@@ -1405,11 +1417,11 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'BGF Note DOWNNormal', 24);
 				animation.addByPrefix('singLEFT', 'BGF Note LEFTNormal', 24);
 
-				addOffset('idle');
-				addOffset("singUP", -6, 50);
-				addOffset("singRIGHT", 0, 27);
-				addOffset("singLEFT", -10, 10);
-				addOffset("singDOWN", 0, -30);
+				addOffset('idle', 0, 0);
+				addOffset("singUP", 9, 6);
+				addOffset("singRIGHT", -2, -2);
+				addOffset("singLEFT", 2, 2);
+				addOffset("singDOWN", -2, -2);
 
 				playAnim('idle');	
 				flipX = true;					
@@ -1571,6 +1583,11 @@ class Character extends FlxSprite
 						playAnim('danceRight');
 					else
 						playAnim('danceLeft');
+				case 'dad-bed':
+					if(PlayState.dadIdleAlt)
+						playAnim('idle-alt');
+					else
+						playAnim('idle');
 				default:
 					playAnim('idle');
 			}
