@@ -2,3 +2,4 @@ normal
 bullet
 ghost
 p3
+p3-p2

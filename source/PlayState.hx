@@ -1205,6 +1205,11 @@ class PlayState extends MusicBeatState
 						dadText4.animation.addByPrefix('dont', 'Just Dont die instancia 1', 24, false);
 						add(dadText4);
 
+						var preload1 = new Character (0,0, 'dad-afalt');
+						preload1.visible = false;
+						add(preload1);
+						remove(preload1);
+
 					trace('bedeviled');	
 				}					
 				
@@ -3081,10 +3086,9 @@ class PlayState extends MusicBeatState
 
 						var altAnim:String = "";
 
-						if(dadIdleAlt){
+						if(dadIdleAlt && curSong != "Affliction"){
 							altAnim = '-alt';
 						}
-	
 						if (SONG.notes[Math.floor(curStep / 16)] != null)
 						{
 							if (SONG.notes[Math.floor(curStep / 16)].altAnim)
@@ -3103,6 +3107,27 @@ class PlayState extends MusicBeatState
 									player3.playAnim('singLEFT' + altAnim, true);
 							}							
 						}
+						else if(daNote._notetype == "p3-p2"){
+							var p3altAnim:String = "";
+							if(dadIdleAlt){
+								p3altAnim = "-alt";
+							}
+							switch (Math.abs(daNote.noteData))
+							{
+								case 2:
+									player3.playAnim('singUP' + p3altAnim, true);
+									dad.playAnim('singUP' + altAnim, true);
+								case 3:
+									player3.playAnim('singRIGHT' + p3altAnim, true);
+									dad.playAnim('singRIGHT' + altAnim, true);
+								case 1:
+									player3.playAnim('singDOWN' + p3altAnim, true);
+									dad.playAnim('singDOWN' + altAnim, true);
+								case 0:
+									player3.playAnim('singLEFT' + p3altAnim, true);
+									dad.playAnim('singLEFT' + altAnim, true);
+							}	
+						}	
 						else{
 							switch (Math.abs(daNote.noteData))
 							{
@@ -4595,7 +4620,7 @@ class PlayState extends MusicBeatState
 			var _note:Note;
 			switch(curStep){
 				case 127:
-				defaultCamZoom = 1.3;
+				defaultCamZoom = 1.2;
 				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 0.4);
 				case 255:
 				defaultCamZoom = 0.9;
@@ -4608,14 +4633,34 @@ class PlayState extends MusicBeatState
 				dadText4.animation.play('dont');	
 				case 1023:
 				//pissed
+				healthDrain = true;
+				dadIdleAlt = true;
+				changeDAD('dad-afalt', dad.x, dad.y);
 				case 1088:
 				//normal
+				healthDrain = false;
+				dadIdleAlt = false;
+				changeDAD('dad-af', dad.x, dad.y);
 				case 1156:
 				//pissed
+				healthDrain = true;
+				dadIdleAlt = true;
+				changeDAD('dad-afalt', dad.x, dad.y);
 				case 1214:
 				//normal
+				healthDrain = false;
+				changeDAD('dad-af', dad.x, dad.y);
+				dadIdleAlt = false;	
 				case 1360:
 				//pissed
+				healthDrain = true;
+				changeDAD('dad-afalt', dad.x, dad.y);	
+				dadIdleAlt = true;
+				case 1904:
+				//normal					
+				changeDAD('dad-af', dad.x, dad.y);	
+				dadIdleAlt = false;	
+				healthDrain = false;
 			}	
 		}
 	}
@@ -4685,6 +4730,7 @@ class PlayState extends MusicBeatState
 			// Dad doesnt interupt his own notes
 			if (SONG.notes[Math.floor(curStep / 16)].mustHitSection && dad.curCharacter != 'gf')
 				dad.dance();
+				player3.dance();
 		}
 		// FlxG.log.add('change bpm' + SONG.notes[Std.int(curStep / 16)].changeBPM);
 		wiggleShit.update(Conductor.crochet);

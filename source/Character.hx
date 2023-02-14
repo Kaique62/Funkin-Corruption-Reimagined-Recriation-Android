@@ -1406,7 +1406,26 @@ class Character extends FlxSprite
 				addOffset("singLEFT", -9, 8);
 				addOffset("singDOWN", 2, -4);
 
-				playAnim('idle');		
+				playAnim('idle');
+
+			case 'dad-afalt':
+				// DAD ANIMATION LOADING CODE
+				tex = Paths.getSparrowAtlas('characters/depression/dad-6-2alt', 'shared');
+				frames = tex;
+				animation.addByPrefix('idle', 'Dad idle dance Corrupt30', 24);
+				animation.addByPrefix('singUP', 'Dad Sing NOTE UP Corrupt3', 24);
+				animation.addByPrefix('singRIGHT', 'Dad Sing NOTE RIGHT Corrupt30', 24);
+				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN Corrupt3Empty', 24);
+				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT Corrupt30', 24);
+
+				addOffset('idle');
+				addOffset("singUP", -11, 48);
+				addOffset("singRIGHT", -6, 19);
+				addOffset("singLEFT", -7, 8);
+				addOffset("singDOWN", -2, -6);
+
+				playAnim('idle');	
+								
 			case 'gf-af':
 				// DAD ANIMATION LOADING CODE
 				tex = Paths.getSparrowAtlas('characters/depression/gf-6-2', 'shared');
@@ -1417,11 +1436,23 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'BGF Note DOWNNormal', 24);
 				animation.addByPrefix('singLEFT', 'BGF Note LEFTNormal', 24);
 
+				animation.addByPrefix('idle-alt', 'BGF IdleGlow', 24);
+				animation.addByPrefix('singUP-alt', 'BGF Note UPGlow', 24);
+				animation.addByPrefix('singRIGHT-alt', 'BGF Note RIGHTGlow', 24);
+				animation.addByPrefix('singDOWN-alt', 'BGF Note DOWNGlow', 24);
+				animation.addByPrefix('singLEFT-alt', 'BGF Note LEFTGlow', 24);
+
 				addOffset('idle', 0, 0);
 				addOffset("singUP", 9, 6);
 				addOffset("singRIGHT", -2, -2);
-				addOffset("singLEFT", 2, 2);
+				addOffset("singLEFT", -2, 2);
 				addOffset("singDOWN", -2, -2);
+
+				addOffset('idle-alt', 0, 0);
+				addOffset("singUP-alt", 9, 6);
+				addOffset("singRIGHT-alt", -2, -2);
+				addOffset("singLEFT-alt", -2, 2);
+				addOffset("singDOWN-alt", -2, -2);
 
 				playAnim('idle');	
 				flipX = true;					
@@ -1583,7 +1614,7 @@ class Character extends FlxSprite
 						playAnim('danceRight');
 					else
 						playAnim('danceLeft');
-				case 'dad-bed':
+				case 'dad-bed' | 'gf-af':
 					if(PlayState.dadIdleAlt)
 						playAnim('idle-alt');
 					else
