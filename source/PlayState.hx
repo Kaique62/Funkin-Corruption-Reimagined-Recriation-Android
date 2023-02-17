@@ -1538,14 +1538,20 @@ class PlayState extends MusicBeatState
 			'health', 0, 2);
 		healthBar.scrollFactor.set();
 		switch(dad.curCharacter){
+			case 'dad-bed' | 'dad-af':
+				healthBar.createFilledBar(FlxColor.fromRGB(175, 102, 206), 0xFF000000);	
+
 			case 'pico' | 'pico2' | 'pico3-1' | 'pico-3-2' | 'pico-3-3' | 'pico-3-4' | 'pico-3-5':
-				healthBar.createFilledBar(0xFF00B200, 0xFF000000);	
+				healthBar.createFilledBar(FlxColor.fromRGB(183, 216, 85), 0xFF000000);	
+
 			case 'spooky' | 'spooky-2': // 0xFF808080	
-				healthBar.createFilledBar(0xFF808080, 0xFF000000);
-			case 'momd3-1' | 'momd3-2' | 'momd3-3' | 'momd3-4' | 'spooky-3':	
-				healthBar.createFilledBar(0xFF000000, 0xFF000000);	
+				healthBar.createFilledBar(FlxColor.fromRGB(180, 180, 180), 0xFF000000);
+
+			case 'momd3-1' | 'momd3-2' | 'momd3-3' | 'momd3-4' | 'spooky-3':
+				healthBar.createFilledBar(FlxColor.fromRGB(31, 26, 47), 0xFF000000);	
+
 			default:
-				healthBar.createFilledBar(0xFFFF0000, 0xFF000000);	
+				healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
 		}
 		// healthBar
 		add(healthBar);
@@ -1841,7 +1847,8 @@ class PlayState extends MusicBeatState
 	#end
 
 	function startCountdown():Void
-	{
+	{	
+
 		if(curSong == 'Devastation'){
 			camHUD.alpha = 0;
 		}
@@ -2174,7 +2181,6 @@ class PlayState extends MusicBeatState
 
 		generatedMusic = true;
 	}
-
 	function sortByShit(Obj1:Note, Obj2:Note):Int
 	{
 		return FlxSort.byValues(FlxSort.ASCENDING, Obj1.strumTime, Obj2.strumTime);
@@ -2996,7 +3002,7 @@ class PlayState extends MusicBeatState
 			{
 				notes.forEachAlive(function(daNote:Note)
 				{	
-
+					
 					// instead of doing stupid y > FlxG.height
 					// we be men and actually calculate the time :)
 					if (daNote.tooLate)
@@ -3144,16 +3150,16 @@ class PlayState extends MusicBeatState
 						if (healthDrain && !daNote.isSustainNote)
 							{
 								if(dad.curCharacter == 'dad-bed'){
-									health -= (0.02 * (curBeat / 50));	
+									health -= (0.02);	
 								}
 								if(dad.curCharacter == 'momd3-1'){
-									health -= (0.02 * (curBeat / 50));									
+									health -= (0.02);									
 								}
 								else if(dad.curCharacter == 'momd2'){
-									health -= (0.013 * (curBeat / 50));
+									health -= (0.013);
 								}
 								else{
-									health -= (0.015 * (curBeat / 50));			
+									health -= (0.015);			
 								}
 								if (health <= 0.01)
 								{
@@ -4609,9 +4615,11 @@ class PlayState extends MusicBeatState
 					dadText2.visible = true;
 					dadText2.animation.play('work');
 				case 768:
+					iconP2.animation.play('dad-bedalt');
 					healthDrain = true;
 					dadIdleAlt = true;
 				case 1088:
+					iconP2.animation.play('dad-bed');
 					healthDrain = false;
 					dadIdleAlt = false;	
 			}
@@ -4631,6 +4639,12 @@ class PlayState extends MusicBeatState
 				case 580:
 				dadText4.visible = true;
 				dadText4.animation.play('dont');	
+				case 832:
+				defaultCamZoom = 1.2;
+				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 0.4);	
+				case 868:
+				defaultCamZoom = 0.9;
+				FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 1);					
 				case 1023:
 				//pissed
 				healthDrain = true;

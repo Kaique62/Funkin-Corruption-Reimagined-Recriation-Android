@@ -14,8 +14,8 @@ Devastation:bf-4-3:4
 Blissful-Ignorance:parents-christmas:5
 Disconnection:parents-christmas:5
 Banishment:monster-christmas:5
-Bedeviled:senpai:6
-Affliction:senpai:6
+Bedeviled:dad-bed:1
+Affliction:dad-af:1
 Familiar-Finale:spirit:6
 Savestate:senpai:6
 Chances:senpai:6
